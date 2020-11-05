@@ -15,14 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.Timer;
+import javax.swing.*;
 
 
 public class MainGUI extends JFrame {
@@ -41,7 +34,7 @@ public class MainGUI extends JFrame {
         // this is implied super();
 
         // -- set the application title
-        setTitle("Java Swing Application");
+        setTitle("Tetris");
 
         // -- size of the frame: width, height
         setSize(WIDTH, HEIGHT);
@@ -86,12 +79,6 @@ public class MainGUI extends JFrame {
         graphicsPanel.repaint();
 
         // -- show the frame on the screen
-        this.setVisible(false);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         this.setVisible(true);
 
         // -- set keyboard focus to the graphics panel
@@ -267,15 +254,17 @@ public class MainGUI extends JFrame {
 
     // -- Inner class for control panel
     public class ControlPanelInner extends JPanel {
-
-        private JButton readtextfieldButton;
+        //buttons for control pannel
         private JButton saveButton;
         private JButton loadButton;
-        private JButton timerOnButton;
-        private JButton timerOffButton;
-        private JButton textareaButton;
+        private JButton pausePlay;
 
-        private JTextField textField;
+        //Labels for control pannel
+        private JLabel scoreLabel;
+        private JLabel nextPieceLabel;
+
+
+        private JTextField score;
         private JTextArea textArea;
         private JScrollPane scrollableTextArea;
 
@@ -291,74 +280,46 @@ public class MainGUI extends JFrame {
 
 
             // -- construct the JTextField, 5 characters wide
-            textField = new JTextField("Default", 5);
+            score = new JTextField("0", 5);
+            score.setHorizontalAlignment(JTextField.CENTER);    //centers the text in the text field.
+
+            //construct the labels for the control panel
+            scoreLabel = new JLabel("Score");
+            nextPieceLabel = new JLabel("Next Piece");
 
             // -- add items to the JPanel in order (FlowLayout)
-            this.add(readtextfieldButton);
-            this.add(textField);
-            this.add(textareaButton);
+
+            this.add(pausePlay);
+            this.add(scoreLabel);
+            this.add(score);
+            this.add(nextPieceLabel);
             this.add(loadButton);
             this.add(saveButton);
-            this.add(timerOnButton);
-            this.add(timerOffButton);
+
 
             // -- add a JTextArea with scroll bars, 7 rows, 5 columns
             //    scrollbar areas will show as soon as the JScrollPane
             //    is constructed. If you remove the calls to setHorizontalScrollBarPolicy
             //    and setVerticalScrollBarPolicy the scrollbars will only show
             //    when needed
-            textArea = new JTextArea(7, 5);
-            scrollableTextArea = new JScrollPane(textArea);
-            scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-            scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-            this.add(scrollableTextArea);
+//            textArea = new JTextArea(7, 5);
+//            scrollableTextArea = new JScrollPane(textArea);
+//            scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+//            scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//            this.add(scrollableTextArea);
 
         }
 
         private void prepareButtonHandlers()
         {
             // -- Construct the JButtons and their associated event handlers
-            readtextfieldButton = new JButton("Read Text");
-            readtextfieldButton.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            System.out.println(textField.getText());
-                            // -- send focus back to the graphicsPanel
-                            graphicsPanel.requestFocus();
-                        }
-                    }
-            );
 
-            textareaButton = new JButton("Set Text");
-            textareaButton.addActionListener(
+            pausePlay = new JButton("Go");
+            pausePlay.setPreferredSize(new Dimension(75,20));
+            pausePlay.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
-                            for (int i = 0; i < 10; ++i) {
-                                textArea.append("String " + i + "\n");
-                                // -- send focus back to the graphicsPanel
-                                graphicsPanel.requestFocus();
-                            }
-                        }
-                    }
-            );
 
-            timerOnButton = new JButton("Timer on");
-            timerOnButton.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            animationTimer.start();
-                            // -- send focus back to the graphicsPanel
-                            graphicsPanel.requestFocus();
-                        }
-                    }
-            );
-            timerOffButton = new JButton("Timer off");
-            timerOffButton.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            animationTimer.stop();
-                            // -- send focus back to the graphicsPanel
-                            graphicsPanel.requestFocus();
                         }
                     }
             );
