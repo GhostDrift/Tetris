@@ -10,18 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
 
 public class MainGUI extends JFrame {
     // -- set the size of the JFrame. JPanels will adapt to this size
-    private final int WIDTH = 512;
-    private final int HEIGHT = 450;
+    private final int WIDTH = 300;
+    private final int HEIGHT = 530;
 
     private Timer animationTimer = null;
 
@@ -50,7 +46,7 @@ public class MainGUI extends JFrame {
 
         // -- set the layout manager and add items
         //    5, 5 is the border around the edges of the areas
-        setLayout(new BorderLayout(5, 5));
+        setLayout(new BorderLayout(10, 10));
 
         // -- construct a JPanel for graphics
         graphicsPanel = new GraphicPanelInner();
@@ -89,7 +85,7 @@ public class MainGUI extends JFrame {
 
 
     // -- Inner class for the graphics panel
-    public class GraphicPanelInner extends JPanel implements MouseMotionListener {
+    public class GraphicPanelInner extends JPanel {
 
         public GraphicPanelInner ()
         {
@@ -97,57 +93,11 @@ public class MainGUI extends JFrame {
             this.setBackground(Color.white);
             this.prepareActionHandlers();
 
-            this.addMouseMotionListener(this);
         }
 
         // -- prepare the controls and their associated action listeners
         private void prepareActionHandlers()
         {
-            // -- The JPanel can have a mouse listener if desired
-            this.addMouseListener(new MouseListener() {
-
-                                      @Override
-                                      public void mouseClicked(MouseEvent event) {
-                                          System.out.println("Mouse Clicked at (" + event.getX() + ", " + event.getY() + ")");
-                                      }
-
-                                      @Override
-                                      public void mouseEntered(MouseEvent event) {
-                                          System.out.println("Mouse Entered at (" + event.getX() + ", " + event.getY() + ")");
-                                      }
-
-                                      @Override
-                                      public void mouseExited(MouseEvent event) {
-                                          System.out.println("Mouse Exited at (" + event.getX() + ", " + event.getY() + ")");
-                                      }
-
-                                      @Override
-                                      public void mousePressed(MouseEvent event) {
-                                          // -- BUTTON1 is the left, BUTTON3 is the right
-                                          if (event.getButton() == MouseEvent.BUTTON1) {
-                                              System.out.println("Left button pressed");
-                                          }
-                                          else if (event.getButton() == MouseEvent.BUTTON3) {
-                                              System.out.println("Right button pressed");
-                                          }
-                                          graphicsPanel.requestFocus();
-                                      }
-
-                                      @Override
-                                      public void mouseReleased(MouseEvent event) {
-                                          // -- BUTTON1 is the left, BUTTON3 is the right
-                                          if (event.getButton() == MouseEvent.BUTTON1) {
-                                              System.out.println("Left button released");
-                                          }
-                                          else if (event.getButton() == MouseEvent.BUTTON3) {
-                                              System.out.println("Right button released");
-                                          }
-                                          graphicsPanel.requestFocus();
-                                          repaint();
-                                      }
-                                  }
-            );
-
             // -- keyboard listener
             //    note that the JPanel must have focus for these to
             //    generate events. You can click the mouse in the JPanel
@@ -174,23 +124,13 @@ public class MainGUI extends JFrame {
             });
         }
 
-        // -- Mouse motion event handlers
-        @Override
-        public void mouseDragged(MouseEvent event) {
-            System.out.println("Mouse dragged to (" + event.getX() + ", " + event.getY() + ")");
-        }
-
-        @Override
-        public void mouseMoved(MouseEvent event) {
-            System.out.println("Mouse moved to (" + event.getX() + ", " + event.getY() + ")");
-        }
 
         // -- this override sets the desired size of the JPanel which is
         //    used by some layout managers -- default desired size is 0,0
         //    which is, in general, not good -- will pull from layout manager
         public Dimension getPreferredSize()
         {
-            return new Dimension(50, 50);
+            return new Dimension(25, 60);
         }
 
         // -- this override is where all the painting should be done.
@@ -216,38 +156,27 @@ public class MainGUI extends JFrame {
             int height = this.getHeight();
             int width = this.getWidth();
 
-            // -- draw an image of random color on the panel
-            BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            for (int i = 0; i < bi.getHeight(); ++i) {
-                for (int j = 0; j < bi.getWidth(); ++j) {
-                    int pixel =	((int)(Math.random() * 255) << 16) | ((int)(Math.random() * 255) << 8) | ((int)(Math.random() * 255));
-                    bi.setRGB(j, i, pixel);
-                }
-            }
-            graphicsContext.drawImage(bi, 0, 0, this.getWidth(), this.getHeight(), null);
 
             // -- overlay a grid to fill the entire space evenly
+            //draws vertical grid lines
             int horzs = 10;
             double horzspacing = width / (double)horzs;
             double x0 = 0.0;
-            graphicsContext.setColor(Color.GREEN);
+            graphicsContext.setColor(Color.BLACK);
             for (int i = 0; i < horzs; ++i) {
                 graphicsContext.drawLine((int)x0, 0, (int)x0, height);
                 x0 += horzspacing;
             }
-
-            int verts = 10;
+            //draws horizontal grid Lines
+            int verts = 30;
             double vertspacing = height / (double)verts;
             double y0 = 0.0;
-            graphicsContext.setColor(Color.BLUE);
+            graphicsContext.setColor(Color.BLACK);
             for (int i = 0; i < verts; ++i) {
                 graphicsContext.drawLine(0, (int)y0, width, (int)y0);
                 y0 += vertspacing;
             }
 
-            // -- draw a red ellipse in the center of the graphics area
-            graphicsContext.setColor(Color.RED);
-            graphicsContext.fillOval(width / 2 - 25, height / 2 - 25, 50, 50);
         }
 
     }
@@ -266,7 +195,7 @@ public class MainGUI extends JFrame {
 
         private JTextField score;
         private JTextArea textArea;
-        private JScrollPane scrollableTextArea;
+        private JScrollPane nextPiece;
 
         public ControlPanelInner ()
         {
@@ -276,16 +205,25 @@ public class MainGUI extends JFrame {
             // -- set the layout manager
             //    this will determine how items are added to the JPanel
             //setLayout(new GridLayout(10, 1, 2, 2));
-            setLayout(new FlowLayout());
+            setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
 
 
             // -- construct the JTextField, 5 characters wide
             score = new JTextField("0", 5);
             score.setHorizontalAlignment(JTextField.CENTER);    //centers the text in the text field.
+            score.setEditable(false);
 
             //construct the labels for the control panel
             scoreLabel = new JLabel("Score");
             nextPieceLabel = new JLabel("Next Piece");
+
+            // -- create a JTextArea with scroll bars, 7 rows, 5 columns
+            //    scrollbar areas will show as soon as the JScrollPane
+            //    is constructed. If you remove the calls to setHorizontalScrollBarPolicy
+            //    and setVerticalScrollBarPolicy the scrollbars will only show
+            //    when needed
+            textArea = new JTextArea(6, 8);
+            nextPiece = new JScrollPane(textArea);
 
             // -- add items to the JPanel in order (FlowLayout)
 
@@ -293,20 +231,13 @@ public class MainGUI extends JFrame {
             this.add(scoreLabel);
             this.add(score);
             this.add(nextPieceLabel);
+            this.add(nextPiece);
             this.add(loadButton);
             this.add(saveButton);
 
 
-            // -- add a JTextArea with scroll bars, 7 rows, 5 columns
-            //    scrollbar areas will show as soon as the JScrollPane
-            //    is constructed. If you remove the calls to setHorizontalScrollBarPolicy
-            //    and setVerticalScrollBarPolicy the scrollbars will only show
-            //    when needed
-//            textArea = new JTextArea(7, 5);
-//            scrollableTextArea = new JScrollPane(textArea);
-//            scrollableTextArea.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-//            scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//            this.add(scrollableTextArea);
+
+
 
         }
 
@@ -314,12 +245,19 @@ public class MainGUI extends JFrame {
         {
             // -- Construct the JButtons and their associated event handlers
 
-            pausePlay = new JButton("Go");
+            pausePlay = new JButton("GO");
             pausePlay.setPreferredSize(new Dimension(75,20));
             pausePlay.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
-
+                            if(pausePlay.getText().equals("GO")){
+                                pausePlay.setText("PAUSE");
+                            }
+                            else if(pausePlay.getText().equals("PAUSE")){
+                                pausePlay.setText("GO");
+                            }
+                            //send focus back to the graphics panel
+                            graphicsPanel.requestFocus();
                         }
                     }
             );
