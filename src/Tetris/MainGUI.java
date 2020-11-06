@@ -21,8 +21,9 @@ public class MainGUI extends JFrame {
 
     private Timer animationTimer = null;
 
-    private GraphicPanelInner graphicsPanel;
+    private PlayArea playArea;
     private ControlPanelInner controlPanel;
+    private NextPieceDisplay nextPieceDisplay;
 
     public MainGUI ()
     {
@@ -52,8 +53,8 @@ public class MainGUI extends JFrame {
         setLayout(new BorderLayout(10, 10));
 
         // -- construct a JPanel for graphics
-        graphicsPanel = new GraphicPanelInner();
-        this.add(graphicsPanel, BorderLayout.CENTER);
+        playArea = new PlayArea();
+        this.add(playArea, BorderLayout.CENTER);
 
         // -- construct a JPanel for controls
         controlPanel = new ControlPanelInner();
@@ -75,22 +76,22 @@ public class MainGUI extends JFrame {
         );
 
         // -- paint the graphics canvas before the initial display
-        graphicsPanel.repaint();
+        playArea.repaint();
 
         // -- show the frame on the screen
         this.setVisible(true);
 
         // -- set keyboard focus to the graphics panel
-        graphicsPanel.setFocusable(true);
-        graphicsPanel.requestFocus();
+        playArea.setFocusable(true);
+        playArea.requestFocus();
 
     }
 
 
     // -- Inner class for the graphics panel
-    public class GraphicPanelInner extends JPanel {
+    public class PlayArea extends JPanel {
 
-        public GraphicPanelInner ()
+        public PlayArea()
         {
             super();
             this.setBackground(Color.white);
@@ -115,13 +116,13 @@ public class MainGUI extends JFrame {
                 @Override
                 public void keyPressed(KeyEvent event) {
                     System.out.println("key pressed: " + event.getKeyCode());
-                    graphicsPanel.repaint();
+                    playArea.repaint();
                 }
 
                 @Override
                 public void keyReleased(KeyEvent event) {
                     System.out.println("key released: " + event.getKeyCode());
-                    graphicsPanel.repaint();
+                    playArea.repaint();
                 }
 
             });
@@ -198,7 +199,7 @@ public class MainGUI extends JFrame {
 
         private JTextField score;
         private JTextArea textArea;
-        private JScrollPane nextPiece;
+
 
         public ControlPanelInner ()
         {
@@ -220,13 +221,7 @@ public class MainGUI extends JFrame {
             scoreLabel = new JLabel("Score");
             nextPieceLabel = new JLabel("Next Piece");
 
-            // -- create a JTextArea with scroll bars, 7 rows, 5 columns
-            //    scrollbar areas will show as soon as the JScrollPane
-            //    is constructed. If you remove the calls to setHorizontalScrollBarPolicy
-            //    and setVerticalScrollBarPolicy the scrollbars will only show
-            //    when needed
-            textArea = new JTextArea(6, 8);
-            nextPiece = new JScrollPane(textArea);
+
 
             // -- add items to the JPanel in order (FlowLayout)
 
@@ -234,7 +229,6 @@ public class MainGUI extends JFrame {
             this.add(scoreLabel);
             this.add(score);
             this.add(nextPieceLabel);
-            this.add(nextPiece);
             this.add(loadButton);
             this.add(saveButton);
 
@@ -260,7 +254,7 @@ public class MainGUI extends JFrame {
                                 pausePlay.setText("GO");
                             }
                             //send focus back to the graphics panel
-                            graphicsPanel.requestFocus();
+                            playArea.requestFocus();
                         }
                     }
             );
@@ -273,7 +267,7 @@ public class MainGUI extends JFrame {
                                 System.out.println(jfc.getSelectedFile().getName());
                             }
                             // -- send focus back to the graphicsPanel
-                            graphicsPanel.requestFocus();
+                            playArea.requestFocus();
                         }
                     }
             );
@@ -287,7 +281,7 @@ public class MainGUI extends JFrame {
                                 System.out.println(jfc.getSelectedFile().getName());
                             }
                             // -- send focus back to the graphicsPanel
-                            graphicsPanel.requestFocus();
+                            playArea.requestFocus();
                         }
                     }
             );
@@ -298,6 +292,11 @@ public class MainGUI extends JFrame {
         {
             return new Dimension(100, 500);
         }
+
+    }
+
+    //Inner class for next piece display
+    private class NextPieceDisplay {
 
     }
 
@@ -313,4 +312,5 @@ public class MainGUI extends JFrame {
         // this line of Code demonstrates the fact that the main function terminates and the main code still runs
         System.out.println("Main Thread Terminating");
     }
+
 }
