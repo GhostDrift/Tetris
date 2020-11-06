@@ -44,6 +44,9 @@ public class MainGUI extends JFrame {
         //    the red square in eclipse
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Make the window a fixed size
+        setResizable(false);
+
         // -- set the layout manager and add items
         //    5, 5 is the border around the edges of the areas
         setLayout(new BorderLayout(10, 10));
