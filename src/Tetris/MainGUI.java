@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 
 public class MainGUI extends JFrame {
@@ -19,11 +20,11 @@ public class MainGUI extends JFrame {
     private final int WIDTH = 300;
     private final int HEIGHT = 530;
 
-    private Timer animationTimer = null;
+    private Timer gameTimer = null;
 
     private PlayArea playArea;
     private ControlPanelInner controlPanel;
-    private NextPieceDisplay nextPieceDisplay;
+
 
     public MainGUI ()
     {
@@ -63,7 +64,7 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
-        animationTimer = new Timer(10,
+        gameTimer = new Timer(10,
                 // -- ActionListener for the timer event
                 // and example of real time programming
                 // events occur at arbitrary times
@@ -198,7 +199,7 @@ public class MainGUI extends JFrame {
 
 
         private JTextField score;
-        private JTextArea textArea;
+        private NextPieceDisplay nextPieceDisplay;
 
 
         public ControlPanelInner ()
@@ -209,7 +210,7 @@ public class MainGUI extends JFrame {
             // -- set the layout manager
             //    this will determine how items are added to the JPanel
             //setLayout(new GridLayout(10, 1, 2, 2));
-            setLayout(new FlowLayout(FlowLayout.CENTER, 5, 15));
+            setLayout(new FlowLayout(FlowLayout.CENTER, 20, 15));
 
 
             // -- construct the JTextField, 5 characters wide
@@ -221,7 +222,8 @@ public class MainGUI extends JFrame {
             scoreLabel = new JLabel("Score");
             nextPieceLabel = new JLabel("Next Piece");
 
-
+            //constructs a graphics panel to display the next piece
+            nextPieceDisplay = new NextPieceDisplay();
 
             // -- add items to the JPanel in order (FlowLayout)
 
@@ -229,8 +231,11 @@ public class MainGUI extends JFrame {
             this.add(scoreLabel);
             this.add(score);
             this.add(nextPieceLabel);
+            this.add(nextPieceDisplay);
             this.add(loadButton);
             this.add(saveButton);
+
+            setBorder( new EmptyBorder(0,20,0,5));
 
 
 
@@ -249,9 +254,11 @@ public class MainGUI extends JFrame {
                         public void actionPerformed(ActionEvent arg0) {
                             if(pausePlay.getText().equals("GO")){
                                 pausePlay.setText("PAUSE");
+                                gameTimer.start();
                             }
                             else if(pausePlay.getText().equals("PAUSE")){
                                 pausePlay.setText("GO");
+                                gameTimer.stop();
                             }
                             //send focus back to the graphics panel
                             playArea.requestFocus();
@@ -296,8 +303,16 @@ public class MainGUI extends JFrame {
     }
 
     //Inner class for next piece display
-    private class NextPieceDisplay {
-
+    private class NextPieceDisplay extends JPanel {
+        public NextPieceDisplay(){
+            super();
+            this.setBackground(Color.white);
+        }
+        //sets the size of the window
+        public Dimension getPreferredSize()
+        {
+            return new Dimension(100, 100);
+        }
     }
 
     public static void main (String[] args)
