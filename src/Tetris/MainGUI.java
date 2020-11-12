@@ -111,19 +111,28 @@ public class MainGUI extends JFrame {
 
                 @Override
                 public void keyTyped(KeyEvent event) {
-                    System.out.println("key typed: " + event.getKeyCode());
+
                 }
 
                 @Override
                 public void keyPressed(KeyEvent event) {
-                    System.out.println("key pressed: " + event.getKeyCode());
-                    playArea.repaint();
+                    if(event.getKeyCode()== 37){
+                        System.out.println("move piece left");
+                    }
+                    else if(event.getKeyCode()== 38){
+                        System.out.println("rotate piece");
+                    }
+                    else if(event.getKeyCode()== 39){
+                        System.out.println("move piece right");
+                    }
+                    else if(event.getKeyCode()== 40){
+                        System.out.println("drop piece");
+                    }
                 }
 
                 @Override
                 public void keyReleased(KeyEvent event) {
-                    System.out.println("key released: " + event.getKeyCode());
-                    playArea.repaint();
+
                 }
 
             });
