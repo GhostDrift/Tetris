@@ -17,8 +17,8 @@ import javax.swing.border.EmptyBorder;
 
 public class MainGUI extends JFrame {
     // -- set the size of the JFrame. JPanels will adapt to this size
-    private final int WIDTH = 300;
-    private final int HEIGHT = 530;
+    private final int WIDTH = 299;
+    private final int HEIGHT = 531;
 
     private Timer gameTimer = null;
 
@@ -136,6 +136,7 @@ public class MainGUI extends JFrame {
                 }
 
             });
+
         }
 
 
@@ -190,6 +191,9 @@ public class MainGUI extends JFrame {
                 graphicsContext.drawLine(0, (int)y0, width, (int)y0);
                 y0 += vertspacing;
             }
+
+            graphicsContext.setColor(Color.RED);
+            graphicsContext.fillRect(70,148,16,16);
 
         }
 
