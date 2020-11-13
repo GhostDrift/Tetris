@@ -25,6 +25,9 @@ public class MainGUI extends JFrame {
     private PlayArea playArea;
     private ControlPanelInner controlPanel;
 
+    private Color pieceColor = Color.white;
+    private int colorIndex = 0;
+
 
     public MainGUI ()
     {
@@ -71,7 +74,23 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        System.out.println("tic");
+                        if(colorIndex == 0){
+                            pieceColor = Color.RED;
+                            colorIndex++;
+                        }
+                        else if (colorIndex == 1){
+                            pieceColor = Color.CYAN;
+                            colorIndex++;
+                        }
+                        else if(colorIndex == 2){
+                            pieceColor = Color.orange;
+                            colorIndex++;
+                        }
+                        else if (colorIndex == 3){
+                            pieceColor = Color.GREEN;
+                            colorIndex = 0;
+                        }
+                        playArea.repaint();
                     }
                 }
         );
@@ -91,7 +110,7 @@ public class MainGUI extends JFrame {
 
     // -- Inner class for the graphics panel
     public class PlayArea extends JPanel {
-
+        private Color color;
         public PlayArea()
         {
             super();
@@ -192,7 +211,9 @@ public class MainGUI extends JFrame {
                 y0 += vertspacing;
             }
 
-            graphicsContext.setColor(Color.RED);
+            //creates a colored square in the middle of the screen
+
+            graphicsContext.setColor(pieceColor);
             graphicsContext.fillRect(70,148,16,16);
 
         }
