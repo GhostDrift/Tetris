@@ -30,7 +30,8 @@ public class MainGUI extends JFrame {
     private ControlPanelInner controlPanel;
 
     //piece color variables
-    private Color pieceColor = Color.white;
+    private Color pieceColor = Color.black;
+    private Color nextColor = Color.black;
     private int colorIndex = 0;
 
 
@@ -57,6 +58,8 @@ public class MainGUI extends JFrame {
         // Make the window a fixed size
         setResizable(false);
 
+
+
         // -- set the layout manager and add items
         //    5, 5 is the border around the edges of the areas
         setLayout(new BorderLayout(10, 10));
@@ -80,19 +83,23 @@ public class MainGUI extends JFrame {
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
                         if(colorIndex == 0){
-                            pieceColor = Color.RED;
+                            pieceColor = nextColor;
+                            nextColor = Color.RED;
                             colorIndex++;
                         }
                         else if (colorIndex == 1){
-                            pieceColor = Color.CYAN;
+                            pieceColor = nextColor;
+                            nextColor = Color.CYAN;
                             colorIndex++;
                         }
                         else if(colorIndex == 2){
-                            pieceColor = Color.orange;
+                            pieceColor = nextColor;
+                            nextColor = Color.orange;
                             colorIndex++;
                         }
                         else if (colorIndex == 3){
-                            pieceColor = Color.GREEN;
+                            pieceColor = nextColor;
+                            nextColor = Color.GREEN;
                             colorIndex = 0;
                         }
                         playArea.repaint();
@@ -121,7 +128,7 @@ public class MainGUI extends JFrame {
         public PlayArea()
         {
             super();
-            this.setBackground(Color.white);
+            this.setBackground(Color.BLACK);
             this.prepareActionHandlers();
 
         }
@@ -204,7 +211,7 @@ public class MainGUI extends JFrame {
             int horzs = 10;
             double horzspacing = width / (double)horzs;
             double x0 = 0.0;
-            graphicsContext.setColor(Color.BLACK);
+            graphicsContext.setColor(Color.darkGray);
             for (int i = 0; i < horzs; ++i) {
                 graphicsContext.drawLine((int)x0, 0, (int)x0, height);
                 x0 += horzspacing;
@@ -213,7 +220,7 @@ public class MainGUI extends JFrame {
             int verts = 30;
             double vertspacing = height / (double)verts;
             double y0 = 0.0;
-            graphicsContext.setColor(Color.BLACK);
+            graphicsContext.setColor(Color.darkGray);
             for (int i = 0; i < verts; ++i) {
                 graphicsContext.drawLine(0, (int)y0, width, (int)y0);
                 y0 += vertspacing;
@@ -254,11 +261,14 @@ public class MainGUI extends JFrame {
             //setLayout(new GridLayout(10, 1, 2, 2));
             setLayout(new FlowLayout(FlowLayout.CENTER, 20, 15));
 
+            setBackground(Color.BLACK);
 
             // -- construct the JTextField, 5 characters wide
             score = new JTextField("0", 5);
             score.setHorizontalAlignment(JTextField.CENTER);    //centers the text in the text field.
             score.setEditable(false);
+            score.setBackground(Color.BLACK);
+            score.setForeground(Color.CYAN);
 
             //construct the labels for the control panel
             scoreLabel = new JLabel("Score");
