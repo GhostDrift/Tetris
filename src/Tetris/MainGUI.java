@@ -22,9 +22,14 @@ public class MainGUI extends JFrame {
 
     private Timer gameTimer = null;
 
+    //graphics display areas
     private PlayArea playArea;
+    private NextPieceDisplay nextPieceDisplay;
+
+    //control panel
     private ControlPanelInner controlPanel;
 
+    //piece color variables
     private Color pieceColor = Color.white;
     private int colorIndex = 0;
 
@@ -67,7 +72,7 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
-        gameTimer = new Timer(10,
+        gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
                 // events occur at arbitrary times
@@ -91,12 +96,14 @@ public class MainGUI extends JFrame {
                             colorIndex = 0;
                         }
                         playArea.repaint();
+                        nextPieceDisplay.repaint();
                     }
                 }
         );
 
         // -- paint the graphics canvas before the initial display
         playArea.repaint();
+
 
         // -- show the frame on the screen
         this.setVisible(true);
@@ -110,7 +117,7 @@ public class MainGUI extends JFrame {
 
     // -- Inner class for the graphics panel
     public class PlayArea extends JPanel {
-        private Color color;
+//        private Color color;
         public PlayArea()
         {
             super();
@@ -162,6 +169,7 @@ public class MainGUI extends JFrame {
         // -- this override sets the desired size of the JPanel which is
         //    used by some layout managers -- default desired size is 0,0
         //    which is, in general, not good -- will pull from layout manager
+        @Override
         public Dimension getPreferredSize()
         {
             return new Dimension(25, 60);
@@ -233,7 +241,7 @@ public class MainGUI extends JFrame {
 
 
         private JTextField score;
-        private NextPieceDisplay nextPieceDisplay;
+
 
 
         public ControlPanelInner ()
@@ -258,6 +266,7 @@ public class MainGUI extends JFrame {
 
             //constructs a graphics panel to display the next piece
             nextPieceDisplay = new NextPieceDisplay();
+            nextPieceDisplay.repaint();
 
             // -- add items to the JPanel in order (FlowLayout)
 
@@ -338,14 +347,39 @@ public class MainGUI extends JFrame {
 
     //Inner class for next piece display
     private class NextPieceDisplay extends JPanel {
-        public NextPieceDisplay(){
+        public NextPieceDisplay() {
             super();
             this.setBackground(Color.white);
         }
+
         //sets the size of the window
-        public Dimension getPreferredSize()
-        {
+        @Override
+        public Dimension getPreferredSize() {
             return new Dimension(100, 100);
+        }
+
+        @Override
+        public void paint(Graphics g) {
+            // -- the base class paintComponent(g) method ensures
+            //    the drawing area will be cleared properly. Do not
+            //    modify any attributes of g prior to sending it to
+            //    the base class
+            super.paintComponent(g);
+
+            // -- for legacy reasons the parameter comes in as type Graphics
+            //    but it is really a Graphics2D object. Cast it up since the
+            //    Graphics2D class is more capable
+            Graphics2D graphicsContext = (Graphics2D) g;
+            int height = this.getHeight();
+            int width = this.getWidth();
+
+
+            //creates a colored square in the middle of the screen
+
+            graphicsContext.setColor(pieceColor);
+            graphicsContext.fillRect(37, 39, 16, 16);
+
+
         }
     }
 
