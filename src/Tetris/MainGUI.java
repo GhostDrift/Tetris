@@ -30,8 +30,8 @@ public class MainGUI extends JFrame {
     private ControlPanelInner controlPanel;
 
     //piece color variables
-    private Color pieceColor = Color.black;
-    private Color nextColor = Color.black;
+    private Color pieceColor = Color.cyan;
+    private Color nextColor = Color.cyan;
     private int colorIndex = 0;
 
 
@@ -62,7 +62,8 @@ public class MainGUI extends JFrame {
 
         // -- set the layout manager and add items
         //    5, 5 is the border around the edges of the areas
-        setLayout(new BorderLayout(10, 10));
+        //setLayout(new BorderLayout(10, 10));
+        setLayout(new BorderLayout(0,0));
 
         // -- construct a JPanel for graphics
         playArea = new PlayArea();
@@ -229,7 +230,7 @@ public class MainGUI extends JFrame {
             //creates a colored square in the middle of the screen
 
             graphicsContext.setColor(pieceColor);
-            graphicsContext.fillRect(70,148,16,16);
+            graphicsContext.fillRect(74,148,17,16);
 
         }
 
@@ -359,7 +360,7 @@ public class MainGUI extends JFrame {
     private class NextPieceDisplay extends JPanel {
         public NextPieceDisplay() {
             super();
-            this.setBackground(Color.white);
+            this.setBackground(Color.BLACK);
         }
 
         //sets the size of the window
