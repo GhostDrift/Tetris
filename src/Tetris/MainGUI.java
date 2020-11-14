@@ -13,6 +13,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 
 public class MainGUI extends JFrame {
@@ -33,6 +35,7 @@ public class MainGUI extends JFrame {
     private Color pieceColor = Color.cyan;
     private Color nextColor = Color.cyan;
     private int colorIndex = 0;
+    private final Color purple = new Color(102,0,153);
 
 
     public MainGUI ()
@@ -273,7 +276,9 @@ public class MainGUI extends JFrame {
 
             //construct the labels for the control panel
             scoreLabel = new JLabel("Score");
+            scoreLabel.setForeground(purple);
             nextPieceLabel = new JLabel("Next Piece");
+            nextPieceLabel.setForeground(purple);
 
             //constructs a graphics panel to display the next piece
             nextPieceDisplay = new NextPieceDisplay();
@@ -303,6 +308,8 @@ public class MainGUI extends JFrame {
 
             pausePlay = new JButton("GO");
             pausePlay.setPreferredSize(new Dimension(75,20));
+            pausePlay.setBackground(Color.black);
+            pausePlay.setForeground(Color.CYAN);
             pausePlay.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
@@ -320,6 +327,8 @@ public class MainGUI extends JFrame {
                     }
             );
             saveButton = new JButton("Save");
+            saveButton.setBackground(Color.black);
+            saveButton.setForeground(Color.CYAN);
             saveButton.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
@@ -334,6 +343,8 @@ public class MainGUI extends JFrame {
             );
 
             loadButton = new JButton("Load");
+            loadButton.setBackground(Color.black);
+            loadButton.setForeground(Color.CYAN);
             loadButton.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
@@ -360,7 +371,8 @@ public class MainGUI extends JFrame {
     private class NextPieceDisplay extends JPanel {
         public NextPieceDisplay() {
             super();
-            this.setBackground(Color.BLACK);
+            this.setBackground(Color.DARK_GRAY.darker());
+
         }
 
         //sets the size of the window
