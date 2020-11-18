@@ -19,7 +19,7 @@ import javax.swing.border.TitledBorder;
 
 public class MainGUI extends JFrame {
     // -- set the size of the JFrame. JPanels will adapt to this size
-    private final int WIDTH = 299;
+    private final int WIDTH = 296;
     private final int HEIGHT = 531;
 
     private Timer gameTimer = null;
@@ -30,6 +30,9 @@ public class MainGUI extends JFrame {
 
     //control panel
     private ControlPanelInner controlPanel;
+
+    //2D array for mapping game board
+    private Square[][] gameBoard = new Square[10][30];
 
     //piece color variables
     private Color pieceColor = Color.black;
@@ -67,6 +70,17 @@ public class MainGUI extends JFrame {
         //    5, 5 is the border around the edges of the areas
         //setLayout(new BorderLayout(10, 10));
         setLayout(new BorderLayout(0,0));
+
+        //populate the 2D array that will be used to map the game board
+        int xValue = 1;
+        int yValue = 0;
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 30; j++){
+                gameBoard[i][j] = new Square(xValue, yValue);
+                //yValue += 10;
+            }
+            xValue += 18;
+        }
 
         // -- construct a JPanel for graphics
         playArea = new PlayArea();
@@ -235,8 +249,8 @@ public class MainGUI extends JFrame {
 
             //creates a colored square in the middle of the screen
 
-            graphicsContext.setColor(pieceColor);
-            graphicsContext.fillRect(74,148,17,16);
+            graphicsContext.setColor(Color.cyan);
+            graphicsContext.fillRect(163,0,17,16);
 
         }
 
