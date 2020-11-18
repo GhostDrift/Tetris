@@ -32,10 +32,10 @@ public class MainGUI extends JFrame {
     private ControlPanelInner controlPanel;
 
     //piece color variables
-    private Color pieceColor = Color.cyan;
-    private Color nextColor = Color.cyan;
+    private Color pieceColor = Color.black;
+    private Color nextColor = Color.black;
     private int colorIndex = 0;
-    private final Color purple = new Color(102,0,153);
+    private final Color purple = new Color(100,0,150);
 
 
     public MainGUI ()
@@ -86,23 +86,26 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        if(colorIndex == 0){
-                            pieceColor = nextColor;
+                        if(nextColor.equals(Color.black)){
+                            nextColor = Color.green;
+                        }
+                        else if(colorIndex == 0){
+                            pieceColor = Color.green;
                             nextColor = Color.RED;
                             colorIndex++;
                         }
                         else if (colorIndex == 1){
-                            pieceColor = nextColor;
+                            pieceColor = Color.red;
                             nextColor = Color.CYAN;
                             colorIndex++;
                         }
                         else if(colorIndex == 2){
-                            pieceColor = nextColor;
+                            pieceColor = Color.CYAN;
                             nextColor = Color.orange;
                             colorIndex++;
                         }
                         else if (colorIndex == 3){
-                            pieceColor = nextColor;
+                            pieceColor = Color.orange;
                             nextColor = Color.GREEN;
                             colorIndex = 0;
                         }
@@ -371,7 +374,7 @@ public class MainGUI extends JFrame {
     private class NextPieceDisplay extends JPanel {
         public NextPieceDisplay() {
             super();
-            this.setBackground(Color.DARK_GRAY.darker());
+            this.setBackground(Color.BLACK);
 
         }
 
