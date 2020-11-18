@@ -20,7 +20,7 @@ import javax.swing.border.TitledBorder;
 public class MainGUI extends JFrame {
     // -- set the size of the JFrame. JPanels will adapt to this size
     private final int WIDTH = 296;
-    private final int HEIGHT = 531;
+    private final int HEIGHT = 550;
 
     private Timer gameTimer = null;
 
@@ -77,7 +77,7 @@ public class MainGUI extends JFrame {
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 30; j++){
                 gameBoard[i][j] = new Square(xValue, yValue);
-                //yValue += 10;
+                yValue += 17;
             }
             xValue += 18;
         }
@@ -250,7 +250,7 @@ public class MainGUI extends JFrame {
             //creates a colored square in the middle of the screen
 
             graphicsContext.setColor(Color.cyan);
-            graphicsContext.fillRect(163,0,17,16);
+            graphicsContext.fillRect(73,119,17,17);
 
         }
 
