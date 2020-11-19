@@ -29,7 +29,14 @@ public class Piece {
             map = new boolean[4][4];
         }
     }
+    //getters and setters for private variables
     public boolean[][] getMap(){
         return this.map;
+    }
+    public void setActive(boolean a){
+        this.active = a;
+    }
+    public boolean getActive(){
+        return this.active;
     }
 }
