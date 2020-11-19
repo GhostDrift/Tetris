@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -79,6 +80,7 @@ public class MainGUI extends JFrame {
                 gameBoard[i][j] = new Square(xValue, yValue);
                 yValue += 17;
             }
+            yValue = 0;
             xValue += 18;
         }
 
@@ -93,6 +95,7 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
+        Random rn = new Random();
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
@@ -100,31 +103,11 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        if(nextColor.equals(Color.black)){
-                            nextColor = Color.green;
-                        }
-                        else if(colorIndex == 0){
-                            pieceColor = Color.green;
-                            nextColor = Color.RED;
-                            colorIndex++;
-                        }
-                        else if (colorIndex == 1){
-                            pieceColor = Color.red;
-                            nextColor = Color.CYAN;
-                            colorIndex++;
-                        }
-                        else if(colorIndex == 2){
-                            pieceColor = Color.CYAN;
-                            nextColor = Color.orange;
-                            colorIndex++;
-                        }
-                        else if (colorIndex == 3){
-                            pieceColor = Color.orange;
-                            nextColor = Color.GREEN;
-                            colorIndex = 0;
+                        for(int i = 0; i< 10; i++){
+                           int n = rn.nextInt(30);
+                           gameBoard[i][n].setColored(true);
                         }
                         playArea.repaint();
-                        nextPieceDisplay.repaint();
                     }
                 }
         );
@@ -247,10 +230,20 @@ public class MainGUI extends JFrame {
                 y0 += vertspacing;
             }
 
-            //creates a colored square in the middle of the screen
-
+//            //creates a colored square in the middle of the screen
+//
             graphicsContext.setColor(Color.cyan);
-            graphicsContext.fillRect(73,119,17,17);
+//            graphicsContext.fillRect(73,119,17,17);
+
+            Square s;
+            for(int i = 0; i < 10; i++){
+                for (int j = 0; j < 30; j++){
+                    if(gameBoard[i][j].getColored()){
+                        s = gameBoard[i][j];
+                        graphicsContext.fillRect(s.getX(), s.getY(), 17, 16);
+                    }
+                }
+            }
 
         }
 
