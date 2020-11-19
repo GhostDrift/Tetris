@@ -34,11 +34,12 @@ public class MainGUI extends JFrame {
 
     //2D array for mapping game board
     private Square[][] gameBoard = new Square[10][30];
+    private Square[][] nextPieceMap = new Square[4][4];
 
     //piece color variables
-    private Color pieceColor = Color.black;
-    private Color nextColor = Color.black;
-    private int colorIndex = 0;
+   private Color pieceColor = Color.black;
+//    private Color nextColor = Color.black;
+//    private int colorIndex = 0;
     private final Color purple = new Color(100,0,150);
 
 
@@ -83,6 +84,20 @@ public class MainGUI extends JFrame {
             yValue = 0;
             xValue += 18;
         }
+        //populate the 2D array that will be used to map the next piece display
+        xValue = 14;
+        yValue =17;
+        for(int i = 0; i<4; i++){
+            for(int j = 0; j< 4; j++){
+                nextPieceMap[i][j] = new Square(xValue, yValue);
+                nextPieceMap[i][j].setColored(true);
+                yValue += 17;
+            }
+            yValue = 17;
+            xValue += 18;
+        }
+
+
 
         // -- construct a JPanel for graphics
         playArea = new PlayArea();
@@ -389,7 +404,6 @@ public class MainGUI extends JFrame {
         public NextPieceDisplay() {
             super();
             this.setBackground(Color.BLACK);
-
         }
 
         //sets the size of the window
@@ -415,10 +429,18 @@ public class MainGUI extends JFrame {
 
 
             //creates a colored square in the middle of the screen
-
-            graphicsContext.setColor(pieceColor);
-            graphicsContext.fillRect(37, 39, 16, 16);
-
+           graphicsContext.setColor(Color.cyan);
+//            graphicsContext.fillRect(37, 39, 16, 16);
+            //fill in the display
+            Square s;
+            for(int i = 0; i<4; i++){
+                for (int j = 0; j<4; j++){
+                    if(nextPieceMap[i][j].getColored()){
+                         s = nextPieceMap[i][j];
+                        graphicsContext.fillRect(s.getX(), s.getY(), 17, 16);
+                    }
+                }
+            }
 
         }
     }
