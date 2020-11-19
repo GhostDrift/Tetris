@@ -109,7 +109,6 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
-//        Random rn = new Random();
         Piece p = new Piece(4);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
@@ -123,18 +122,14 @@ public class MainGUI extends JFrame {
 //                           gameBoard[i][n].setColored(true);
 //                        }
                         //add the piece to the game board
-                        boolean[][] pieceMap = p.getMap();
-                        for (int i = 0; i < 4; i++){
-                            for (int j = 0; j< 4; j++){
-                                gameBoard[i+3][j].setColored(pieceMap[i][j]);
-                            }
-                        }
-                        //add a piece to the next piece display
-                        for (int i = 0; i < 4; i++){
-                            for (int j = 0; j< 4; j++){
-                                nextPieceMap[i][j].setColored(pieceMap[i][j]);
-                            }
-                        }
+//                        boolean[][] pieceMap = p.getMap();
+//                        for (int i = 0; i < 4; i++){
+//                            for (int j = 0; j< 4; j++){
+//                                gameBoard[i+3][j].setColored(pieceMap[i][j]);
+//                            }
+//                        }
+                        getNextPiece(nextPieceMap);
+
                         playArea.repaint();
                         nextPieceDisplay.repaint();
                     }
@@ -153,6 +148,31 @@ public class MainGUI extends JFrame {
         playArea.requestFocus();
 
     }
+
+    //clears the next piece panel and retrieves a new Piece and paints it to the next piece panel
+    //also returns the new piece
+    private static Piece getNextPiece(Square[][] nextPieceMap){
+        Random rn = new Random();
+        int n = rn.nextInt(4);
+        Piece p = new Piece(4);     //passing in a 4 for now because I only have one piece programmed
+        //clear the next piece panel
+        for(int i = 0; i< 4; i++){
+            for(int j = 0; j< 4; j++){
+                nextPieceMap[i][j].setColored(false);
+            }
+        }
+        //add a piece to the next piece display
+        boolean[][] pieceMap = p.getMap();
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j< 4; j++){
+                nextPieceMap[i][j].setColored(pieceMap[i][j]);
+            }
+        }
+        //make sure to call the repaint function after calling this method.
+        return p;
+    }
+
+    
 
 
 
