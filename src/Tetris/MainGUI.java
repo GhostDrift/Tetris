@@ -95,7 +95,8 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
-        Random rn = new Random();
+//        Random rn = new Random();
+        Piece p = new Piece(4);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
@@ -103,9 +104,15 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        for(int i = 0; i< 10; i++){
-                           int n = rn.nextInt(30);
-                           gameBoard[i][n].setColored(true);
+//                        for(int i = 0; i< 10; i++){
+//                           int n = rn.nextInt(30);
+//                           gameBoard[i][n].setColored(true);
+//                        }
+                        boolean[][] pieceMap = p.getMap();
+                        for (int i = 0; i < 4; i++){
+                            for (int j = 0; j< 4; j++){
+                                gameBoard[i+3][j].setColored(pieceMap[i][j]);
+                            }
                         }
                         playArea.repaint();
                     }
