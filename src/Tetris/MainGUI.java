@@ -90,7 +90,6 @@ public class MainGUI extends JFrame {
         for(int i = 0; i<4; i++){
             for(int j = 0; j< 4; j++){
                 nextPieceMap[i][j] = new Square(xValue, yValue);
-                nextPieceMap[i][j].setColored(true);
                 yValue += 17;
             }
             yValue = 17;
@@ -123,13 +122,21 @@ public class MainGUI extends JFrame {
 //                           int n = rn.nextInt(30);
 //                           gameBoard[i][n].setColored(true);
 //                        }
+                        //add the piece to the game board
                         boolean[][] pieceMap = p.getMap();
                         for (int i = 0; i < 4; i++){
                             for (int j = 0; j< 4; j++){
                                 gameBoard[i+3][j].setColored(pieceMap[i][j]);
                             }
                         }
+                        //add a piece to the next piece display
+                        for (int i = 0; i < 4; i++){
+                            for (int j = 0; j< 4; j++){
+                                nextPieceMap[i][j].setColored(pieceMap[i][j]);
+                            }
+                        }
                         playArea.repaint();
+                        nextPieceDisplay.repaint();
                     }
                 }
         );
@@ -146,6 +153,7 @@ public class MainGUI extends JFrame {
         playArea.requestFocus();
 
     }
+
 
 
     // -- Inner class for the graphics panel
