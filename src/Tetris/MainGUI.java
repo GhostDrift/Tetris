@@ -117,19 +117,8 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-//                        for(int i = 0; i< 10; i++){
-//                           int n = rn.nextInt(30);
-//                           gameBoard[i][n].setColored(true);
-//                        }
-                        //add the piece to the game board
-//                        boolean[][] pieceMap = p.getMap();
-//                        for (int i = 0; i < 4; i++){
-//                            for (int j = 0; j< 4; j++){
-//                                gameBoard[i+3][j].setColored(pieceMap[i][j]);
-//                            }
-//                        }
-                        getNextPiece(nextPieceMap);
-
+                        Piece p = getNextPiece(nextPieceMap);
+                        addPiece(gameBoard, p);
                         playArea.repaint();
                         nextPieceDisplay.repaint();
                     }
@@ -172,7 +161,16 @@ public class MainGUI extends JFrame {
         return p;
     }
 
-    
+    //adds a new piece to the game board
+    private static void addPiece(Square[][] gameBoard, Piece p){
+        //add the piece to the game board
+        boolean[][] pieceMap = p.getMap();
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j< 4; j++){
+                gameBoard[i+3][j].setColored(pieceMap[i][j]);
+            }
+        }
+    }
 
 
 
