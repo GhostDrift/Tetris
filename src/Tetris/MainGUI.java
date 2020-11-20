@@ -119,6 +119,7 @@ public class MainGUI extends JFrame {
                     public void actionPerformed(ActionEvent arg0) {
                         Piece p = getNextPiece(nextPieceMap);
                         addPiece(gameBoard, p);
+                        moveDown(gameBoard,p);
                         playArea.repaint();
                         nextPieceDisplay.repaint();
                     }
@@ -151,10 +152,10 @@ public class MainGUI extends JFrame {
             }
         }
         //add a piece to the next piece display
-        boolean[][] pieceMap = p.getMap();
+        Square[][] pieceMap = p.getMap();
         for (int i = 0; i < 4; i++){
             for (int j = 0; j< 4; j++){
-                nextPieceMap[i][j].setColored(pieceMap[i][j]);
+                nextPieceMap[i][j].setColored(pieceMap[i][j].getColored());
             }
         }
         //make sure to call the repaint function after calling this method.
@@ -164,10 +165,20 @@ public class MainGUI extends JFrame {
     //adds a new piece to the game board
     private static void addPiece(Square[][] gameBoard, Piece p){
         //add the piece to the game board
-        boolean[][] pieceMap = p.getMap();
+        Square[][] pieceMap = p.getMap();
         for (int i = 0; i < 4; i++){
             for (int j = 0; j< 4; j++){
-                gameBoard[i+3][j].setColored(pieceMap[i][j]);
+                gameBoard[i+3][j].setColored(pieceMap[i][j].getColored());
+            }
+        }
+    }
+    //moves the piece down one square
+    private static void moveDown(Square[][] gameBoard, Piece p){
+        Square[][] pieceMap = p.getMap();
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j< 4; j++){
+                pieceMap[i][j].setY(pieceMap[i][j].getY()+1);
+                gameBoard[i+3][j].setColored(pieceMap[i][j].getColored());
             }
         }
     }

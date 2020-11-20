@@ -30,4 +30,13 @@ public class Square implements Serializable {
     public int getY(){
         return this.y;
     }
+
+    //set the value of x
+    public void setX(int x){
+        this.x = x;
+    }
+    //set the value of y
+    public void setY(int y){
+        this.y = y;
+    }
 }
