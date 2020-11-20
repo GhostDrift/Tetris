@@ -109,7 +109,7 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
-        Piece p = new Piece(4);
+        final Piece[] p = {new Piece(4)};
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
@@ -117,9 +117,17 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        Piece p = getNextPiece(nextPieceMap);
-                        addPiece(gameBoard, p);
-                        moveDown(gameBoard,p);
+                        if(!p[0].getActive()){
+                            addPiece(gameBoard, p[0]);
+                            p[0] = getNextPiece(nextPieceMap);
+                            p[0].setActive(true);
+                        }
+                        else if(p[0].getActive()){
+                            moveDown(gameBoard,p[0]);
+                        }
+//                        Piece p = getNextPiece(nextPieceMap);
+//                        addPiece(gameBoard, p);
+//                        moveDown(gameBoard,p);
                         playArea.repaint();
                         nextPieceDisplay.repaint();
                     }
@@ -151,7 +159,7 @@ public class MainGUI extends JFrame {
                 nextPieceMap[i][j].setColored(false);
             }
         }
-        //add a piece to the next piece display
+        //adds a piece to the next piece display
         Square[][] pieceMap = p.getMap();
         for (int i = 0; i < 4; i++){
             for (int j = 0; j< 4; j++){
@@ -166,8 +174,9 @@ public class MainGUI extends JFrame {
     private static void addPiece(Square[][] gameBoard, Piece p){
         //add the piece to the game board
         Square[][] pieceMap = p.getMap();
-        for (int i = 0; i < 4; i++){
-            for (int j = 0; j< 4; j++){
+        p.setActive(true);
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
                 Square s = pieceMap[i][j];
                 gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
             }
@@ -176,11 +185,22 @@ public class MainGUI extends JFrame {
     //moves the piece down one square
     private static void moveDown(Square[][] gameBoard, Piece p){
         Square[][] pieceMap = p.getMap();
+        for(int i = 0; i< 4; i++){
+            for (int j = 0; j<4; j++){
+                Square s = pieceMap[i][j];
+                if(s.getColored()){
+                    gameBoard[s.getX()][s.getY()].setColored(false);
+                }
+            }
+        }
         for (int i = 0; i < 4; i++){
             for (int j = 0; j< 4; j++){
                 Square s = pieceMap[i][j];
                 s.setY(s.getY()+1);
-                gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
+                if(s.getColored()){
+                    gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
+                }
+
             }
         }
     }
