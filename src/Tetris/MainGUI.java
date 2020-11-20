@@ -168,7 +168,8 @@ public class MainGUI extends JFrame {
         Square[][] pieceMap = p.getMap();
         for (int i = 0; i < 4; i++){
             for (int j = 0; j< 4; j++){
-                gameBoard[i+3][j].setColored(pieceMap[i][j].getColored());
+                Square s = pieceMap[i][j];
+                gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
             }
         }
     }
@@ -177,8 +178,9 @@ public class MainGUI extends JFrame {
         Square[][] pieceMap = p.getMap();
         for (int i = 0; i < 4; i++){
             for (int j = 0; j< 4; j++){
-                pieceMap[i][j].setY(pieceMap[i][j].getY()+1);
-                gameBoard[i+3][j].setColored(pieceMap[i][j].getColored());
+                Square s = pieceMap[i][j];
+                s.setY(s.getY()+1);
+                gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
             }
         }
     }

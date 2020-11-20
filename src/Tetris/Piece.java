@@ -16,7 +16,7 @@ public class Piece {
         }
         else if(n == 4){
             map = new Square[4][4];
-            int x = 0;
+            int x = 3;
             int y = 0;
             for(int i = 0; i < 4; i++){
                 for(int j = 0; j< 4; j++){
