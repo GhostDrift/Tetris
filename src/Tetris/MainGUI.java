@@ -189,7 +189,6 @@ public class MainGUI extends JFrame {
     }
     //moves the piece down one square
     private static void moveDown(Square[][] gameBoard, Piece p){
-        System.out.println(p.moveableDown(gameBoard));
         Square[][] pieceMap = p.getMap();
         if(p.moveableDown(gameBoard)){
             for(int i = 0; i< 4; i++){
@@ -255,6 +254,10 @@ public class MainGUI extends JFrame {
                     }
                     else if(event.getKeyCode()== 40){
                         System.out.println("drop piece");
+                        while (p.getActive()){
+                            moveDown(gameBoard,p);
+                        }
+                        playArea.repaint();
                     }
                 }
 

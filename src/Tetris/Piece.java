@@ -72,15 +72,14 @@ public class Piece {
                     s = this.map[i][j];
                     if (s.getColored()) {
                         int yvalue = s.getY()+1;
-                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                         if(s.getY() == 29){
                             return false;
                         }
                         else if(gameBoard[s.getX()][yvalue].getColored()){
-                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
-                            System.out.println("block y value: " + s.getY());
-
-                            System.out.println("Block y value + 1: " + yvalue);
+//                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+//                            System.out.println("block y value: " + s.getY());
+//                            System.out.println("Block y value + 1: " + yvalue);
                             return false;
                         }
                     }
