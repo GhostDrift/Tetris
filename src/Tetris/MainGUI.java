@@ -189,35 +189,29 @@ public class MainGUI extends JFrame {
     }
     //moves the piece down one square
     private static void moveDown(Square[][] gameBoard, Piece p){
+        System.out.println(p.moveableDown(gameBoard));
         Square[][] pieceMap = p.getMap();
-        try {
-        for(int i = 0; i< 4; i++){
-            for (int j = 0; j<4; j++){
-                Square s = pieceMap[i][j];
-                if(s.getY() == 29){
-                    throw new Exception();
+        if(p.moveableDown(gameBoard)){
+            for(int i = 0; i< 4; i++){
+                for (int j = 0; j<4; j++){
+                    Square s = pieceMap[i][j];
+                    if(s.getColored()){
+                        gameBoard[s.getX()][s.getY()].setColored(false);
+                    }
                 }
-                if(s.getColored()){
-                    gameBoard[s.getX()][s.getY()].setColored(false);
+            }
+            for(int i =0; i< 4; i++){
+                for(int j = 0; j<4; j++){
+                    Square s = pieceMap[i][j];
+                    s.setY(s.getY()+1);
+                    if(s.getColored()){
+                        gameBoard[s.getX()][s.getY()].setColored(true);
+                    }
                 }
             }
         }
-            for (int i = 0; i < 4; i++){
-                for (int j = 0; j< 4; j++){
-                    Square s = pieceMap[i][j];
-                    s.setY(s.getY()+1);
-                    if(s.getY() > 29){
-                        s.setY(s.getY()-1);
-                        throw new Exception();
-                    }
-                    if(s.getColored()){
-                        gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
-                    }
-                }
-            }
-        } catch (Exception e) {
+        else {
             p.setActive(false);
-            System.out.println();
         }
     }
 
