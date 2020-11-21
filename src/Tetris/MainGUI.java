@@ -214,6 +214,30 @@ public class MainGUI extends JFrame {
         }
     }
 
+    //moves piece one to the left
+    public static void moveLeft(Square[][] gameBoard, Piece p){
+        if(p.movableLeft(gameBoard)){
+            Square[][] pieceMap = p.getMap();
+            for(int i = 0; i< 4; i++){
+                for (int j = 0; j<4; j++){
+                    Square s = pieceMap[i][j];
+                    if(s.getColored()){
+                        gameBoard[s.getX()][s.getY()].setColored(false);
+                    }
+                }
+            }
+            for(int i =0; i< 4; i++){
+                for(int j = 0; j<4; j++){
+                    Square s = pieceMap[i][j];
+                    s.setX(s.getX()-1);
+                    if(s.getColored()){
+                        gameBoard[s.getX()][s.getY()].setColored(true);
+                    }
+                }
+            }
+        }
+    }
+
 
 
     // -- Inner class for the graphics panel
@@ -244,7 +268,11 @@ public class MainGUI extends JFrame {
                 @Override
                 public void keyPressed(KeyEvent event) {
                     if(event.getKeyCode()== 37){
-                        System.out.println("move piece left");
+                        //System.out.println("move piece left");
+                        //gameTimer.stop();
+                        moveLeft(gameBoard, p);
+                        playArea.repaint();
+                        //gameTimer.start();
                     }
                     else if(event.getKeyCode()== 38){
                         System.out.println("rotate piece");

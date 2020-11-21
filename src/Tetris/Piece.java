@@ -98,6 +98,48 @@ public class Piece {
     }
 
     //checks to see if th piece can be moved left
+    public boolean movableLeft(Square[][] gameBoard){
+        Square s;
+        if(this.id == 1){
+            return false;
+        }
+        else if(this.id ==2){
+            return false;
+        }
+        else if(this.id ==3){
+            return false;
+        }
+        else if(this.id ==4){
+            int i = 1;
+//            int j = 3;
+            for (int j = 0; j< 4; j++) {
+                s = this.map[i][j];
+                if (s.getColored()) {
+                    int xValue = s.getX()-1;
+    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                    if(s.getY() <= 0){
+                        return false;
+                    }
+                    else if(gameBoard[s.getX()][xValue].getColored()){
+    //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+    //                            System.out.println("block y value: " + s.getY());
+    //                            System.out.println("Block y value + 1: " + yvalue);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        else if(this.id ==5){
+            return false;
+        }
+        else if(this.id ==6){
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
 
     //checks to see if the piece can be moved right
 }
