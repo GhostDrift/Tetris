@@ -127,11 +127,7 @@ public class MainGUI extends JFrame {
                         }
                         else {
                             moveDown(gameBoard,p);
-                            //System.out.println(p[0].getActive());
                         }
-//                        Piece p = getNextPiece(nextPieceMap);
-//                        addPiece(gameBoard, p);
-//                        moveDown(gameBoard,p);
                         playArea.repaint();
                         nextPieceDisplay.repaint();
                     }
@@ -268,11 +264,9 @@ public class MainGUI extends JFrame {
                 @Override
                 public void keyPressed(KeyEvent event) {
                     if(event.getKeyCode()== 37){
-                        //System.out.println("move piece left");
-                        //gameTimer.stop();
+                        //moves the piece left if it is not blocked
                         moveLeft(gameBoard, p);
                         playArea.repaint();
-                        //gameTimer.start();
                     }
                     else if(event.getKeyCode()== 38){
                         System.out.println("rotate piece");
@@ -281,6 +275,7 @@ public class MainGUI extends JFrame {
                         System.out.println("move piece right");
                     }
                     else if(event.getKeyCode()== 40){
+                        //moves the piece down if it is not blocked
                         while (p.getActive()){
                             moveDown(gameBoard,p);
                         }
