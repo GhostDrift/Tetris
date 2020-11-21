@@ -253,7 +253,6 @@ public class MainGUI extends JFrame {
                         System.out.println("move piece right");
                     }
                     else if(event.getKeyCode()== 40){
-                        System.out.println("drop piece");
                         while (p.getActive()){
                             moveDown(gameBoard,p);
                         }
@@ -420,13 +419,15 @@ public class MainGUI extends JFrame {
                             if(pausePlay.getText().equals("GO")){
                                 pausePlay.setText("PAUSE");
                                 gameTimer.start();
+                                playArea.requestFocus();
                             }
                             else if(pausePlay.getText().equals("PAUSE")){
                                 pausePlay.setText("GO");
                                 gameTimer.stop();
+
                             }
                             //send focus back to the graphics panel
-                            playArea.requestFocus();
+
                         }
                     }
             );
