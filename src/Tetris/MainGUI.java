@@ -233,6 +233,29 @@ public class MainGUI extends JFrame {
             }
         }
     }
+    //moves the piece one to the right
+    public static void moveRight(Square[][] gameBoard, Piece p){
+        if(p.movableRight(gameBoard)){
+            Square[][] pieceMap = p.getMap();
+            for(int i = 0; i< 4; i++){
+                for (int j = 0; j<4; j++){
+                    Square s = pieceMap[i][j];
+                    if(s.getColored()){
+                        gameBoard[s.getX()][s.getY()].setColored(false);
+                    }
+                }
+            }
+            for(int i =0; i< 4; i++){
+                for(int j = 0; j<4; j++){
+                    Square s = pieceMap[i][j];
+                    s.setX(s.getX()+1);
+                    if(s.getColored()){
+                        gameBoard[s.getX()][s.getY()].setColored(true);
+                    }
+                }
+            }
+        }
+    }
 
 
 
@@ -272,7 +295,8 @@ public class MainGUI extends JFrame {
                         System.out.println("rotate piece");
                     }
                     else if(event.getKeyCode()== 39){
-                        System.out.println("move piece right");
+                        //moves the piece right if it is not blocked
+                        moveRight(gameBoard,p);
                     }
                     else if(event.getKeyCode()== 40){
                         //moves the piece down if it is not blocked

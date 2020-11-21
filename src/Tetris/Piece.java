@@ -138,4 +138,45 @@ public class Piece {
     }
 
     //checks to see if the piece can be moved right
+    public boolean movableRight(Square[][] gameBoard){
+        Square s;
+        if(this.id == 1){
+            return false;
+        }
+        else if(this.id ==2){
+            return false;
+        }
+        else if(this.id ==3){
+            return false;
+        }
+        else if(this.id ==4){
+            int i = 1;
+//            int j = 3;
+            for (int j = 0; j< 4; j++) {
+                s = this.map[i][j];
+                if (s.getColored()) {
+                    int xValue = s.getX()+1;
+                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                    if(s.getX() >= 9){
+                        //System.out.println("The block is at the right edge of the board");
+                        return false;
+                    }
+                    else if(gameBoard[xValue][s.getY()].getColored()){
+                        //System.out.println("the block is on the left of another block");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        else if(this.id ==5){
+            return false;
+        }
+        else if(this.id ==6){
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
 }
