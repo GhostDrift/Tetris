@@ -4,43 +4,18 @@ public class Piece {
     private Square[][] map;
     private boolean active = false;
     private int id;
+    private int rotation;
 
     public Piece(int n, Maps maps){
         this.id = n;
-        if (n == 0){
-            map = new Square[4][4];
-        }
-        else if( n == 1){
-            map = new Square[4][4];
-        }
-        else if( n == 2){
-            map = new Square[4][4];
-        }
-        else if(n == 3){
-            map = new Square[4][4];
-            int x = 3;
-            int y = 0;
-            for(int i = 0; i < 4; i++){
-                for(int j = 0; j< 4; j++){
-                    map[i][j] = new Square(x,y);
-                    //System.out.println(x + " " + y);
-                            y++;
-                }
-                y=0;
-                x++;
+        this.rotation =0;
+        Square[][] template = maps.getMap(n,rotation);
+        this.map = new Square[4][4];
+        for(int i = 0; i<4; i++){
+            for(int j = 0; j<4; j++){
+                this.map[i][j] = new Square(template[i][j].getX(),template[i][j].getY());
+                this.map[i][j].setColored(template[i][j].getColored());
             }
-            for(int i = 0; i < 4; i++){
-                map[1][i].setColored(true);
-            }
-        }
-        else if(n == 4){
-            map = new Square[4][4];
-        }
-        else if(n == 5){
-            map = new Square[4][4];
-        }
-        else if(n == 6) {
-            map = new Square[4][4];
         }
     }
     //getters and setters for private variables
@@ -57,16 +32,16 @@ public class Piece {
     //checks to see if the piece can be moved down
     public boolean moveableDown(Square[][] gameBoard){
         Square s;
-        if(this.id == 1){
+        if(this.id == 0){
+            return false;
+        }
+        else if(this.id ==1){
             return false;
         }
         else if(this.id ==2){
             return false;
         }
         else if(this.id ==3){
-            return false;
-        }
-        else if(this.id ==4){
                     int i = 1;
                     int j = 3;
                     s = this.map[i][j];
@@ -85,10 +60,10 @@ public class Piece {
                     }
             return true;
         }
-        else if(this.id ==5){
+        else if(this.id ==4){
             return false;
         }
-        else if(this.id ==6){
+        else if(this.id ==5){
             return false;
         }
         else {
@@ -100,16 +75,16 @@ public class Piece {
     //checks to see if the piece can be moved left
     public boolean movableLeft(Square[][] gameBoard){
         Square s;
-        if(this.id == 1){
+        if(this.id == 0){
+            return false;
+        }
+        else if(this.id ==1){
             return false;
         }
         else if(this.id ==2){
             return false;
         }
         else if(this.id ==3){
-            return false;
-        }
-        else if(this.id ==4){
             int i = 1;
 //            int j = 3;
             for (int j = 0; j< 4; j++) {
@@ -126,7 +101,7 @@ public class Piece {
             }
             return true;
         }
-        else if(this.id ==5){
+        else if(this.id ==4){
             return false;
         }
         else if(this.id ==6){
@@ -140,16 +115,16 @@ public class Piece {
     //checks to see if the piece can be moved right
     public boolean movableRight(Square[][] gameBoard){
         Square s;
-        if(this.id == 1){
+        if(this.id == 0){
+            return false;
+        }
+        else if(this.id ==1){
             return false;
         }
         else if(this.id ==2){
             return false;
         }
         else if(this.id ==3){
-            return false;
-        }
-        else if(this.id ==4){
             int i = 1;
 //            int j = 3;
             for (int j = 0; j< 4; j++) {
@@ -169,10 +144,10 @@ public class Piece {
             }
             return true;
         }
-        else if(this.id ==5){
+        else if(this.id ==4){
             return false;
         }
-        else if(this.id ==6){
+        else if(this.id ==5){
             return false;
         }
         else {

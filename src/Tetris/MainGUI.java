@@ -42,6 +42,7 @@ public class MainGUI extends JFrame {
 //    private int colorIndex = 0;
     private final Color purple = new Color(100,0,150);
     // piece variable for game play
+    private final Maps maps = new Maps();
     private Piece np;
     private Piece p;
 
@@ -111,8 +112,8 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
-        p = new Piece(4);
-        np = new Piece(4);
+        p = new Piece(3,maps);
+        np = new Piece(3,maps);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
@@ -120,10 +121,11 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
+                        System.out.println(p.getActive());
                        if(!p.getActive()){
                            p = addPiece(gameBoard, np);
                            p.setActive(true);
-                           np = getNextPiece(nextPieceMap);
+                           np = getNextPiece(nextPieceMap, maps);
                         }
                         else {
                             moveDown(gameBoard,p);
@@ -149,10 +151,10 @@ public class MainGUI extends JFrame {
 
     //clears the next piece panel and retrieves a new Piece and paints it to the next piece panel
     //also returns the new piece
-    private static Piece getNextPiece(Square[][] nextPieceMap){
+    private static Piece getNextPiece(Square[][] nextPieceMap, Maps maps){
         Random rn = new Random();
         int n = rn.nextInt(4);
-        Piece p = new Piece(4);     //passing in a 4 for now because I only have one piece programmed
+        Piece p = new Piece(3,maps);     //passing in a 4 for now because I only have one piece programmed
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
             for(int j = 0; j< 4; j++){
@@ -178,6 +180,7 @@ public class MainGUI extends JFrame {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 Square s = pieceMap[i][j];
+//                System.out.println("X: " + s.getX() + " Y: " + s.getY());
                 gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
             }
         }
