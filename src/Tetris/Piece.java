@@ -5,18 +5,18 @@ public class Piece {
     private boolean active = false;
     private int id;
 
-    public Piece(int n){
+    public Piece(int n, Maps maps){
         this.id = n;
-        if (n == 1){
+        if (n == 0){
+            map = new Square[4][4];
+        }
+        else if( n == 1){
             map = new Square[4][4];
         }
         else if( n == 2){
             map = new Square[4][4];
         }
-        else if( n == 3){
-            map = new Square[4][4];
-        }
-        else if(n == 4){
+        else if(n == 3){
             map = new Square[4][4];
             int x = 3;
             int y = 0;
@@ -33,13 +33,13 @@ public class Piece {
                 map[1][i].setColored(true);
             }
         }
+        else if(n == 4){
+            map = new Square[4][4];
+        }
         else if(n == 5){
             map = new Square[4][4];
         }
-        else if(n == 6){
-            map = new Square[4][4];
-        }
-        else if(n == 7) {
+        else if(n == 6) {
             map = new Square[4][4];
         }
     }

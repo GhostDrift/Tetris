@@ -511,6 +511,30 @@ public class Maps {
         return piece0;
     }
 
+    public Square[][] getMap(int id, int rotation){
+      if(id == 0){
+          return piece0;
+      }
+      else if(id == 1){
+          return piece1[rotation];
+      }
+      else if (id == 2){
+          return piece2[rotation];
+      }
+      else if (id == 3){
+          return piece3[rotation];
+      }
+      else if(id == 4){
+          return piece4;
+      }
+      else if (id == 5){
+          return piece5[rotation];
+      }
+      else {
+          return piece6[rotation];
+      }
+    }
+
     @Override
     public String toString(){
       String s = "";
