@@ -12,7 +12,7 @@ public class Maps {
       this.piece0 = populatePiece0();
       this.piece1 = populatePiece1();
       this.piece2 = populatePiece2();
-//      this.piece3 = populatePiece3();
+      this.piece3 = populatePiece3();
 //      this.piece4 = populatePiece4();
 //      this.piece5 = populatePiece5();
 //      this.piece6 = populatePiece6();
@@ -27,9 +27,56 @@ public class Maps {
 //    private Square[][] populatePiece4() {
 //    }
 //
-//    private Square[][][] populatePiece3() {
-//    }
-//
+    private Square[][][] populatePiece3() {
+        Square[][][] piece3 = new Square[4][4][4];
+        for (int k = 0; k<4; k++) {
+            int x = 3;
+            int y = 0;
+            for(int i = 0; i < 4; i++){
+                for(int j = 0; j< 4; j++){
+                    piece3[k][i][j] = new Square(x,y);
+//                    System.out.println(x + " " + y);
+                    y++;
+                }
+                y=0;
+                x++;
+            }
+            if (k == 0) {
+                for(int i = 0; i < 4; i++){
+                    for (int j = 0; j <4; j++) {
+                        if (j == 1) {
+                            piece3[k][j][i].setColored(true);
+                        }
+                    }
+                }
+            }
+            else if(k == 1) {
+                for(int i = 0; i < 4; i++){
+                    for(int j = 0; j< 4; j++){
+                        if(j == 2){
+                            piece3[k][i][j].setColored(true);
+                        }
+                    }
+                }
+            }
+            else if(k == 2) {
+                for(int i = 0; i < 4; i++){
+                    piece3[k][2][i].setColored(true);
+                }
+            }
+            else if(k == 3) {
+                for(int i = 0; i < 4; i++){
+                    for(int j = 0; j< 4; j++){
+                        if(j == 1){
+                            piece3[k][i][j].setColored(true);
+                        }
+                    }
+                }
+            }
+        }
+        return piece3;
+    }
+
     private Square[][][] populatePiece2() {
       Square[][][] piece2 = new Square[4][4][4];
         for (int k = 0; k<4; k++) {
@@ -295,6 +342,15 @@ public class Maps {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j<4; j++) {
                     s += this.piece2[k][i][j].toString();
+                }
+            }
+        }
+        s+= "\npiece3:\n";
+        for (int k = 0; k<4; k++) {
+            s += "rotation " + k + "\n";
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j<4; j++) {
+                    s += this.piece3[k][i][j].toString();
                 }
             }
         }
