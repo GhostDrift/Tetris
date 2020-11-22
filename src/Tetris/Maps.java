@@ -36,4 +36,17 @@ public class Maps {
         }
         return piece0;
     }
+
+    @Override
+    public String toString(){
+      String s = "";
+      s+= "piece0:\n";
+      for (int i = 0; i < 4; i++) {
+          for (int j = 0; j<4; j++) {
+              s += this.piece0[i][j].toString();
+          }
+      }
+      s += "\n";
+        return s;
+    }
 }
