@@ -112,8 +112,9 @@ public class MainGUI extends JFrame {
         // -- Timer will generate an event every 10mSec once it is started
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
-        p = new Piece(3,maps);
-        np = new Piece(3,maps);
+        final Random rn = new Random();
+        p = new Piece(rn.nextInt(7),maps);
+        np = new Piece(rn.nextInt(7),maps);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
