@@ -317,7 +317,7 @@ public class Piece {
             }
             return true;
         }
-        else if(this.id ==1){
+        else if(this.id ==1 || this.id == 5){
             for(int i =0; i<4; i++){
                 for(int j = 0; j<4; j++){
                     s = this.map[i][j];
@@ -461,11 +461,58 @@ public class Piece {
             }
             return true;
         }
-        else if(this.id ==6){
-            return false;
-        }
         else {
-            return false;
+            if (r == 0) {
+                int i = 0;
+                for(int j =0; j<2; j++){
+                    s = this.map[i][j];
+                    int xValue = s.getX()-1;
+                    if(s.getX() <= 0){
+                        return false;
+                    }
+                    else if(gameBoard[xValue][s.getY()].getColored()){
+                        return false;
+                    }
+                }
+            }
+            else if(r == 1){
+                int i = 0;
+                int j = 1;
+                s = this.map[i][j];
+                int xValue = s.getX()-1;
+                if(s.getX() <= 0){
+                    return false;
+                }
+                else if(gameBoard[xValue][s.getY()].getColored()){
+                    return false;
+                }
+            }
+            else if(r == 2){
+                int i = 1;
+                for(int j =1; j<3; j++){
+                    s = this.map[i][j];
+                    int xValue = s.getX()-1;
+                    if(s.getX() <= 0){
+                        return false;
+                    }
+                    else if(gameBoard[xValue][s.getY()].getColored()){
+                        return false;
+                    }
+                }
+            }
+            else if(r == 3){
+                int i = 1;
+                int j = 1;
+                s = this.map[i][j];
+                int xValue = s.getX()-1;
+                if(s.getX() <= 0){
+                    return false;
+                }
+                else if(gameBoard[xValue][s.getY()].getColored()){
+                    return false;
+                }
+            }
+            return true;
         }
     }
 
