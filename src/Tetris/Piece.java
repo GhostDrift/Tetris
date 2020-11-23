@@ -66,7 +66,7 @@ public class Piece {
             }
             return true;
         }
-        else if(id ==1){
+        else if(id ==1 || id == 5){
 //            System.out.println("piece 1");
 //            if(r==0 ){
 //                System.out.println("rotation 0");
@@ -239,10 +239,6 @@ public class Piece {
                 return false;
             }
             return true;
-        }
-        else if(this.id ==5){
-            System.out.println("piece 5");
-            return false;
         }
         else {
             System.out.println("piece 6");
