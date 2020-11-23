@@ -229,8 +229,16 @@ public class Piece {
             return true;
         }
         else if(this.id ==4){
-            System.out.println("piece 4");
-            return false;
+//            System.out.println("piece 4");
+            s = this.map[1][0];
+            int yValue = s.getY()+1;
+            if(s.getY()==29){
+                return false;
+            }
+            else if(gameBoard[s.getX()][yValue].getColored()){
+                return false;
+            }
+            return true;
         }
         else if(this.id ==5){
             System.out.println("piece 5");
