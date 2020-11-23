@@ -449,7 +449,17 @@ public class Piece {
             return true;
         }
         else if(this.id ==4){
-            return false;
+            int i = 1;
+            int j = 0;
+            s = this.map[i][j];
+            int xValue = s.getX()-1;
+            if(s.getX() <= 0){
+                return false;
+            }
+            else if(gameBoard[xValue][s.getY()].getColored()){
+                return false;
+            }
+            return true;
         }
         else if(this.id ==6){
             return false;
