@@ -300,6 +300,7 @@ public class Piece {
     //checks to see if the piece can be moved left
     public boolean movableLeft(Square[][] gameBoard){
         Square s;
+        int r = this.getRotation();
         if(this.id == 0){
             int i = 1;
             for(int j = 0; j<2; j++){
@@ -334,7 +335,55 @@ public class Piece {
             return true;
         }
         else if(this.id ==2){
-            return false;
+            if(r == 0){
+                int j = 0;
+                for(int i = 0; i<2; i++){
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int xValue = s.getX()-1;
+                        if(s.getX() <= 0){
+                            return false;
+                        }
+                        else if(gameBoard[xValue][s.getY()].getColored()){
+                            return false;
+                        }
+                    }
+                    j++;
+                }
+            }
+            else if(r == 1|| r == 3){
+                for(int i =0; i<4; i++){
+                    for(int j = 0; j<4; j++){
+                        s = this.map[i][j];
+                        if (s.getColored()) {
+                            int xValue = s.getX()-1;
+                            if(s.getX() <= 0){
+                                return false;
+                            }
+                            else if(gameBoard[xValue][s.getY()].getColored()){
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            else if(r == 2){
+                int j =3;
+                for(int i = 0; i<2; i++){
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int xValue = s.getX()-1;
+                        if(s.getX() <= 0){
+                            return false;
+                        }
+                        else if(gameBoard[xValue][s.getY()].getColored()){
+                            return false;
+                        }
+                    }
+                    j--;
+                }
+            }
+            return true;
         }
         else if(this.id ==3){
             if (this.getRotation() == 0) {
