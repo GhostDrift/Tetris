@@ -296,7 +296,7 @@ public class MainGUI extends JFrame {
                     }
                     else if(event.getKeyCode()== 38){
                         if(p.canRotate(gameBoard,maps)){
-                            System.out.println("rotated");
+                            p.rotate(maps, gameBoard);
                         }
                         else{
                             System.out.println("cannot rotate");

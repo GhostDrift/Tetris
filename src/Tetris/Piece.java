@@ -208,7 +208,7 @@ public class Piece {
         }
     }
     //rotates the piece
-    public void rotate(Maps maps){
+    public void rotate(Maps maps,Square[][] gameBoard){
         Square[][] map = this.getMap();
         int r = this.getRotation();
         int nextR;
@@ -219,10 +219,17 @@ public class Piece {
             nextR = r +1;
         }
         Square[][] nextMap = maps.getMap(id,nextR);
+        Square s;
         for(int i = 0; i< 4; i++){
             for(int j = 0; j< 4; j++){
-                map[i][j].setColored(nextMap[i][j].getColored());
+                s = map[i][j];
+                if (s.getColored()) {
+                    gameBoard[s.getX()][s.getY()].setColored(!s.getColored());
+                }
+                s.setColored(nextMap[i][j].getColored());
             }
         }
+
+        this.setRotation(nextR);
     }
 }
