@@ -298,9 +298,6 @@ public class MainGUI extends JFrame {
                         if(p.canRotate(gameBoard,maps)){
                             p.rotate(maps, gameBoard);
                         }
-                        else{
-                            System.out.println("cannot rotate");
-                        }
                     }
                     else if(event.getKeyCode()== 39){
                         //moves the piece right if it is not blocked

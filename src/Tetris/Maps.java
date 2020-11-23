@@ -290,13 +290,13 @@ public class Maps {
                         if (i == 0) {
                             if (j== 0) {
                                 piece2[k][i][j].setColored(true);
-                                System.out.println(piece2[k][i][j]);
+//                                System.out.println(piece2[k][i][j]);
                             }
                         }
                         else if (i == 1) {
                             if (j== 1) {
                                 piece2[k][i][j].setColored(true);
-                                System.out.println(piece2[k][i][j]);
+//                                System.out.println(piece2[k][i][j]);
                             }
                         }
                         else if (i == 2) {

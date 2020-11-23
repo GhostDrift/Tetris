@@ -216,42 +216,46 @@ public class Piece {
         int id = this.getId();
         int r = this.rotation;
         int nextR;
-        if(r == 3){
-            nextR = 0;
-        }
-        else{
-            nextR = r +1;
-        }
-        Square[][] nextMap = maps.getMap(id,nextR);
-        Square[][] map = this.getMap();
-        if(id == 0 || id == 4){
-            return true;
-        }
-        else if(id == 1){
-            return false;
-        }
-        else if(id == 2){
-            return false;
-        }
-        else if(id == 3){
-            for(int i = 0; i< 4; i++){
-                for(int j = 0; j<4; j++){
-                    Square s = map[i][j];
-                    if(nextMap[i][j].getColored()){
-                        if (!s.getColored()) {
-                            if(gameBoard[s.getX()][s.getY()].getColored()){
-                                return false;
+        try {
+            if(r == 3){
+                nextR = 0;
+            }
+            else{
+                nextR = r +1;
+            }
+            Square[][] nextMap = maps.getMap(id,nextR);
+            Square[][] map = this.getMap();
+            if(id == 0 || id == 4){
+                return true;
+            }
+            else if(id == 1){
+                return false;
+            }
+            else if(id == 2){
+                return false;
+            }
+            else if(id == 3){
+                for(int i = 0; i< 4; i++){
+                    for(int j = 0; j<4; j++){
+                        Square s = map[i][j];
+                        if(nextMap[i][j].getColored()){
+                            if (!s.getColored()) {
+                                if(gameBoard[s.getX()][s.getY()].getColored()){
+                                    return false;
+                                }
                             }
                         }
                     }
                 }
+                return true;
             }
-            return true;
-        }
-        else if(id == 5){
-            return false;
-        }
-        else {
+            else if(id == 5){
+                return false;
+            }
+            else {
+                return false;
+            }
+        } catch (Exception e) {
             return false;
         }
     }
