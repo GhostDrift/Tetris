@@ -520,7 +520,23 @@ public class Piece {
     public boolean movableRight(Square[][] gameBoard){
         Square s;
         if(this.id == 0){
-            return false;
+            int i = 2;
+            for(int j = 0; j<2; j++){
+                s = this.map[i][j];
+                if (s.getColored()) {
+                    int xValue = s.getX()+1;
+                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                    if(s.getX() >= 9){
+//                        System.out.println("The block is at the right edge of the board");
+                        return false;
+                    }
+                    else if(gameBoard[xValue][s.getY()].getColored()){
+//                        System.out.println("the block is on the left of another block");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         else if(this.id ==1){
             for(int i =0; i<4; i++){
