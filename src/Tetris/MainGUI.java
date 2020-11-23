@@ -189,7 +189,7 @@ public class MainGUI extends JFrame {
     //moves the piece down one square
     private static void moveDown(Square[][] gameBoard, Piece p){
         Square[][] pieceMap = p.getMap();
-        System.out.println(p.moveableDown(gameBoard));
+//        System.out.println(p.moveableDown(gameBoard));
         if(p.moveableDown(gameBoard)){
             for(int i = 0; i< 4; i++){
                 for (int j = 0; j<4; j++){
