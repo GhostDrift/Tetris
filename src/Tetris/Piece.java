@@ -44,15 +44,42 @@ public class Piece {
         int r = this.getRotation();
         int id = this.getId();
         if(id == 0){
+            System.out.println("piece 0");
             return false;
         }
         else if(id ==1){
-            return false;
+//            System.out.println("piece 1");
+            if(r==0){
+//                System.out.println("rotation 0");
+                for(int i = 0; i<4; i++){
+                    for(int j = 0; j< 4; j++){
+                        s = this.map[i][j];
+                        if (s.getColored()) {
+                            int yvalue = s.getY()+1;
+//                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                            if(s.getY() == 29){
+                                System.out.println("at the bottom of the board");
+                                return false;
+                            }
+                            else if(gameBoard[s.getX()][yvalue].getColored()){
+//                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+//                            System.out.println("block y value: " + s.getY());
+//                            System.out.println("Block y value + 1: " + yvalue);
+//                                System.out.println("Blocked by another piece");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
         }
         else if(id ==2){
+            System.out.println("piece 2");
             return false;
         }
         else if(id ==3){
+            System.out.println("piece 3");
             if (r== 0) {
                 int i = 1;
                 int j = 3;
@@ -118,12 +145,15 @@ public class Piece {
             return true;
         }
         else if(this.id ==4){
+            System.out.println("piece 4");
             return false;
         }
         else if(this.id ==5){
+            System.out.println("piece 5");
             return false;
         }
         else {
+            System.out.println("piece 6");
             return false;
         }
 
@@ -228,13 +258,13 @@ public class Piece {
             if(id == 0 || id == 4){
                 return true;
             }
-            else if(id == 1){
-                return false;
-            }
-            else if(id == 2){
-                return false;
-            }
-            else if(id == 3){
+//            else if(id == 1){
+//                return false;
+//            }
+//            else if(id == 2){
+//                return false;
+//            }
+//            else if(id == 3){
                 for(int i = 0; i< 4; i++){
                     for(int j = 0; j<4; j++){
                         Square s = map[i][j];
@@ -248,13 +278,13 @@ public class Piece {
                     }
                 }
                 return true;
-            }
-            else if(id == 5){
-                return false;
-            }
-            else {
-                return false;
-            }
+//            }
+//            else if(id == 5){
+//                return false;
+//            }
+//            else {
+//                return false;
+//            }
         } catch (Exception e) {
             return false;
         }
