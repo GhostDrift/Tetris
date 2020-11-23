@@ -28,6 +28,15 @@ public class Piece {
     public boolean getActive(){
         return this.active;
     }
+    public int getId(){
+        return this.id;
+    }
+    public int getRotation(){
+        return this.rotation;
+    }
+    public void setRotation(int r){
+        this.rotation = r;
+    }
 
     //checks to see if the piece can be moved down
     public boolean moveableDown(Square[][] gameBoard){
@@ -148,6 +157,50 @@ public class Piece {
             return false;
         }
         else if(this.id ==5){
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
+    //checks to see if the piece can be rotated
+    public boolean canRotate(Square[][] gameBoard, Maps maps){
+        int id = this.getId();
+        int r = this.rotation;
+        int nextR;
+        if(r == 3){
+            nextR = 0;
+        }
+        else{
+            nextR = r +1;
+        }
+        Square[][] nextMap = maps.getMap(id,nextR);
+        Square[][] map = this.getMap();
+        if(id == 0 || id == 4){
+            return true;
+        }
+        else if(id == 1){
+            return false;
+        }
+        else if(id == 2){
+            return false;
+        }
+        else if(id == 3){
+            for(int i = 0; i< 4; i++){
+                for(int j = 0; j<4; j++){
+                    Square s = map[i][j];
+                    if(nextMap[i][j].getColored()){
+                        if (!s.getColored()) {
+                            if(gameBoard[s.getX()][s.getY()].getColored()){
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        else if(id == 5){
             return false;
         }
         else {

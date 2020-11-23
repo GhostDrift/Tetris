@@ -121,7 +121,7 @@ public class MainGUI extends JFrame {
                 // and our program must be prepaired to deal with them
                 new ActionListener() {
                     public void actionPerformed(ActionEvent arg0) {
-                        System.out.println(p.getActive());
+//                        System.out.println(p.getActive());
                        if(!p.getActive()){
                            p = addPiece(gameBoard, np);
                            p.setActive(true);
@@ -295,7 +295,12 @@ public class MainGUI extends JFrame {
                         playArea.repaint();
                     }
                     else if(event.getKeyCode()== 38){
-                        System.out.println("rotate piece");
+                        if(p.canRotate(gameBoard,maps)){
+                            System.out.println("rotated");
+                        }
+                        else{
+                            System.out.println("cannot rotate");
+                        }
                     }
                     else if(event.getKeyCode()== 39){
                         //moves the piece right if it is not blocked
