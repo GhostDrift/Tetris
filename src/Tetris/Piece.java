@@ -207,4 +207,22 @@ public class Piece {
             return false;
         }
     }
+    //rotates the piece
+    public void rotate(Maps maps){
+        Square[][] map = this.getMap();
+        int r = this.getRotation();
+        int nextR;
+        if(r == 3){
+            nextR = 0;
+        }
+        else{
+            nextR = r +1;
+        }
+        Square[][] nextMap = maps.getMap(id,nextR);
+        for(int i = 0; i< 4; i++){
+            for(int j = 0; j< 4; j++){
+                map[i][j].setColored(nextMap[i][j].getColored());
+            }
+        }
+    }
 }
