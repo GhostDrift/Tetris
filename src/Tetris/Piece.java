@@ -166,7 +166,21 @@ public class Piece {
             return false;
         }
         else if(this.id ==1){
-            return false;
+            for(int i =0; i<4; i++){
+                for(int j = 0; j<4; j++){
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int xValue = s.getX()-1;
+                        if(s.getX() <= 0){
+                            return false;
+                        }
+                        else if(gameBoard[xValue][s.getY()].getColored()){
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
         else if(this.id ==2){
             return false;
@@ -206,7 +220,24 @@ public class Piece {
             return false;
         }
         else if(this.id ==1){
-            return false;
+            for(int i =0; i<4; i++){
+                for(int j = 0; j<4; j++){
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int xValue = s.getX()+1;
+                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                        if(s.getX() >= 9){
+                            //System.out.println("The block is at the right edge of the board");
+                            return false;
+                        }
+                        else if(gameBoard[xValue][s.getY()].getColored()){
+                            //System.out.println("the block is on the left of another block");
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
         else if(this.id ==2){
             return false;
