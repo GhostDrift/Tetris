@@ -44,8 +44,27 @@ public class Piece {
         int r = this.getRotation();
         int id = this.getId();
         if(id == 0){
-            System.out.println("piece 0");
-            return false;
+//            System.out.println("piece 0");
+            int j = 1;
+            for (int i = 1; i<3; i++) {
+                s = this.map[i][j];
+                if (s.getColored()) {
+                    int yvalue = s.getY()+1;
+    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                    if(s.getY() == 29){
+                        System.out.println("at the bottom of the board");
+                        return false;
+                    }
+                    else if(gameBoard[s.getX()][yvalue].getColored()){
+    //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+    //                            System.out.println("block y value: " + s.getY());
+    //                            System.out.println("Block y value + 1: " + yvalue);
+    //                                System.out.println("Blocked by another piece");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         else if(id ==1){
 //            System.out.println("piece 1");

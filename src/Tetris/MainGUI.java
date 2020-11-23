@@ -153,8 +153,8 @@ public class MainGUI extends JFrame {
     //also returns the new piece
     private static Piece getNextPiece(Square[][] nextPieceMap, Maps maps){
         Random rn = new Random();
-        int n = rn.nextInt(4);
-        Piece np = new Piece(1,maps);     //passing in a 1 for now because I only have two pieces programmed
+        int n = rn.nextInt(7);
+        Piece np = new Piece(n,maps);     //passing in a 1 for now because I only have two pieces programmed
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
             for(int j = 0; j< 4; j++){
