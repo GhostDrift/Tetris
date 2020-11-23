@@ -41,32 +41,80 @@ public class Piece {
     //checks to see if the piece can be moved down
     public boolean moveableDown(Square[][] gameBoard){
         Square s;
-        if(this.id == 0){
+        int r = this.getRotation();
+        int id = this.getId();
+        if(id == 0){
             return false;
         }
-        else if(this.id ==1){
+        else if(id ==1){
             return false;
         }
-        else if(this.id ==2){
+        else if(id ==2){
             return false;
         }
-        else if(this.id ==3){
-                    int i = 1;
-                    int j = 3;
-                    s = this.map[i][j];
-                    if (s.getColored()) {
-                        int yvalue = s.getY()+1;
+        else if(id ==3){
+            if (r== 0) {
+                int i = 1;
+                int j = 3;
+                s = this.map[i][j];
+                if (s.getColored()) {
+                    int yvalue = s.getY()+1;
 //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                        if(s.getY() == 29){
-                            return false;
-                        }
-                        else if(gameBoard[s.getX()][yvalue].getColored()){
+                    if(s.getY() == 29){
+                        return false;
+                    }
+                    else if(gameBoard[s.getX()][yvalue].getColored()){
 //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
 //                            System.out.println("block y value: " + s.getY());
 //                            System.out.println("Block y value + 1: " + yvalue);
+                        return false;
+                    }
+                }
+            }
+            else if(r ==1){
+                int y = 2;
+                for(int i = 0; i<4; i++){
+                    s = this.map[i][y];
+                    if(s.getColored()){
+                        int yValue = s.getY()+1;
+                        if(s.getY()==29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
                             return false;
                         }
                     }
+                }
+            }
+            else if(r == 2){
+                int x = 2;
+                int y = 3;
+                s= this.map[x][y];
+                if(s.getColored()){
+                    int yValue = s.getY()+1;
+                    if(s.getY()==29){
+                        return false;
+                    }
+                    else if(gameBoard[s.getX()][yValue].getColored()){
+                        return false;
+                    }
+                }
+            }
+            else if(r == 3){
+                int y = 1;
+                for(int i = 0; i<4; i++){
+                    s = this.map[i][y];
+                    if(s.getColored()){
+                        int yValue = s.getY()+1;
+                        if(s.getY()==29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
+                            return false;
+                        }
+                    }
+                }
+            }
             return true;
         }
         else if(this.id ==4){
