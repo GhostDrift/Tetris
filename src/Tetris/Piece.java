@@ -301,7 +301,20 @@ public class Piece {
     public boolean movableLeft(Square[][] gameBoard){
         Square s;
         if(this.id == 0){
-            return false;
+            int i = 1;
+            for(int j = 0; j<2; j++){
+                s = this.map[i][j];
+                if (s.getColored()) {
+                    int xValue = s.getX()-1;
+                    if(s.getX() <= 0){
+                        return false;
+                    }
+                    else if(gameBoard[xValue][s.getY()].getColored()){
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         else if(this.id ==1){
             for(int i =0; i<4; i++){
