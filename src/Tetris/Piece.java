@@ -699,7 +699,57 @@ public class Piece {
             return true;
         }
         else {
-            return false;
+            if(r == 0){
+                int i = 1;
+                for(int j = 0; j< 2; j++){
+                    s = this.map[i][j];
+                    int xValue = s.getX()+1;
+                    if(s.getX() >= 9){
+                        return false;
+                    }
+                    else if(gameBoard[xValue][s.getY()].getColored()){
+                        return false;
+                    }
+                }
+            }
+            else if(r == 1){
+                int i = 1;
+                int j = 1;
+                s = this.map[i][j];
+                int xValue = s.getX()+1;
+                if(s.getX() >= 9){
+                    return false;
+                }
+                else if(gameBoard[xValue][s.getY()].getColored()){
+                    return false;
+                }
+            }
+            else if(r == 2){
+                int i = 1;
+                for(int j = 1; j< 3; j++){
+                    s = this.map[i][j];
+                    int xValue = s.getX()+1;
+                    if(s.getX() >= 9){
+                        return false;
+                    }
+                    else if(gameBoard[xValue][s.getY()].getColored()){
+                        return false;
+                    }
+                }
+            }
+            else if(r == 3){
+                int i = 2;
+                int j = 1;
+                s = this.map[i][j];
+                int xValue = s.getX()+1;
+                if(s.getX() >= 9){
+                    return false;
+                }
+                else if(gameBoard[xValue][s.getY()].getColored()){
+                    return false;
+                }
+            }
+            return true;
         }
     }
     //checks to see if the piece can be rotated
