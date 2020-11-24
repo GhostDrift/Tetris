@@ -519,6 +519,7 @@ public class Piece {
     //checks to see if the piece can be moved right
     public boolean movableRight(Square[][] gameBoard){
         Square s;
+        int r = this.getRotation();
         if(this.id == 0){
             int i = 2;
             for(int j = 0; j<2; j++){
@@ -538,7 +539,7 @@ public class Piece {
             }
             return true;
         }
-        else if(this.id ==1){
+        else if(this.id ==1 || this.id == 5){
             for(int i =0; i<4; i++){
                 for(int j = 0; j<4; j++){
                     s = this.map[i][j];
@@ -559,7 +560,61 @@ public class Piece {
             return true;
         }
         else if(this.id ==2){
-            return false;
+            if(r == 0){
+                int j = 1;
+                for(int i = 2; i<4; i++){
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int xValue = s.getX()+1;
+                        if(s.getX() <= 0){
+                            return false;
+                        }
+                        else if(gameBoard[xValue][s.getY()].getColored()){
+                            return false;
+                        }
+                    }
+                    j--;
+                }
+            }
+            else if(r == 1|| r == 3){
+                for(int i =0; i<4; i++){
+                    for(int j = 0; j<4; j++){
+                        s = this.map[i][j];
+                        if (s.getColored()) {
+                            int xValue = s.getX()+1;
+                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                            if(s.getX() >= 9){
+                                //System.out.println("The block is at the right edge of the board");
+                                return false;
+                            }
+                            else if(gameBoard[xValue][s.getY()].getColored()){
+                                //System.out.println("the block is on the left of another block");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            else if(r == 2){
+                int j =2;
+                for(int i = 2; i<4; i++){
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int xValue = s.getX()+1;
+                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                        if(s.getX() >= 9){
+                            //System.out.println("The block is at the right edge of the board");
+                            return false;
+                        }
+                        else if(gameBoard[xValue][s.getY()].getColored()){
+                            //System.out.println("the block is on the left of another block");
+                            return false;
+                        }
+                    }
+                    j++;
+                }
+            }
+            return true;
         }
         else if(this.id ==3){
             if (this.getRotation() == 0) {
