@@ -24,6 +24,9 @@ public class MainGUI extends JFrame {
     private final int HEIGHT = 550;
 
     private Timer gameTimer = null;
+    protected static int n;
+    protected static int m;
+    protected static boolean playing = true;
 
     //graphics display areas
     private PlayArea playArea;
@@ -38,7 +41,7 @@ public class MainGUI extends JFrame {
 
     //piece color variables
    private Color pieceColor = Color.black;
-//    private Color nextColor = Color.black;
+private Color nextColor = Color.CYAN;
 //    private int colorIndex = 0;
     private final Color purple = new Color(100,0,150);
     // piece variable for game play
@@ -131,7 +134,7 @@ public class MainGUI extends JFrame {
                        if(!p.getActive()){
                            score +=checkLines(gameBoard);
                            controlPanel.upDateScore(score);
-                           p = addPiece(gameBoard, np);
+                           p = addPiece(gameBoard, np, gameTimer, playArea,nextColor);
                            p.setActive(true);
                            np = getNextPiece(nextPieceMap, maps);
                         }
@@ -181,18 +184,64 @@ public class MainGUI extends JFrame {
     }
 
     //adds a new piece to the game board
-    private static Piece addPiece(Square[][] gameBoard, Piece p){
+    private static Piece addPiece(Square[][] gameBoard, Piece p, Timer gameTimer,JPanel playArea,Color color){
         //add the piece to the game board
         Square[][] pieceMap = p.getMap();
         p.setActive(true);
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                Square s = pieceMap[i][j];
-//                System.out.println("X: " + s.getX() + " Y: " + s.getY());
-                gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
+//        try {
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    Square s = pieceMap[i][j];
+    //                System.out.println("X: " + s.getX() + " Y: " + s.getY());
+                    if (s.getColored()) {
+                        if(gameBoard[s.getX()][s.getY()].getColored()){
+//                            throw new Exception();
+                        }
+                        gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
+                    }
+                }
             }
-        }
+//        } catch (Exception e) {
+//            gameOver(gameBoard,gameTimer, playArea,color );
+//        }
         return p;
+    }
+    //stops the timer and plays the end animation
+    //not working yet
+    private static void gameOver(Square[][] gameBoard, Timer gameTimer,JPanel playArea, Color color){
+        System.out.println("ending the game");
+        gameTimer.stop();
+        Random rn = new Random();
+        color = Color.red;
+        Timer gameOver = new Timer(400,
+                // -- ActionListener for the timer event
+                // and example of real time programming
+                // events occur at arbitrary times
+                // and our program must be prepaired to deal with them
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent arg0) {
+                        for(int i = 0; i<5; i++){
+                            n = rn.nextInt(10);
+                            m = rn.nextInt(30);
+                            gameBoard[n][m].setColored(true);
+                        }
+                        System.out.println("repainting the playArea");
+                        playArea.repaint();
+                        for(int i = 0; i < 10; i++){
+                            for (int j = 0; j < 30; j++){
+                                if(!gameBoard[i][j].getColored()){
+                                    playing = false;
+                                }
+                            }
+                        }
+                    }
+                }
+        );
+        while(playing){
+            gameOver.start();
+        }
+        gameOver.stop();
+
     }
     //moves the piece down one square
     private static void moveDown(Square[][] gameBoard, Piece p){
@@ -223,7 +272,7 @@ public class MainGUI extends JFrame {
     }
 
     //moves piece one to the left
-    public static void moveLeft(Square[][] gameBoard, Piece p){
+    private static void moveLeft(Square[][] gameBoard, Piece p){
         if(p.movableLeft(gameBoard)){
             Square[][] pieceMap = p.getMap();
             for(int i = 0; i< 4; i++){
@@ -244,9 +293,10 @@ public class MainGUI extends JFrame {
                 }
             }
         }
+        moveDown(gameBoard,p);
     }
     //moves the piece one to the right
-    public static void moveRight(Square[][] gameBoard, Piece p){
+    private static void moveRight(Square[][] gameBoard, Piece p){
         if(p.movableRight(gameBoard)){
             Square[][] pieceMap = p.getMap();
             for(int i = 0; i< 4; i++){
@@ -267,6 +317,7 @@ public class MainGUI extends JFrame {
                 }
             }
         }
+        moveDown(gameBoard,p);
     }
     //checks to see if a line was cleared
     private static int checkLines(Square[][] gameBoard){
@@ -313,18 +364,18 @@ public class MainGUI extends JFrame {
        return checkLines(gameBoard);
     }
 
-
-
     // -- Inner class for the graphics panel
     public class PlayArea extends JPanel {
-//        private Color color;
+        private Color color;
         public PlayArea()
         {
             super();
+            this.color = nextColor;
             this.setBackground(Color.BLACK);
             this.prepareActionHandlers();
 
         }
+
 
         // -- prepare the controls and their associated action listeners
         private void prepareActionHandlers()
@@ -430,7 +481,7 @@ public class MainGUI extends JFrame {
 
 //            //creates a colored square in the middle of the screen
 //
-            graphicsContext.setColor(Color.cyan);
+            graphicsContext.setColor(color);
 //            graphicsContext.fillRect(73,119,17,17);
 
             Square s;

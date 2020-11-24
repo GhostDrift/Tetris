@@ -463,7 +463,7 @@ public class Piece {
         }
         else {
             if (r == 0) {
-                int i = 0;
+                int i = 1;
                 for(int j =0; j<2; j++){
                     s = this.map[i][j];
                     int xValue = s.getX()-1;
