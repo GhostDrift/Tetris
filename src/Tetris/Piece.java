@@ -757,6 +757,9 @@ public class Piece {
         int id = this.getId();
         int r = this.rotation;
         int nextR;
+        if(!this.moveableDown(gameBoard)){
+            return false;
+        }
         try {
             if(r == 3){
                 nextR = 0;
