@@ -46,6 +46,9 @@ public class MainGUI extends JFrame {
     private Piece np;
     private Piece p;
 
+    //variable to hold the score
+    private int score =0;
+
     public MainGUI ()
     {
         //construct the bast jFrame first
@@ -113,10 +116,10 @@ public class MainGUI extends JFrame {
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
         final Random rn = new Random();
-//        p = new Piece(rn.nextInt(7),maps);
-//        np = new Piece(rn.nextInt(7),maps);
-        p = new Piece(3,maps);
-        np = new Piece(3,maps);
+        p = new Piece(rn.nextInt(7),maps);
+        np = new Piece(rn.nextInt(7),maps);
+//        p = new Piece(3,maps);
+//        np = new Piece(3,maps);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
@@ -126,8 +129,8 @@ public class MainGUI extends JFrame {
                     public void actionPerformed(ActionEvent arg0) {
 //                        System.out.println(p.getActive());
                        if(!p.getActive()){
-//                           checkLines(gameBoard);
-                          System.out.println(checkLines(gameBoard));
+                           score +=checkLines(gameBoard);
+                           controlPanel.upDateScore(score);
                            p = addPiece(gameBoard, np);
                            p.setActive(true);
                            np = getNextPiece(nextPieceMap, maps);
@@ -159,7 +162,7 @@ public class MainGUI extends JFrame {
     private static Piece getNextPiece(Square[][] nextPieceMap, Maps maps){
         Random rn = new Random();
         int n = rn.nextInt(7);
-        Piece np = new Piece(3,maps);     //passing in a 1 for now because I only have two pieces programmed
+        Piece np = new Piece(n,maps);
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
             for(int j = 0; j< 4; j++){
@@ -283,8 +286,8 @@ public class MainGUI extends JFrame {
             if(clearLine){
                 clearLine(gameBoard, j);
                 linesCleared++;
-                if (j != 0) {
-                    shiftDown(gameBoard,j);
+                if(j != 0){
+                    linesCleared += shiftDown(gameBoard,j);
                 }
             }
         }
@@ -298,7 +301,7 @@ public class MainGUI extends JFrame {
         }
     }
     //shifts the board down one
-    private static void shiftDown(Square[][] gameBoard, int rowCleared){
+    private static int shiftDown(Square[][] gameBoard, int rowCleared){
         Square s;
         for(int j =rowCleared; j >0; j-- ){
             for(int i = 0; i<10; i++){
@@ -306,7 +309,8 @@ public class MainGUI extends JFrame {
                 s.setColored(gameBoard[i][j-1].getColored());
             }
         }
-        checkLines(gameBoard);
+
+       return checkLines(gameBoard);
     }
 
 
@@ -456,6 +460,7 @@ public class MainGUI extends JFrame {
 
 
         private JTextField score;
+        private String currentScore = "0";
 
 
 
@@ -472,11 +477,12 @@ public class MainGUI extends JFrame {
             setBackground(Color.BLACK);
 
             // -- construct the JTextField, 5 characters wide
-            score = new JTextField("0", 5);
+            score = new JTextField(currentScore, 5);
             score.setHorizontalAlignment(JTextField.CENTER);    //centers the text in the text field.
             score.setEditable(false);
             score.setBackground(Color.BLACK);
             score.setForeground(Color.CYAN);
+
 
             //construct the labels for the control panel
             scoreLabel = new JLabel("Score");
@@ -504,6 +510,10 @@ public class MainGUI extends JFrame {
 
 
 
+        }
+        public void upDateScore(int currentScore){
+            this.currentScore = "" +currentScore;
+            score.setText(this.currentScore);
         }
 
         private void prepareButtonHandlers()
