@@ -113,8 +113,10 @@ public class MainGUI extends JFrame {
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
         final Random rn = new Random();
-        p = new Piece(rn.nextInt(7),maps);
-        np = new Piece(rn.nextInt(7),maps);
+//        p = new Piece(rn.nextInt(7),maps);
+//        np = new Piece(rn.nextInt(7),maps);
+        p = new Piece(3,maps);
+        np = new Piece(3,maps);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
@@ -124,6 +126,8 @@ public class MainGUI extends JFrame {
                     public void actionPerformed(ActionEvent arg0) {
 //                        System.out.println(p.getActive());
                        if(!p.getActive()){
+//                           checkLines(gameBoard);
+                          System.out.println(checkLines(gameBoard));
                            p = addPiece(gameBoard, np);
                            p.setActive(true);
                            np = getNextPiece(nextPieceMap, maps);
@@ -155,7 +159,7 @@ public class MainGUI extends JFrame {
     private static Piece getNextPiece(Square[][] nextPieceMap, Maps maps){
         Random rn = new Random();
         int n = rn.nextInt(7);
-        Piece np = new Piece(n,maps);     //passing in a 1 for now because I only have two pieces programmed
+        Piece np = new Piece(3,maps);     //passing in a 1 for now because I only have two pieces programmed
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
             for(int j = 0; j< 4; j++){
@@ -260,6 +264,49 @@ public class MainGUI extends JFrame {
                 }
             }
         }
+    }
+    //checks to see if a line was cleared
+    private static int checkLines(Square[][] gameBoard){
+//        System.out.println("Checking to see if line needs to be cleared");
+        int linesCleared = 0;
+        int columnsChecked;
+        boolean clearLine;
+        for(int j = 29; j >=0; j--){
+            columnsChecked = 0;
+            clearLine = true;
+            while(columnsChecked < 10 && clearLine){
+                if(!gameBoard[columnsChecked][j].getColored()){
+                    clearLine = false;
+                }
+                columnsChecked++;
+            }
+            if(clearLine){
+                clearLine(gameBoard, j);
+                linesCleared++;
+                if (j != 0) {
+                    shiftDown(gameBoard,j);
+                }
+            }
+        }
+        return linesCleared;
+    }
+    //clears the line that needs to be cleared
+    private static void clearLine(Square[][] gameBoard, int rowCleared){
+//        System.out.println("clear row " + rowCleared);
+        for(int i = 0; i<10; i++){
+            gameBoard[i][rowCleared].setColored(false);
+        }
+    }
+    //shifts the board down one
+    private static void shiftDown(Square[][] gameBoard, int rowCleared){
+        Square s;
+        for(int j =rowCleared; j >0; j-- ){
+            for(int i = 0; i<10; i++){
+                s = gameBoard[i][j];
+                s.setColored(gameBoard[i][j-1].getColored());
+            }
+        }
+        checkLines(gameBoard);
     }
 
 
