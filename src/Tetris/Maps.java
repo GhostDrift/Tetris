@@ -1,25 +1,34 @@
 package Tetris;
 
-public class Maps {
-  private Square[][] piece0;
-  private Square[][][] piece1;
-  private Square[][][] piece2;
-  private Square[][][] piece3;
-  private Square[][] piece4;
-  private Square[][][] piece5;
-  private Square[][][] piece6;
-  public Maps(){
-      this.piece0 = populatePiece0();
-      this.piece1 = populatePiece1();
-      this.piece2 = populatePiece2();
-      this.piece3 = populatePiece3();
-      this.piece4 = populatePiece4();
-      this.piece5 = populatePiece5();
-      this.piece6 = populatePiece6();
-  }
+import java.awt.*;
 
+public class Maps {
+    private Square[][] piece0;
+    private Square[][][] piece1;
+    private Square[][][] piece2;
+    private Square[][][] piece3;
+    private Square[][] piece4;
+    private Square[][][] piece5;
+    private Square[][][] piece6;
+//    private int incrementY;
+//    private int incrementX;
+    public Maps(){
+
+        this.piece0 = populatePiece0();
+        this.piece1 = populatePiece1();
+        this.piece2 = populatePiece2();
+        this.piece3 = populatePiece3();
+        this.piece4 = populatePiece4();
+        this.piece5 = populatePiece5();
+        this.piece6 = populatePiece6();
+    }
+//    private void setXAndY(){
+//        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//        int screenHeight = screenSize.height;
+//        int screenWidth = screeen
+//    }
     private Square[][][] populatePiece6() {
-      Square[][][] piece6 = new Square[4][4][4];
+        Square[][][] piece6 = new Square[4][4][4];
         for (int k = 0; k<4; k++) {
             int x = 3;
             int y = 0;
@@ -91,7 +100,7 @@ public class Maps {
     }
 
     private Square[][][] populatePiece5() {
-      Square[][][] piece5 = new Square[4][4][4];
+        Square[][][] piece5 = new Square[4][4][4];
         for (int k = 0; k<4; k++) {
             int x = 3;
             int y = 0;
@@ -203,21 +212,21 @@ public class Maps {
     }
 
     private Square[][] populatePiece4() {
-      Square[][] piece4 = new Square[4][4];
+        Square[][] piece4 = new Square[4][4];
 
-            int x = 3;
-            int y = 0;
-            for(int i = 0; i < 4; i++) {
-                for (int j = 0; j < 4; j++) {
-                    piece4[i][j] = new Square(x, y);
+        int x = 3;
+        int y = 0;
+        for(int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                piece4[i][j] = new Square(x, y);
 //                    System.out.println(x + " " + y);
-                    y++;
-                }
-                y = 0;
-                x++;
+                y++;
             }
-            piece4[1][0].setColored(true);
-            return piece4;
+            y = 0;
+            x++;
+        }
+        piece4[1][0].setColored(true);
+        return piece4;
     }
 
     private Square[][][] populatePiece3() {
@@ -271,7 +280,7 @@ public class Maps {
     }
 
     private Square[][][] populatePiece2() {
-      Square[][][] piece2 = new Square[4][4][4];
+        Square[][][] piece2 = new Square[4][4][4];
         for (int k = 0; k<4; k++) {
             int x = 3;
             int y = 0;
@@ -375,7 +384,7 @@ public class Maps {
     }
 
     private Square[][][] populatePiece1() {
-      Square[][][] piece1 = new Square[4][4][4];
+        Square[][][] piece1 = new Square[4][4][4];
         for (int k = 0; k<4; k++) {
             int x = 3;
             int y = 0;
@@ -387,7 +396,7 @@ public class Maps {
                 }
                 y=0;
                 x++;
-              }
+            }
             if (k == 0) {
                 for(int i = 0; i < 4; i++){
                     for(int j = 0; j< 4; j++){
@@ -487,7 +496,7 @@ public class Maps {
     }
 
     private static Square[][] populatePiece0() {
-      Square[][] piece0 = new Square[4][4];
+        Square[][] piece0 = new Square[4][4];
         int x = 3;
         int y = 0;
         for(int i = 0; i < 4; i++){
@@ -512,39 +521,39 @@ public class Maps {
     }
 
     public Square[][] getMap(int id, int rotation){
-      if(id == 0){
-          return piece0;
-      }
-      else if(id == 1){
-          return piece1[rotation];
-      }
-      else if (id == 2){
-          return piece2[rotation];
-      }
-      else if (id == 3){
-          return piece3[rotation];
-      }
-      else if(id == 4){
-          return piece4;
-      }
-      else if (id == 5){
-          return piece5[rotation];
-      }
-      else {
-          return piece6[rotation];
-      }
+        if(id == 0){
+            return piece0;
+        }
+        else if(id == 1){
+            return piece1[rotation];
+        }
+        else if (id == 2){
+            return piece2[rotation];
+        }
+        else if (id == 3){
+            return piece3[rotation];
+        }
+        else if(id == 4){
+            return piece4;
+        }
+        else if (id == 5){
+            return piece5[rotation];
+        }
+        else {
+            return piece6[rotation];
+        }
     }
 
     @Override
     public String toString(){
-      String s = "";
-      s+= "piece0:\n";
-      for (int i = 0; i < 4; i++) {
-          for (int j = 0; j<4; j++) {
-              s += this.piece0[i][j].toString();
-          }
-      }
-      s+= "\npiece1:\n";
+        String s = "";
+        s+= "piece0:\n";
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j<4; j++) {
+                s += this.piece0[i][j].toString();
+            }
+        }
+        s+= "\npiece1:\n";
         for (int k = 0; k<4; k++) {
             s += "rotation " + k + "\n";
             for (int i = 0; i < 4; i++) {

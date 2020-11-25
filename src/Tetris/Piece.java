@@ -569,6 +569,9 @@ public class Piece {
                         if(s.getX() <= 0){
                             return false;
                         }
+                        else if(xValue == 10){
+                            return false;
+                        }
                         else if(gameBoard[xValue][s.getY()].getColored()){
                             return false;
                         }

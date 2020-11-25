@@ -1,11 +1,6 @@
 package Tetris;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -52,8 +47,13 @@ private Color nextColor = Color.CYAN;
     //variable to hold the score
     private int score =0;
 
+    //variable to hold the size of the screen
+    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private int screenHeight = screenSize.height;
+    private int screenWidth = screenSize.width;
     public MainGUI ()
     {
+        System.out.println("Screen heigt: " + screenHeight + "\nScreen width: " + screenWidth);
         //construct the bast jFrame first
         // this is implied super();
 
