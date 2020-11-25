@@ -58,7 +58,7 @@ private Color nextColor = Color.CYAN;
         // this is implied super();
 
         // -- set the application title
-        setTitle("Tetris");
+        setTitle("Block Buster");
 
         // -- size of the frame: width, height
         setSize(WIDTH, HEIGHT);
@@ -134,7 +134,7 @@ private Color nextColor = Color.CYAN;
                        if(!p.getActive()){
                            score +=checkLines(gameBoard);
                            controlPanel.upDateScore(score);
-                           p = addPiece(gameBoard, np, gameTimer, playArea,nextColor);
+                           p = addPiece(gameBoard, np, gameTimer, score);
                            p.setActive(true);
                            np = getNextPiece(nextPieceMap, maps);
                         }
@@ -184,65 +184,37 @@ private Color nextColor = Color.CYAN;
     }
 
     //adds a new piece to the game board
-    private static Piece addPiece(Square[][] gameBoard, Piece p, Timer gameTimer,JPanel playArea,Color color){
+    private Piece addPiece(Square[][] gameBoard, Piece p, Timer gameTimer, int score){
         //add the piece to the game board
         Square[][] pieceMap = p.getMap();
         p.setActive(true);
-//        try {
+        try {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
                     Square s = pieceMap[i][j];
-    //                System.out.println("X: " + s.getX() + " Y: " + s.getY());
+                    System.out.println("X: " + s.getX() + " Y: " + s.getY());
                     if (s.getColored()) {
                         if(gameBoard[s.getX()][s.getY()].getColored()){
-//                            throw new Exception();
+                            throw new Exception();
                         }
                         gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
                     }
                 }
             }
-//        } catch (Exception e) {
-//            gameOver(gameBoard,gameTimer, playArea,color );
-//        }
+        } catch (Exception e) {
+            gameTimer.stop();
+            dispose();
+            new Menu();
+//            gameOver(score);
+        }
         return p;
     }
     //stops the timer and plays the end animation
     //not working yet
-    private static void gameOver(Square[][] gameBoard, Timer gameTimer,JPanel playArea, Color color){
-        System.out.println("ending the game");
-        gameTimer.stop();
-        Random rn = new Random();
-        color = Color.red;
-        Timer gameOver = new Timer(400,
-                // -- ActionListener for the timer event
-                // and example of real time programming
-                // events occur at arbitrary times
-                // and our program must be prepaired to deal with them
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent arg0) {
-                        for(int i = 0; i<5; i++){
-                            n = rn.nextInt(10);
-                            m = rn.nextInt(30);
-                            gameBoard[n][m].setColored(true);
-                        }
-                        System.out.println("repainting the playArea");
-                        playArea.repaint();
-                        for(int i = 0; i < 10; i++){
-                            for (int j = 0; j < 30; j++){
-                                if(!gameBoard[i][j].getColored()){
-                                    playing = false;
-                                }
-                            }
-                        }
-                    }
-                }
-        );
-        while(playing){
-            gameOver.start();
-        }
-        gameOver.stop();
-
-    }
+//    private static void gameOver(int score){
+//        System.out.println("ending the game");
+//
+//    }
     //moves the piece down one square
     private static void moveDown(Square[][] gameBoard, Piece p){
         Square[][] pieceMap = p.getMap();
