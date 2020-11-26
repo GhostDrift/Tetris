@@ -473,8 +473,8 @@ private Color nextColor = Color.CYAN;
     // -- Inner class for control panel
     public class ControlPanelInner extends JPanel {
         //buttons for control pannel
-        private JButton saveButton;
-        private JButton loadButton;
+//        private JButton saveButton;
+//        private JButton loadButton;
         private JButton pausePlay;
 
         //Labels for control pannel
@@ -524,8 +524,8 @@ private Color nextColor = Color.CYAN;
             this.add(score);
             this.add(nextPieceLabel);
             this.add(nextPieceDisplay);
-            this.add(loadButton);
-            this.add(saveButton);
+//            this.add(loadButton);
+//            this.add(saveButton);
 
             setBorder( new EmptyBorder(0,20,0,5));
 
@@ -565,37 +565,37 @@ private Color nextColor = Color.CYAN;
                         }
                     }
             );
-            saveButton = new JButton("Save");
-            saveButton.setBackground(Color.black);
-            saveButton.setForeground(Color.CYAN);
-            saveButton.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            JFileChooser jfc = new JFileChooser();
-                            if (jfc.showDialog(null, "Save") == JFileChooser.APPROVE_OPTION) {
-                                System.out.println(jfc.getSelectedFile().getName());
-                            }
-                            // -- send focus back to the graphicsPanel
-                            playArea.requestFocus();
-                        }
-                    }
-            );
-
-            loadButton = new JButton("Load");
-            loadButton.setBackground(Color.black);
-            loadButton.setForeground(Color.CYAN);
-            loadButton.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            JFileChooser jfc = new JFileChooser();
-                            if (jfc.showDialog(null, "Load") == JFileChooser.APPROVE_OPTION) {
-                                System.out.println(jfc.getSelectedFile().getName());
-                            }
-                            // -- send focus back to the graphicsPanel
-                            playArea.requestFocus();
-                        }
-                    }
-            );
+//            saveButton = new JButton("Save");
+//            saveButton.setBackground(Color.black);
+//            saveButton.setForeground(Color.CYAN);
+//            saveButton.addActionListener(
+//                    new ActionListener() {
+//                        public void actionPerformed(ActionEvent arg0) {
+//                            JFileChooser jfc = new JFileChooser();
+//                            if (jfc.showDialog(null, "Save") == JFileChooser.APPROVE_OPTION) {
+//                                System.out.println(jfc.getSelectedFile().getName());
+//                            }
+//                            // -- send focus back to the graphicsPanel
+//                            playArea.requestFocus();
+//                        }
+//                    }
+//            );
+//
+//            loadButton = new JButton("Load");
+//            loadButton.setBackground(Color.black);
+//            loadButton.setForeground(Color.CYAN);
+//            loadButton.addActionListener(
+//                    new ActionListener() {
+//                        public void actionPerformed(ActionEvent arg0) {
+//                            JFileChooser jfc = new JFileChooser();
+//                            if (jfc.showDialog(null, "Load") == JFileChooser.APPROVE_OPTION) {
+//                                System.out.println(jfc.getSelectedFile().getName());
+//                            }
+//                            // -- send focus back to the graphicsPanel
+//                            playArea.requestFocus();
+//                        }
+//                    }
+//            );
 
         }
 
