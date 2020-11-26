@@ -13,7 +13,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 
-public class MainGUI extends JFrame {
+public class GameGUI extends JFrame {
     // -- set the size of the JFrame. JPanels will adapt to this size
     private final int WIDTH = 296;
     private final int HEIGHT = 550;
@@ -51,7 +51,7 @@ private Color nextColor = Color.CYAN;
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private int screenHeight = screenSize.height;
     private int screenWidth = screenSize.width;
-    public MainGUI ()
+    public GameGUI()
     {
         System.out.println("Screen heigt: " + screenHeight + "\nScreen width: " + screenWidth);
         //construct the bast jFrame first
@@ -660,7 +660,7 @@ private Color nextColor = Color.CYAN;
         //    its thread while the Swing thread continues on)
         //-- the object we create is on stack but it has no stack refrence
         //  thus we call it "anonymous"
-        new MainGUI();
+        new GameGUI();
         // this line of Code demonstrates the fact that the main function terminates and the main code still runs
         System.out.println("Main Thread Terminating");
     }

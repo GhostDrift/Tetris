@@ -13,7 +13,7 @@ public class Menu extends JFrame {
     private final int HEIGHT = 325;
     private final Color background = new Color(50,0,100);
     private controlPanel control;
-    private MainGUI mainGame;
+    private GameGUI mainGame;
     private JButton start;
     private ArrayList<Score> highScores;
     public Menu(){
@@ -36,7 +36,7 @@ public class Menu extends JFrame {
                         String cmd = arg0.getActionCommand();
                         if(cmd.equals("open")){
                             dispose();
-                            mainGame = new MainGUI();
+                            mainGame = new GameGUI();
                         }
                     }
                 }
