@@ -204,7 +204,7 @@ private Color nextColor = Color.CYAN;
         } catch (Exception e) {
             gameTimer.stop();
             dispose();
-            new Menu();
+            new SaveScore(score);
 //            gameOver(score);
         }
         return p;

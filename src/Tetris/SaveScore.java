@@ -5,10 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class SaveScore extends JFrame{
-    private LinkedList<Score> highScoresList;
+    private ArrayList<Score> highScoresList;
     private int newScore;
     private ControlPanel controlPanel;
     private File highScores = new File("HighScores.ser");
@@ -27,9 +27,9 @@ public class SaveScore extends JFrame{
         setForeground(Color.BLACK);
         this.setVisible(true);
     }
-    private LinkedList<Score> getHighScoresList(){
+    private ArrayList<Score> getHighScoresList(){
 
-        return new LinkedList<Score>();
+        return new ArrayList<Score>();
     }
     private void addScore(Score s){
 
