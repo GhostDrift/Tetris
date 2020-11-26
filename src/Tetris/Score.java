@@ -9,6 +9,12 @@ public class Score implements Serializable {
         this.initials = initials;
         this.score = score;
     }
+    public String getInitials(){
+        return this.initials;
+    }
+    public int getScore(){
+        return this.score;
+    }
     @Override
     public String toString(){
         return "" + this.score + " - " + this.initials;
