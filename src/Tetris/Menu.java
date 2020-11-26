@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Menu extends JFrame {
     //    private final int HEIGHT = 550;
@@ -14,6 +15,7 @@ public class Menu extends JFrame {
     private controlPanel control;
     private MainGUI mainGame;
     private JButton start;
+    private ArrayList<Score> highScores;
     public Menu(){
         setTitle("Block Buster");
         setSize(WIDTH,HEIGHT);
