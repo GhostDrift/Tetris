@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class SaveScore extends JFrame{
     private ArrayList<Score> highScoresList;
@@ -19,6 +20,7 @@ public class SaveScore extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Block Buster");
+        this.highScoresList = getHighScoresList();
         this.setSize(WIDTH, HEIGHT);
         this.setLayout(new BorderLayout());
         this.newScore = newScore;
@@ -28,7 +30,25 @@ public class SaveScore extends JFrame{
         this.setVisible(true);
     }
     private ArrayList<Score> getHighScoresList(){
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(highScores));
+            Object ob = in.readObject();
+            in.close();
+            if(ob instanceof ArrayList){
+                this.highScoresList = (ArrayList<Score>) ob;
+                System.out.println(highScoresList);
+            }
 
+
+        } catch (IOException i) {
+            // -- in case the file cannot be opened
+            System.out.println("can't open file");
+            return new ArrayList<Score>();
+        } catch (ClassNotFoundException c) {
+            // -- in case the Rectangle.class file cannot be found after
+            //    reading the file
+            System.out.println("Score class not found");
+        }
         return new ArrayList<Score>();
     }
     private void addScore(Score s){
@@ -77,7 +97,8 @@ public class SaveScore extends JFrame{
                         public void actionPerformed(ActionEvent arg0) {
                             System.out.println("Starting game");
                                 s = new Score(newScore, nameInput.getText());
-
+                                addScoreToList(s);
+                                System.out.println(highScoresList);
                                 dispose();
                         }
                     }
@@ -93,6 +114,23 @@ public class SaveScore extends JFrame{
         public Dimension getPreferredSize()
         {
             return new Dimension(100, 500);
+        }
+    }
+    private void addScoreToList(Score s){
+        this.highScoresList.add(s);
+        System.out.println(highScoresList);
+//        highScoresList.sort(new Comparator<Score>() {
+//            @Override
+//            public int compare(Score score, Score t1) {
+//               return score.compareTo(t1);
+//            }
+//        });
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(highScores));
+            out.writeObject(this.highScoresList);
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

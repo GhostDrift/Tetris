@@ -73,7 +73,7 @@ private Color nextColor = Color.CYAN;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Make the window a fixed size
-        setResizable(false);
+//        setResizable(false);
 
 
 
@@ -85,6 +85,8 @@ private Color nextColor = Color.CYAN;
         //populate the 2D array that will be used to map the game board
         int xValue = 1;
         int yValue = 0;
+//        int xIncrease = 18;
+//        int yIncrease = 17;
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 30; j++){
                 gameBoard[i][j] = new Square(xValue, yValue);
@@ -102,7 +104,7 @@ private Color nextColor = Color.CYAN;
                 yValue += 17;
             }
             yValue = 17;
-            xValue += 18;
+            xValue += 19;
         }
 
 
@@ -455,13 +457,15 @@ private Color nextColor = Color.CYAN;
 //
             graphicsContext.setColor(color);
 //            graphicsContext.fillRect(73,119,17,17);
-
+//            graphicsContext.fillRect(1, 34, 16, 16);
+//            graphicsContext.fillRect(1, 17, 16, 16);
+//            graphicsContext.fillRect(19, 0, 16, 16);
             Square s;
             for(int i = 0; i < 10; i++){
                 for (int j = 0; j < 30; j++){
                     if(gameBoard[i][j].getColored()){
                         s = gameBoard[i][j];
-                        graphicsContext.fillRect(s.getX(), s.getY(), 17, 16);
+                        graphicsContext.fillRect(s.getX(), s.getY(), 16, 16);
                     }
                 }
             }
