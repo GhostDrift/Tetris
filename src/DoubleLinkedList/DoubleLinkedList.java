@@ -1,6 +1,8 @@
 package DoubleLinkedList;
 
-public class DoubleLinkedList<T> extends LLBase<T> {
+import java.io.Serializable;
+
+public class DoubleLinkedList<T> extends LLBase<T> implements Serializable {
 
 	//Default constructor
 	DoubleLinkedList(){

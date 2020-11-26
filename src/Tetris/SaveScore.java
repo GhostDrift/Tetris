@@ -12,8 +12,9 @@ public class SaveScore extends JFrame{
     private int newScore;
     private ControlPanel controlPanel;
     private File highScores = new File("HighScores.ser");
-    private final int WIDTH = 296;
-    private final int HEIGHT = 325;
+    private final int WIDTH = 400;
+    private final int HEIGHT = 250;
+    private final Color purple = new Color(50,0,100);
     public SaveScore(int newScore){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -41,19 +42,36 @@ public class SaveScore extends JFrame{
         private Score s;
         private JLabel scoreLable;
         private JLabel nameLable;
+        private JLabel gameOverLable;
         public ControlPanel(){
-            this.setBackground(Color.BLACK);
-            nameInput = new JTextField(10);
+            this.setBackground(purple);
+            gameOverLable = new JLabel("GAME OVER");
+            gameOverLable.setForeground(Color.RED);
+            gameOverLable.setBackground(Color.BLACK);
+            gameOverLable.setFont(new Font("TimesRoman", Font.BOLD, 50));
+            nameInput = new JTextField("Enter Name Here",20);
+            nameInput.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             nameInput.setHorizontalAlignment(JTextField.LEFT);
             nameInput.setBackground(Color.BLACK);
             nameInput.setForeground(Color.CYAN);
-            newScoreDisplay = new JTextField("" + newScore, 10);
+            nameInput.setHorizontalAlignment(JLabel.CENTER);
+            newScoreDisplay = new JTextField("" + newScore, 5);
+            newScoreDisplay.setEditable(false);
+            newScoreDisplay.setFont(new Font("TimesRoman", Font.PLAIN, 18));
+            newScoreDisplay.setForeground(Color.CYAN);
+            newScoreDisplay.setBackground(Color.BLACK);
+            newScoreDisplay.setHorizontalAlignment(JTextField.CENTER);
             scoreLable = new JLabel("Your Score");
-            nameLable = new JLabel("Enter your first name or ininitials");
+            scoreLable.setForeground(Color.CYAN);
+            scoreLable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
+            nameLable = new JLabel("Enter your first name or initials");
+            nameLable.setForeground(Color.CYAN);
+            nameLable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             save = new JButton("Save");
-            save.setBackground(Color.BLACK);
+            save.setBackground(Color.black);
             save.setForeground(Color.CYAN);
-            save.setPreferredSize(new Dimension(WIDTH,HEIGHT));
+            save.setPreferredSize(new Dimension(200,25));
+            save.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             save.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
@@ -64,6 +82,7 @@ public class SaveScore extends JFrame{
                         }
                     }
             );
+            this.add(gameOverLable);
             this.add(scoreLable);
             this.add(newScoreDisplay);
             this.add(nameLable);
