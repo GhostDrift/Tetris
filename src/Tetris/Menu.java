@@ -14,7 +14,7 @@ public class Menu extends JFrame {
     //    private final int HEIGHT = 550;
 //    private final int WIDTH = 900;
     private final int WIDTH = 296;
-    private final int HEIGHT = 325;
+    private final int HEIGHT = 355;
     private final Color background = new Color(50,0,100);
     private controlPanel control;
     private GameGUI mainGame;
@@ -29,8 +29,8 @@ public class Menu extends JFrame {
         setResizable(false);
         setLayout(new BorderLayout(0,0));
         setBackground(background);
-        this.start = new JButton("Start");
-        this.start.setPreferredSize(new Dimension(75,20));
+        this.start = new JButton("New Game");
+        this.start.setPreferredSize(new Dimension(200,20));
         this.start.setBackground(Color.black);
         this.start.setForeground(Color.CYAN);
         this.start.setActionCommand("open");
@@ -77,9 +77,10 @@ public class Menu extends JFrame {
         private JButton start;
         private JTextArea highScores;
         private JLabel scoresLable;
+        private JLabel gameTitle;
         public controlPanel(JButton start){
             this.start = start;
-            highScores = new JTextArea(5,10);
+            highScores = new JTextArea(5,5);
             highScores.setBackground(Color.BLACK);
             highScores.setForeground(Color.RED);
             highScores.setFont(new Font("TimesRoman", Font.PLAIN, 20));
@@ -89,6 +90,10 @@ public class Menu extends JFrame {
             scoresLable.setForeground(Color.CYAN);
             setBackground(background);
             setLayout(new FlowLayout(FlowLayout.CENTER, 20, 15));
+            gameTitle = new JLabel("Block Buster");
+            gameTitle.setForeground(Color.red);
+            gameTitle.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+            this.add(gameTitle);
             this.add(scoresLable);
             this.add(highScores);
             this.add(start);

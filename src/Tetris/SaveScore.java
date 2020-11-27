@@ -18,10 +18,11 @@ public class SaveScore extends JFrame{
     private final Color purple = new Color(50,0,100);
     public SaveScore(int newScore){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        this.setSize(WIDTH, HEIGHT);
+        this.setLocationRelativeTo(null);
         setTitle("Block Buster");
         this.highScoresList = getHighScoresList();
-        this.setSize(WIDTH, HEIGHT);
+
         this.setLayout(new BorderLayout());
         this.newScore = newScore;
         controlPanel = new ControlPanel();
