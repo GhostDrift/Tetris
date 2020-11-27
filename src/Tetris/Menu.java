@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class Menu extends JFrame {
@@ -15,7 +19,8 @@ public class Menu extends JFrame {
     private controlPanel control;
     private GameGUI mainGame;
     private JButton start;
-    private ArrayList<Score> highScores;
+    private ArrayList<Score> highScoresList;
+    private File highScores = new File("HighScores.ser");
     public Menu(){
         setTitle("Block Buster");
         setSize(WIDTH,HEIGHT);
@@ -41,19 +46,66 @@ public class Menu extends JFrame {
                     }
                 }
         );
+        this.start.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+        this.highScoresList = getHighScoresList();
         this.control = new controlPanel(start);
-        this.add(control);
+        this.add(control, BorderLayout.CENTER);
         setVisible(true);
 
+    }private ArrayList<Score> getHighScoresList(){
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(highScores));
+            Object ob = in.readObject();
+            in.close();
+            if(ob instanceof ArrayList){
+                return (ArrayList<Score>) ob;
+            }
+
+
+        } catch (IOException i) {
+            // -- in case the file cannot be opened
+            System.out.println("can't open file");
+            return new ArrayList<Score>();
+        } catch (ClassNotFoundException c) {
+            // -- in case the Rectangle.class file cannot be found after
+            //    reading the file
+            System.out.println("Score class not found");
+        }
+        return new ArrayList<Score>();
     }
     private class controlPanel extends JPanel{
         private JButton start;
+        private JTextArea highScores;
+        private JLabel scoresLable;
         public controlPanel(JButton start){
             this.start = start;
+            highScores = new JTextArea(5,10);
+            highScores.setBackground(Color.BLACK);
+            highScores.setForeground(Color.RED);
+            highScores.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+            highScores.setText(getHighScores());
+            scoresLable = new JLabel("High Scores");
+            scoresLable.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+            scoresLable.setForeground(Color.CYAN);
+            setBackground(background);
             setLayout(new FlowLayout(FlowLayout.CENTER, 20, 15));
+            this.add(scoresLable);
+            this.add(highScores);
             this.add(start);
 
         }
+        private String getHighScores(){
+            String s = "";
+            for(int i = 0; i < highScoresList.size(); i++){
+                s += highScoresList.get(i).toString() + "\n";
+            }
+            return s;
+        }
+        public Dimension getPreferredSize()
+        {
+            return new Dimension(296,325 );
+        }
+
     }
     public static void main(String[] args) {
         Menu startUP = new Menu();

@@ -35,8 +35,7 @@ public class SaveScore extends JFrame{
             Object ob = in.readObject();
             in.close();
             if(ob instanceof ArrayList){
-                this.highScoresList = (ArrayList<Score>) ob;
-                System.out.println(highScoresList);
+                return (ArrayList<Score>) ob;
             }
 
 
@@ -98,7 +97,8 @@ public class SaveScore extends JFrame{
                             System.out.println("Starting game");
                                 s = new Score(newScore, nameInput.getText());
                                 addScoreToList(s);
-                                System.out.println(highScoresList);
+//                                System.out.println(highScoresList);
+                                new Menu();
                                 dispose();
                         }
                     }
@@ -118,13 +118,13 @@ public class SaveScore extends JFrame{
     }
     private void addScoreToList(Score s){
         this.highScoresList.add(s);
-        System.out.println(highScoresList);
-//        highScoresList.sort(new Comparator<Score>() {
-//            @Override
-//            public int compare(Score score, Score t1) {
-//               return score.compareTo(t1);
-//            }
-//        });
+//        System.out.println(highScoresList);
+        highScoresList.sort(new Comparator<Score>() {
+            @Override
+            public int compare(Score score, Score t1) {
+               return score.compareTo(t1);
+            }
+        });
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(highScores));
             out.writeObject(this.highScoresList);
