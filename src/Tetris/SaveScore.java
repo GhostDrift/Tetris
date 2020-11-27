@@ -122,7 +122,16 @@ public class SaveScore extends JFrame{
         highScoresList.sort(new Comparator<Score>() {
             @Override
             public int compare(Score score, Score t1) {
-               return score.compareTo(t1);
+               if(score.getScore() > t1.getScore()){
+                   return -1;
+               }
+               else if(score.getScore() < t1.getScore()){
+                   return 1;
+               }
+               else{
+                 return 0;
+               }
+
             }
         });
         try {
