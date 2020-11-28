@@ -15,10 +15,10 @@ import javax.swing.border.TitledBorder;
 
 public class GameGUI extends JFrame {
     // -- set the size of the JFrame. JPanels will adapt to this size
-//    private final int WIDTH = 296;
-//    private final int HEIGHT = 550;
-    private final int WIDTH = 293;
-    private final int HEIGHT = 545;
+    private final int WIDTH = 296;
+    private final int HEIGHT = 550;
+//    private final int WIDTH = 293;
+//    private final int HEIGHT = 545;
 
     private Timer gameTimer = null;
     protected static int n;
@@ -269,7 +269,7 @@ private Color nextColor = Color.CYAN;
                 }
             }
         }
-        moveDown(gameBoard,p);
+//        moveDown(gameBoard,p);
     }
     //moves the piece one to the right
     private static void moveRight(Square[][] gameBoard, Piece p){
@@ -293,7 +293,7 @@ private Color nextColor = Color.CYAN;
                 }
             }
         }
-        moveDown(gameBoard,p);
+//        moveDown(gameBoard,p);
     }
     //checks to see if a line was cleared
     private static int checkLines(Square[][] gameBoard){

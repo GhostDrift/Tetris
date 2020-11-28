@@ -14,7 +14,7 @@ public class Menu extends JFrame {
     //    private final int HEIGHT = 550;
 //    private final int WIDTH = 900;
     private final int WIDTH = 296;
-    private final int HEIGHT = 355;
+    private final int HEIGHT = 400;
     private final Color background = new Color(50,0,100);
     private controlPanel control;
     private GameGUI mainGame;
@@ -85,6 +85,7 @@ public class Menu extends JFrame {
             highScores.setForeground(Color.RED);
             highScores.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             highScores.setText(getHighScores());
+            highScores.setEditable(false);
             scoresLable = new JLabel("High Scores");
             scoresLable.setFont(new Font("TimesRoman", Font.PLAIN, 30));
             scoresLable.setForeground(Color.CYAN);
