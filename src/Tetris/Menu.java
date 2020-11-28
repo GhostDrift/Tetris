@@ -102,9 +102,15 @@ public class Menu extends JFrame {
         }
         private String getHighScores(){
             String s = "";
-            for(int i = 0; i < highScoresList.size(); i++){
-                s += highScoresList.get(i).toString() + "\n";
+            if(highScoresList.size() >= 5){
+                for(int i = 0; i < 5; i++){
+                    s += highScoresList.get(i).toString() + "\n";
+                }
             }
+            else {
+                s = highScoresList.toString();
+            }
+
             return s;
         }
         public Dimension getPreferredSize()
