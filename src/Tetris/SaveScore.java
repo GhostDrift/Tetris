@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -65,11 +67,12 @@ public class SaveScore extends JFrame{
         private JLabel gameOverLable;
         public ControlPanel(){
             this.setBackground(purple);
+            this.setFocusable(true);
             gameOverLable = new JLabel("GAME OVER");
             gameOverLable.setForeground(Color.RED);
             gameOverLable.setBackground(Color.BLACK);
             gameOverLable.setFont(new Font("TimesRoman", Font.BOLD, 50));
-            nameInput = new JTextField("Enter Name Here",20);
+            nameInput = new JTextField("Enter Initials here",20);
             nameInput.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             nameInput.setHorizontalAlignment(JTextField.LEFT);
             nameInput.setBackground(Color.BLACK);
@@ -84,7 +87,7 @@ public class SaveScore extends JFrame{
             scoreLable = new JLabel("Your Score");
             scoreLable.setForeground(Color.CYAN);
             scoreLable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
-            nameLable = new JLabel("Enter your first name or initials");
+            nameLable = new JLabel("Enter your initials");
             nameLable.setForeground(Color.CYAN);
             nameLable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             save = new JButton("Save");
@@ -92,26 +95,61 @@ public class SaveScore extends JFrame{
             save.setForeground(Color.CYAN);
             save.setPreferredSize(new Dimension(200,25));
             save.setFont(new Font("TimesRoman", Font.PLAIN, 18));
+            save.setDefaultCapable(true);
             save.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
                             System.out.println("Starting game");
+                            if(nameInput.getText().equals("Enter Initials here")){
+                                nameInput.setText("You must input your initials here");
+                            }
+                            else {
+
                                 s = new Score(newScore, nameInput.getText());
                                 addScoreToList(s);
 //                                System.out.println(highScoresList);
                                 new Menu();
                                 dispose();
+                            }
                         }
                     }
             );
+            this.addKeyListener(new KeyListener() {
+
+                @Override
+                public void keyTyped(KeyEvent event) {
+                    System.out.println("key typed: " + event.getKeyCode());
+                    if(event.getKeyCode() == 0){
+                        clickSave();
+                    }
+                }
+
+                @Override
+                public void keyPressed(KeyEvent event) {
+
+                }
+
+                @Override
+                public void keyReleased(KeyEvent event) {
+
+                }
+
+            });
             this.add(gameOverLable);
             this.add(scoreLable);
             this.add(newScoreDisplay);
             this.add(nameLable);
             this.add(nameInput);
             this.add(save);
+            this.requestFocus();
+            System.out.println(save.isDefaultButton());
 
         }
+
+        private void clickSave() {
+            save.doClick();
+        }
+
         public Dimension getPreferredSize()
         {
             return new Dimension(100, 500);
@@ -146,7 +184,7 @@ public class SaveScore extends JFrame{
 
 
     public static void main(String[] args) {
-        new SaveScore(5);
+        new SaveScore(0);
     }
 }
 
