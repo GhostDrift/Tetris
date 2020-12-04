@@ -52,7 +52,7 @@ public class Piece {
                     int yvalue = s.getY()+1;
     //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                     if(s.getY() == 29){
-                        System.out.println("at the bottom of the board");
+//                        System.out.println("at the bottom of the board");
                         return false;
                     }
                     else if(gameBoard[s.getX()][yvalue].getColored()){
@@ -77,7 +77,7 @@ public class Piece {
                             int yvalue = s.getY()+1;
 //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                             if(s.getY() == 29){
-                                System.out.println("at the bottom of the board");
+//                                System.out.println("at the bottom of the board");
                                 return false;
                             }
                             else if(gameBoard[s.getX()][yvalue].getColored()){
@@ -102,7 +102,7 @@ public class Piece {
                             int yvalue = s.getY()+1;
 //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                             if(s.getY() == 29){
-                                System.out.println("at the bottom of the board");
+//                                System.out.println("at the bottom of the board");
                                 return false;
                             }
                             else if(gameBoard[s.getX()][yvalue].getColored()){
@@ -124,7 +124,7 @@ public class Piece {
                         int yvalue = s.getY()+1;
 //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                         if(s.getY() == 29){
-                            System.out.println("at the bottom of the board");
+//                            System.out.println("at the bottom of the board");
                             return false;
                         }
                         else if(gameBoard[s.getX()][yvalue].getColored()){
@@ -146,7 +146,7 @@ public class Piece {
                         int yvalue = s.getY()+1;
 //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                         if(s.getY() == 29){
-                            System.out.println("at the bottom of the board");
+//                            System.out.println("at the bottom of the board");
                             return false;
                         }
                         else if(gameBoard[s.getX()][yvalue].getColored()){

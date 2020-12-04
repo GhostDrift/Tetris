@@ -55,7 +55,7 @@ private Color nextColor = Color.CYAN;
     private int screenWidth = screenSize.width;
     public GameGUI()
     {
-        System.out.println("Screen heigt: " + screenHeight + "\nScreen width: " + screenWidth);
+        System.out.println("Screen height: " + screenHeight + "\nScreen width: " + screenWidth);
         //construct the bast jFrame first
         // this is implied super();
 
@@ -196,7 +196,7 @@ private Color nextColor = Color.CYAN;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++) {
                     Square s = pieceMap[i][j];
-                    System.out.println("X: " + s.getX() + " Y: " + s.getY());
+//                    System.out.println("X: " + s.getX() + " Y: " + s.getY());
                     if (s.getColored()) {
                         if(gameBoard[s.getX()][s.getY()].getColored()){
                             throw new Exception();
