@@ -26,7 +26,7 @@ public class Menu extends JFrame {
         setSize(WIDTH,HEIGHT);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setResizable(false);
+//        setResizable(false);
         setLayout(new BorderLayout(0,0));
         setBackground(background);
         this.start = new JButton("New Game");
@@ -108,7 +108,9 @@ public class Menu extends JFrame {
                 }
             }
             else {
-                s = highScoresList.toString();
+                for (int i = 0; i<highScoresList.size(); i++) {
+                    s += highScoresList.get(i).toString() + "\n";
+                }
             }
 
             return s;

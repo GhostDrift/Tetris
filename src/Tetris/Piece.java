@@ -5,8 +5,10 @@ public class Piece {
     private boolean active = false;
     private int id;
     private int rotation;
+    private int gameID;
 
-    public Piece(int n, Maps maps){
+    public Piece(int n, Maps maps, int gameID){
+        this.gameID = gameID;
         this.id = n;
         this.rotation =0;
         Square[][] template = maps.getMap(n,rotation);
@@ -31,6 +33,9 @@ public class Piece {
     public int getId(){
         return this.id;
     }
+    public int getGameID(){
+        return this.gameID;
+    }
     public int getRotation(){
         return this.rotation;
     }
@@ -43,149 +48,166 @@ public class Piece {
         Square s;
         int r = this.getRotation();
         int id = this.getId();
-        if(id == 0){
-//            System.out.println("piece 0");
-            int j = 1;
-            for (int i = 1; i<3; i++) {
-                s = this.map[i][j];
-                if (s.getColored()) {
-                    int yvalue = s.getY()+1;
-    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                    if(s.getY() == 29){
-//                        System.out.println("at the bottom of the board");
-                        return false;
+        int game = this.getGameID();
+        if (game == 0) {
+            if(id == 0){
+    //            System.out.println("piece 0");
+                int j = 1;
+                for (int i = 1; i<3; i++) {
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int yvalue = s.getY()+1;
+        //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                        if(s.getY() == 29){
+    //                        System.out.println("at the bottom of the board");
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yvalue].getColored()){
+        //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+        //                            System.out.println("block y value: " + s.getY());
+        //                            System.out.println("Block y value + 1: " + yvalue);
+        //                                System.out.println("Blocked by another piece");
+                            return false;
+                        }
                     }
-                    else if(gameBoard[s.getX()][yvalue].getColored()){
+                }
+                return true;
+            }
+            else if(id ==1 || id == 5){
+    //            System.out.println("piece 1");
+    //            if(r==0 ){
+    //                System.out.println("rotation 0");
+                    for(int i = 0; i<4; i++){
+                        for(int j = 0; j< 4; j++){
+                            s = this.map[i][j];
+                            if (s.getColored()) {
+                                int yvalue = s.getY()+1;
+    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                                if(s.getY() == 29){
+    //                                System.out.println("at the bottom of the board");
+                                    return false;
+                                }
+                                else if(gameBoard[s.getX()][yvalue].getColored()){
     //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
     //                            System.out.println("block y value: " + s.getY());
     //                            System.out.println("Block y value + 1: " + yvalue);
     //                                System.out.println("Blocked by another piece");
-                        return false;
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                return true;
+            }
+            else if(id ==2){
+    //            System.out.println("piece 2");
+                if (r == 0 || r == 2){
+                    for(int i = 0; i<4; i++){
+                        for(int j = 0; j< 4; j++){
+                            s = this.map[i][j];
+                            if (s.getColored()) {
+                                int yvalue = s.getY()+1;
+    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                                if(s.getY() == 29){
+    //                                System.out.println("at the bottom of the board");
+                                    return false;
+                                }
+                                else if(gameBoard[s.getX()][yvalue].getColored()){
+    //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+    //                            System.out.println("block y value: " + s.getY());
+    //                            System.out.println("Block y value + 1: " + yvalue);
+    //                                System.out.println("Blocked by another piece");
+                                    return false;
+                                }
+                            }
+                        }
                     }
                 }
-            }
-            return true;
-        }
-        else if(id ==1 || id == 5){
-//            System.out.println("piece 1");
-//            if(r==0 ){
-//                System.out.println("rotation 0");
-                for(int i = 0; i<4; i++){
-                    for(int j = 0; j< 4; j++){
+                else if(r == 1){
+                    int j = 3;
+                    for(int i = 0; i<2; i++){
                         s = this.map[i][j];
                         if (s.getColored()) {
                             int yvalue = s.getY()+1;
-//                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                             if(s.getY() == 29){
-//                                System.out.println("at the bottom of the board");
+    //                            System.out.println("at the bottom of the board");
                                 return false;
                             }
                             else if(gameBoard[s.getX()][yvalue].getColored()){
-//                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
-//                            System.out.println("block y value: " + s.getY());
-//                            System.out.println("Block y value + 1: " + yvalue);
-//                                System.out.println("Blocked by another piece");
+    //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+    //                            System.out.println("block y value: " + s.getY());
+    //                            System.out.println("Block y value + 1: " + yvalue);
+    //                                System.out.println("Blocked by another piece");
                                 return false;
                             }
+                            j--;
                         }
                     }
                 }
-            return true;
-        }
-        else if(id ==2){
-//            System.out.println("piece 2");
-            if (r == 0 || r == 2){
-                for(int i = 0; i<4; i++){
-                    for(int j = 0; j< 4; j++){
+                else if(r == 3){
+                    int j = 2;
+                    for(int i = 2; i<4; i++){
                         s = this.map[i][j];
                         if (s.getColored()) {
                             int yvalue = s.getY()+1;
-//                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
                             if(s.getY() == 29){
-//                                System.out.println("at the bottom of the board");
+    //                            System.out.println("at the bottom of the board");
                                 return false;
                             }
                             else if(gameBoard[s.getX()][yvalue].getColored()){
-//                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
-//                            System.out.println("block y value: " + s.getY());
-//                            System.out.println("Block y value + 1: " + yvalue);
-//                                System.out.println("Blocked by another piece");
+    //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+    //                            System.out.println("block y value: " + s.getY());
+    //                            System.out.println("Block y value + 1: " + yvalue);
+    //                                System.out.println("Blocked by another piece");
+                                return false;
+                            }
+                            j++;
+                        }
+                    }
+                }
+                return true;
+            }
+            else if(id ==3){
+    //            System.out.println("piece 3");
+                if (r== 0) {
+                    int i = 1;
+                    int j = 3;
+                    s = this.map[i][j];
+                    if (s.getColored()) {
+                        int yvalue = s.getY()+1;
+    //                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                        if(s.getY() == 29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yvalue].getColored()){
+    //                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
+    //                            System.out.println("block y value: " + s.getY());
+    //                            System.out.println("Block y value + 1: " + yvalue);
+                            return false;
+                        }
+                    }
+                }
+                else if(r ==1){
+                    int y = 2;
+                    for(int i = 0; i<4; i++){
+                        s = this.map[i][y];
+                        if(s.getColored()){
+                            int yValue = s.getY()+1;
+                            if(s.getY()==29){
+                                return false;
+                            }
+                            else if(gameBoard[s.getX()][yValue].getColored()){
                                 return false;
                             }
                         }
                     }
                 }
-            }
-            else if(r == 1){
-                int j = 3;
-                for(int i = 0; i<2; i++){
-                    s = this.map[i][j];
-                    if (s.getColored()) {
-                        int yvalue = s.getY()+1;
-//                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                        if(s.getY() == 29){
-//                            System.out.println("at the bottom of the board");
-                            return false;
-                        }
-                        else if(gameBoard[s.getX()][yvalue].getColored()){
-//                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
-//                            System.out.println("block y value: " + s.getY());
-//                            System.out.println("Block y value + 1: " + yvalue);
-//                                System.out.println("Blocked by another piece");
-                            return false;
-                        }
-                        j--;
-                    }
-                }
-            }
-            else if(r == 3){
-                int j = 2;
-                for(int i = 2; i<4; i++){
-                    s = this.map[i][j];
-                    if (s.getColored()) {
-                        int yvalue = s.getY()+1;
-//                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                        if(s.getY() == 29){
-//                            System.out.println("at the bottom of the board");
-                            return false;
-                        }
-                        else if(gameBoard[s.getX()][yvalue].getColored()){
-//                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
-//                            System.out.println("block y value: " + s.getY());
-//                            System.out.println("Block y value + 1: " + yvalue);
-//                                System.out.println("Blocked by another piece");
-                            return false;
-                        }
-                        j++;
-                    }
-                }
-            }
-            return true;
-        }
-        else if(id ==3){
-//            System.out.println("piece 3");
-            if (r== 0) {
-                int i = 1;
-                int j = 3;
-                s = this.map[i][j];
-                if (s.getColored()) {
-                    int yvalue = s.getY()+1;
-//                        System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                    if(s.getY() == 29){
-                        return false;
-                    }
-                    else if(gameBoard[s.getX()][yvalue].getColored()){
-//                            System.out.println("is block below colored?: "+ gameBoard[s.getX()][yvalue].getColored());
-//                            System.out.println("block y value: " + s.getY());
-//                            System.out.println("Block y value + 1: " + yvalue);
-                        return false;
-                    }
-                }
-            }
-            else if(r ==1){
-                int y = 2;
-                for(int i = 0; i<4; i++){
-                    s = this.map[i][y];
+                else if(r == 2){
+                    int x = 2;
+                    int y = 3;
+                    s= this.map[x][y];
                     if(s.getColored()){
                         int yValue = s.getY()+1;
                         if(s.getY()==29){
@@ -196,81 +218,26 @@ public class Piece {
                         }
                     }
                 }
-            }
-            else if(r == 2){
-                int x = 2;
-                int y = 3;
-                s= this.map[x][y];
-                if(s.getColored()){
-                    int yValue = s.getY()+1;
-                    if(s.getY()==29){
-                        return false;
-                    }
-                    else if(gameBoard[s.getX()][yValue].getColored()){
-                        return false;
-                    }
-                }
-            }
-            else if(r == 3){
-                int y = 1;
-                for(int i = 0; i<4; i++){
-                    s = this.map[i][y];
-                    if(s.getColored()){
-                        int yValue = s.getY()+1;
-                        if(s.getY()==29){
-                            return false;
-                        }
-                        else if(gameBoard[s.getX()][yValue].getColored()){
-                            return false;
+                else if(r == 3){
+                    int y = 1;
+                    for(int i = 0; i<4; i++){
+                        s = this.map[i][y];
+                        if(s.getColored()){
+                            int yValue = s.getY()+1;
+                            if(s.getY()==29){
+                                return false;
+                            }
+                            else if(gameBoard[s.getX()][yValue].getColored()){
+                                return false;
+                            }
                         }
                     }
                 }
+                return true;
             }
-            return true;
-        }
-        else if(id ==4){
-//            System.out.println("piece 4");
-            s = this.map[1][0];
-            int yValue = s.getY()+1;
-            if(s.getY()==29){
-                return false;
-            }
-            else if(gameBoard[s.getX()][yValue].getColored()){
-                return false;
-            }
-            return true;
-        }
-        else {
-//            System.out.println("piece 6");
-            if(r == 0){
-                int i = 1;
-                int j = 1;
-                    s = this.map[i][j];
-                    int yValue = s.getY()+1;
-                    if(s.getY()==29){
-                        return false;
-                    }
-                    else if(gameBoard[s.getX()][yValue].getColored()){
-                        return false;
-                    }
-            }
-            else if(r == 1){
-                int j = 1;
-                for(int i =0; i<2; i++){
-                    s = this.map[i][j];
-                    int yValue = s.getY()+1;
-                    if(s.getY()==29){
-                        return false;
-                    }
-                    else if(gameBoard[s.getX()][yValue].getColored()){
-                        return false;
-                    }
-                }
-            }
-            else if(r == 2){
-                int i = 1;
-                int j = 2;
-                s = this.map[i][j];
+            else if(id ==4){
+    //            System.out.println("piece 4");
+                s = this.map[1][0];
                 int yValue = s.getY()+1;
                 if(s.getY()==29){
                     return false;
@@ -278,10 +245,38 @@ public class Piece {
                 else if(gameBoard[s.getX()][yValue].getColored()){
                     return false;
                 }
+                return true;
             }
-            else if(r == 3){
-                int j = 1;
-                for(int i =1; i<3; i++){
+            else {
+    //            System.out.println("piece 6");
+                if(r == 0){
+                    int i = 1;
+                    int j = 1;
+                        s = this.map[i][j];
+                        int yValue = s.getY()+1;
+                        if(s.getY()==29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
+                            return false;
+                        }
+                }
+                else if(r == 1){
+                    int j = 1;
+                    for(int i =0; i<2; i++){
+                        s = this.map[i][j];
+                        int yValue = s.getY()+1;
+                        if(s.getY()==29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
+                            return false;
+                        }
+                    }
+                }
+                else if(r == 2){
+                    int i = 1;
+                    int j = 2;
                     s = this.map[i][j];
                     int yValue = s.getY()+1;
                     if(s.getY()==29){
@@ -291,9 +286,26 @@ public class Piece {
                         return false;
                     }
                 }
+                else if(r == 3){
+                    int j = 1;
+                    for(int i =1; i<3; i++){
+                        s = this.map[i][j];
+                        int yValue = s.getY()+1;
+                        if(s.getY()==29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
+                            return false;
+                        }
+                    }
+                }
+                return true;
             }
-            return true;
         }
+        else if (game == 1){
+            return false;
+        }
+        return true;
 
     }
 

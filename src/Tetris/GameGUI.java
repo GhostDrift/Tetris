@@ -42,7 +42,7 @@ private Color nextColor = Color.CYAN;
 //    private int colorIndex = 0;
     private final Color purple = new Color(100,0,150);
     // piece variable for game play
-    private final Maps maps = new Maps();
+    private final Maps maps = new Maps(0);
     private Piece np;
     private Piece p;
 
@@ -123,8 +123,8 @@ private Color nextColor = Color.CYAN;
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
         final Random rn = new Random();
-        p = new Piece(rn.nextInt(7),maps);
-        np = new Piece(rn.nextInt(7),maps);
+        p = new Piece(rn.nextInt(7),maps,0);
+        np = new Piece(rn.nextInt(7),maps,0);
 //        p = new Piece(3,maps);
 //        np = new Piece(3,maps);
         gameTimer = new Timer(400,
@@ -169,7 +169,7 @@ private Color nextColor = Color.CYAN;
     private static Piece getNextPiece(Square[][] nextPieceMap, Maps maps){
         Random rn = new Random();
         int n = rn.nextInt(7);
-        Piece np = new Piece(n,maps);
+        Piece np = new Piece(n,maps,0);
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
             for(int j = 0; j< 4; j++){

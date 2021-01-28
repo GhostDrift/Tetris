@@ -10,10 +10,11 @@ public class Maps {
     private Square[][] piece4;
     private Square[][][] piece5;
     private Square[][][] piece6;
+    private int gameID;
 //    private int incrementY;
 //    private int incrementX;
-    public Maps(){
-
+    public Maps(int gameID){
+        this.gameID = gameID;
         this.piece0 = populatePiece0();
         this.piece1 = populatePiece1();
         this.piece2 = populatePiece2();
@@ -28,75 +29,82 @@ public class Maps {
 //        int screenWidth = screeen
 //    }
     private Square[][][] populatePiece6() {
-        Square[][][] piece6 = new Square[4][4][4];
-        for (int k = 0; k<4; k++) {
-            int x = 3;
-            int y = 0;
-            for(int i = 0; i < 4; i++){
-                for(int j = 0; j< 4; j++){
-                    piece6[k][i][j] = new Square(x,y);
-//                    System.out.println(x + " " + y);
-                    y++;
-                }
-                y=0;
-                x++;
-            }
-            if (k == 0) {
-                for(int i = 0; i < 4; i++){
-                    for (int j = 0; j <4; j++) {
-                        if (i == 1) {
-                            if (j == 0 || j == 1) {
-                                piece6[k][i][j].setColored(true);
-                            }
-                        }
-                    }
-                }
-            }
-            else if(k == 1) {
+
+        Square[][][] piece6;
+        if (gameID == 0) {
+            piece6 = new Square[4][4][4];
+            for (int k = 0; k<4; k++) {
+                int x = 3;
+                int y = 0;
                 for(int i = 0; i < 4; i++){
                     for(int j = 0; j< 4; j++){
-                        if (i == 0) {
-                            if(j == 1){
-                                piece6[k][i][j].setColored(true);
+                        piece6[k][i][j] = new Square(x,y);
+    //                    System.out.println(x + " " + y);
+                        y++;
+                    }
+                    y=0;
+                    x++;
+                }
+                if (k == 0) {
+                    for(int i = 0; i < 4; i++){
+                        for (int j = 0; j <4; j++) {
+                            if (i == 1) {
+                                if (j == 0 || j == 1) {
+                                    piece6[k][i][j].setColored(true);
+                                }
                             }
                         }
-                        else if(i == 1){
-                            if(j == 1){
-                                piece6[k][i][j].setColored(true);
+                    }
+                }
+                else if(k == 1) {
+                    for(int i = 0; i < 4; i++){
+                        for(int j = 0; j< 4; j++){
+                            if (i == 0) {
+                                if(j == 1){
+                                    piece6[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 1){
+                                if(j == 1){
+                                    piece6[k][i][j].setColored(true);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(k == 2) {
+                    for(int i = 0; i < 4; i++){
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 1) {
+                                if (j == 1|| j == 2) {
+                                    piece6[k][i][j].setColored(true);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(k == 3) {
+                    for(int i = 0; i < 4; i++){
+                        for(int j = 0; j< 4; j++){
+                            if (i == 1) {
+                                if(j == 1){
+                                    piece6[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 2){
+                                if(j == 1){
+                                    piece6[k][i][j].setColored(true);
+                                }
                             }
                         }
                     }
                 }
             }
-            else if(k == 2) {
-                for(int i = 0; i < 4; i++){
-                    for (int j = 0; j < 4; j++) {
-                        if (i == 1) {
-                            if (j == 1|| j == 2) {
-                                piece6[k][i][j].setColored(true);
-                            }
-                        }
-                    }
-                }
-            }
-            else if(k == 3) {
-                for(int i = 0; i < 4; i++){
-                    for(int j = 0; j< 4; j++){
-                        if (i == 1) {
-                            if(j == 1){
-                                piece6[k][i][j].setColored(true);
-                            }
-                        }
-                        else if(i == 2){
-                            if(j == 1){
-                                piece6[k][i][j].setColored(true);
-                            }
-                        }
-                    }
-                }
-            }
+            return piece6;
+        } else if (gameID == 1){
+
         }
-        return piece6;
+        return new Square[4][4][4];
     }
 
     private Square[][][] populatePiece5() {
