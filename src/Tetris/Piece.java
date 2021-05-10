@@ -8,7 +8,7 @@ public class Piece {
     private int id;
     private int rotation;
     private int gameID;
-    private Color color;
+    private int color;
 
 
     public Piece(int n, Maps maps, int gameID){
@@ -45,6 +45,14 @@ public class Piece {
     }
     public void setRotation(int r){
         this.rotation = r;
+    }
+    public void setColor(){
+        if (this.gameID == 0){
+            this.color = 1;
+        }
+        else {
+            this.color = this.id +1;
+        }
     }
 
     //checks to see if the piece can be moved down

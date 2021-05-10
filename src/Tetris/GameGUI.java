@@ -368,8 +368,8 @@ public class GameGUI extends JFrame {
         public PlayArea()
         {
             super();
-            this.color = nextColor;
-            this.setBackground(Color.BLACK);
+            this.color = colors[1];
+            this.setBackground(colors[0]);
             this.prepareActionHandlers();
 
         }
@@ -480,6 +480,16 @@ public class GameGUI extends JFrame {
 //
 //
             graphicsContext.setColor(color);
+            //test
+//            Square s;
+//            for(int i = 0; i < 8; i++){
+//                graphicsContext.setColor(colors[i]);
+//                for (int j = 0; j < 30; j++){
+//                        s = gameBoard[i][j];
+//                        graphicsContext.fillRect(s.getX(), s.getY(), 16, 16);
+//                    }
+//                }
+
 //            graphicsContext.fillRect(73,119,17,17);
 //            graphicsContext.fillRect(1, 34, 16, 16);
 //            graphicsContext.fillRect(1, 17, 16, 16);

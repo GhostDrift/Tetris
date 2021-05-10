@@ -11,7 +11,7 @@ public class Maps {
     private Square[][][] piece5;
     private Square[][][] piece6;
     private int gameID;
-    private Color[] c;
+    private int color;
 
 //    private int incrementY;
 //    private int incrementX;
