@@ -14,6 +14,7 @@ public class Piece {
     public Piece(int n, Maps maps, int gameID){
         this.gameID = gameID;
         this.id = n;
+        setColor();
         this.rotation =0;
         Square[][] template = maps.getMap(n,rotation);
         this.map = new Square[4][4];
