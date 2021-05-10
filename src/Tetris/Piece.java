@@ -1,11 +1,15 @@
 package Tetris;
 
+import java.awt.*;
+
 public class Piece {
     private Square[][] map;
     private boolean active = false;
     private int id;
     private int rotation;
     private int gameID;
+    private Color color;
+
 
     public Piece(int n, Maps maps, int gameID){
         this.gameID = gameID;

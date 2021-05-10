@@ -37,10 +37,11 @@ public class GameGUI extends JFrame {
     private Square[][] nextPieceMap = new Square[4][4];
 
     //piece color variables
-   private Color pieceColor = Color.black;
-private Color nextColor = Color.CYAN;
+   private Color backgroundColor = Color.black;
+   private Color nextColor = Color.CYAN;
+   private Color[] colors = new Color[8]; //and array to hold all of the colors for the squares on the board.
 //    private int colorIndex = 0;
-    private final Color purple = new Color(100,0,150);
+//    private final Color purple = new Color(100,0,150);
     // piece variable for game play
     private final Maps maps = new Maps(0);
     private Piece np;
@@ -60,6 +61,7 @@ private Color nextColor = Color.CYAN;
         // this is implied super();
 
         // -- set the application title
+        populateColors();
         setTitle("Block Buster");
 
         // -- size of the frame: width, height
@@ -83,6 +85,8 @@ private Color nextColor = Color.CYAN;
         //    5, 5 is the border around the edges of the areas
         //setLayout(new BorderLayout(10, 10));
         setLayout(new BorderLayout(0,0));
+
+        this.setResizable(false);
 
         //populate the 2D array that will be used to map the game board
         int xValue = 1;
@@ -345,6 +349,18 @@ private Color nextColor = Color.CYAN;
 
        return checkLines(gameBoard);
     }
+    //populates the array with colors
+    private void populateColors(){
+        this.colors[0] = Color.BLACK;
+        this.colors[1] = Color.CYAN;
+        this.colors[2] = new Color(0,50,160);
+        this.colors[3] = new Color(200,100,25);
+        this.colors[4] = new Color(0,150,25);
+        this.colors[5] = new Color(100,0,150);
+        this.colors[6] = new Color(200,0,40);
+        this.colors[7] = new Color(237,245,14);
+
+    }
 
     // -- Inner class for the graphics panel
     public class PlayArea extends JPanel {
@@ -461,7 +477,7 @@ private Color nextColor = Color.CYAN;
                 y0 += vertspacing;
             }
 
-//            //creates a colored square in the middle of the screen
+//
 //
             graphicsContext.setColor(color);
 //            graphicsContext.fillRect(73,119,17,17);
@@ -515,15 +531,15 @@ private Color nextColor = Color.CYAN;
             score = new JTextField(currentScore, 5);
             score.setHorizontalAlignment(JTextField.CENTER);    //centers the text in the text field.
             score.setEditable(false);
-            score.setBackground(Color.BLACK);
-            score.setForeground(Color.CYAN);
+            score.setBackground(colors[0]);
+            score.setForeground(colors[1]);
 
 
             //construct the labels for the control panel
             scoreLabel = new JLabel("Score");
-            scoreLabel.setForeground(purple);
+            scoreLabel.setForeground(colors[5]);
             nextPieceLabel = new JLabel("Next Piece");
-            nextPieceLabel.setForeground(purple);
+            nextPieceLabel.setForeground(colors[5]);
 
             //constructs a graphics panel to display the next piece
             nextPieceDisplay = new NextPieceDisplay();
@@ -557,8 +573,8 @@ private Color nextColor = Color.CYAN;
 
             pausePlay = new JButton("GO");
             pausePlay.setPreferredSize(new Dimension(75,20));
-            pausePlay.setBackground(Color.black);
-            pausePlay.setForeground(Color.CYAN);
+            pausePlay.setBackground(colors[0]);
+            pausePlay.setForeground(colors[1]);
             pausePlay.addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent arg0) {
@@ -648,7 +664,7 @@ private Color nextColor = Color.CYAN;
 
 
             //creates a colored square in the middle of the screen
-           graphicsContext.setColor(Color.cyan);
+           graphicsContext.setColor(colors[1]);
 //            graphicsContext.fillRect(37, 39, 16, 16);
             //fill in the display
             Square s;

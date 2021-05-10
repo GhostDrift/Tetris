@@ -26,7 +26,7 @@ public class Menu extends JFrame {
         setSize(WIDTH,HEIGHT);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        setResizable(false);
+        setResizable(false);
         setLayout(new BorderLayout(0,0));
         setBackground(background);
         this.start = new JButton("New Game");

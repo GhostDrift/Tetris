@@ -11,6 +11,8 @@ public class Maps {
     private Square[][][] piece5;
     private Square[][][] piece6;
     private int gameID;
+    private Color[] c;
+
 //    private int incrementY;
 //    private int incrementX;
     public Maps(int gameID){
@@ -22,6 +24,7 @@ public class Maps {
         this.piece4 = populatePiece4();
         this.piece5 = populatePiece5();
         this.piece6 = populatePiece6();
+//        this.c = c;
     }
 //    private void setXAndY(){
 //        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
