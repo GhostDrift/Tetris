@@ -7,13 +7,13 @@ public class Square implements Serializable {
     private boolean colored = false;    // boolean value to check if the square is colored in
     private int x;  //holds the x coordinate of the colored square
     private int y;  //holds the y coordinate of the colored square
-    private Color color;
+    private int color;
 
     //constructor
     public Square(int x, int y){
         this.x = x;
         this.y = y;
-//        this.color = c;
+        this.color = 0;
     }
 
     //getter and setter for colored
@@ -44,11 +44,11 @@ public class Square implements Serializable {
     }
 
     //set the value of color
-    public void setColor(Color c){
+    public void setColor(int c){
         this.color = c;
     }
     //get the value of color
-    public Color getColor(){
+    public int getColor(){
         return this.color;
     }
 
