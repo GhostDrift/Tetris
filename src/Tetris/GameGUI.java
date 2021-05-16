@@ -348,6 +348,7 @@ public class GameGUI extends JFrame {
             for(int i = 0; i<10; i++){
                 s = gameBoard[i][j];
                 s.setColored(gameBoard[i][j-1].getColored());
+                s.setColor((gameBoard[i][j-1].getColor()));
             }
         }
 
