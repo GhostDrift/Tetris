@@ -504,6 +504,7 @@ public class GameGUI extends JFrame {
                 for (int j = 0; j < 30; j++){
                     if(gameBoard[i][j].getColored()){
                         s = gameBoard[i][j];
+                        graphicsContext.setColor(colors[s.getColor()]);
                         graphicsContext.fillRect(s.getX(), s.getY(), 16, 16);
                     }
                 }
