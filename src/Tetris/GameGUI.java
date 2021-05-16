@@ -206,6 +206,7 @@ public class GameGUI extends JFrame {
                             throw new Exception();
                         }
                         gameBoard[s.getX()][s.getY()].setColored(pieceMap[i][j].getColored());
+                        gameBoard[s.getX()][s.getY()].setColor(pieceMap[i][j].getColor());
                     }
                 }
             }
@@ -242,6 +243,7 @@ public class GameGUI extends JFrame {
                     s.setY(s.getY()+1);
                     if(s.getColored()){
                         gameBoard[s.getX()][s.getY()].setColored(true);
+                        gameBoard[s.getX()][s.getY()].setColor(s.getColor());
                     }
                 }
             }
@@ -269,6 +271,7 @@ public class GameGUI extends JFrame {
                     s.setX(s.getX()-1);
                     if(s.getColored()){
                         gameBoard[s.getX()][s.getY()].setColored(true);
+                        gameBoard[s.getX()][s.getY()].setColor(s.getColor());
                     }
                 }
             }
@@ -296,6 +299,7 @@ public class GameGUI extends JFrame {
                     s.setX(s.getX()+1);
                     if(s.getColored()){
                         gameBoard[s.getX()][s.getY()].setColored(true);
+                        gameBoard[s.getX()][s.getY()].setColor(s.getColor());
                     }
                 }
             }

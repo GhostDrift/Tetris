@@ -22,6 +22,7 @@ public class Piece {
             for(int j = 0; j<4; j++){
                 this.map[i][j] = new Square(template[i][j].getX(),template[i][j].getY());
                 this.map[i][j].setColored(template[i][j].getColored());
+                this.map[i][j].setColor(this.color);
             }
         }
     }
