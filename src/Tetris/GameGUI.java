@@ -185,6 +185,7 @@ public class GameGUI extends JFrame {
         for (int i = 0; i < 4; i++){
             for (int j = 0; j< 4; j++){
                 nextPieceMap[i][j].setColored(pieceMap[i][j].getColored());
+                nextPieceMap[i][j].setColor(pieceMap[i][j].getColor());
             }
         }
         //make sure to call the repaint function after calling this method.
@@ -680,7 +681,7 @@ public class GameGUI extends JFrame {
 
 
             //creates a colored square in the middle of the screen
-           graphicsContext.setColor(colors[1]);
+//           graphicsContext.setColor(colors[1]);
 //            graphicsContext.fillRect(37, 39, 16, 16);
             //fill in the display
             Square s;
@@ -688,6 +689,7 @@ public class GameGUI extends JFrame {
                 for (int j = 0; j<4; j++){
                     if(nextPieceMap[i][j].getColored()){
                          s = nextPieceMap[i][j];
+                         graphicsContext.setColor(colors[s.getColor()]);
                         graphicsContext.fillRect(s.getX(), s.getY(), 17, 16);
                     }
                 }
