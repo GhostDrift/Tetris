@@ -380,99 +380,173 @@ public class Maps {
 
     private Square[][][] populatePiece2() {
         Square[][][] piece2 = new Square[4][4][4];
-        for (int k = 0; k<4; k++) {
-            int x = 3;
-            int y = 0;
-            for(int i = 0; i < 4; i++){
-                for(int j = 0; j< 4; j++){
-                    piece2[k][i][j] = new Square(x,y);
-                    //System.out.println(x + " " + y);
-                    y++;
+        if (gameID == 0) {
+            for (int k = 0; k < 4; k++) {
+                int x = 3;
+                int y = 0;
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        piece2[k][i][j] = new Square(x, y);
+                        //System.out.println(x + " " + y);
+                        y++;
+                    }
+                    y = 0;
+                    x++;
                 }
-                y=0;
-                x++;
-            }
-            if (k == 0) {
-                for(int i = 0; i < 4; i++){
-                    for(int j = 0; j< 4; j++){
-                        if (i == 0) {
-                            if (j== 0) {
-                                piece2[k][i][j].setColored(true);
+                if (k == 0) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 0) {
+                                if (j == 0) {
+                                    piece2[k][i][j].setColored(true);
 //                                System.out.println(piece2[k][i][j]);
-                            }
-                        }
-                        else if (i == 1) {
-                            if (j== 1) {
-                                piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 1) {
+                                if (j == 1) {
+                                    piece2[k][i][j].setColored(true);
 //                                System.out.println(piece2[k][i][j]);
+                                }
+                            } else if (i == 2) {
+                                if (j == 1) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 3) {
+                                if (j == 0) {
+                                    piece2[k][i][j].setColored(true);
+                                }
                             }
                         }
-                        else if (i == 2) {
-                            if (j== 1) {
-                                piece2[k][i][j].setColored(true);
+                    }
+                } else if (k == 1) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 0) {
+                                if (j == 0 || j == 3) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 1) {
+                                if (j == 1 || j == 2) {
+                                    piece2[k][i][j].setColored(true);
+                                }
                             }
                         }
-                        else if (i == 3) {
-                            if (j== 0) {
-                                piece2[k][i][j].setColored(true);
+                    }
+                } else if (k == 2) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 0) {
+                                if (j == 3) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 1) {
+                                if (j == 2) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 2) {
+                                if (j == 2) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 3) {
+                                if (j == 3) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            }
+                        }
+                    }
+                } else if (k == 3) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 2) {
+                                if (j == 2 || j == 1) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 3) {
+                                if (j == 0 || j == 3) {
+                                    piece2[k][i][j].setColored(true);
+                                }
                             }
                         }
                     }
                 }
             }
-            else if(k == 1) {
-                for(int i = 0; i < 4; i++){
-                    for(int j = 0; j< 4; j++){
-                        if (i == 0) {
-                            if (j== 0 || j == 3) {
-                                piece2[k][i][j].setColored(true);
-                            }
-                        }
-                        else if (i == 1) {
-                            if (j== 1|| j== 2 ) {
-                                piece2[k][i][j].setColored(true);
+        }
+        else {
+            for (int k = 0; k < 4; k++) {
+                int x = 3;
+                int y = 0;
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        piece2[k][i][j] = new Square(x, y);
+                        //System.out.println(x + " " + y);
+                        y++;
+                    }
+                    y = 0;
+                    x++;
+                }
+                if (k == 0) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 0) {
+                                if (j == 3) {
+                                    piece2[k][i][j].setColored(true);
+//                                System.out.println(piece2[k][i][j]);
+                                }
+                            } else if (i == 1) {
+                                if (j == 1 || j == 2 || j == 3) {
+                                    piece2[k][i][j].setColored(true);
+//                                System.out.println(piece2[k][i][j]);
+                                }
                             }
                         }
                     }
-                }
-            }
-            else if(k == 2) {
-                for(int i = 0; i < 4; i++){
-                    for(int j = 0; j< 4; j++){
-                        if (i == 0) {
-                            if (j== 3) {
-                                piece2[k][i][j].setColored(true);
+                } else if (k == 1) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 0) {
+                                if (j == 1 || j == 2) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 1) {
+                                if (j == 2) {
+                                    piece2[k][i][j].setColored(true);
+                                }
                             }
-                        }
-                        else if (i == 1) {
-                            if (j== 2 ) {
-                                piece2[k][i][j].setColored(true);
-                            }
-                        }
-                        else if (i == 2) {
-                            if (j== 2) {
-                                piece2[k][i][j].setColored(true);
-                            }
-                        }
-                        else if (i == 3){
-                            if(j == 3){
-                                piece2[k][i][j].setColored(true);
+                            else if ( i == 2){
+                                if (j == 2){
+                                    piece2[k][i][j].setColored(true);
+                                }
                             }
                         }
                     }
-                }
-            }
-            else if(k == 3) {
-                for(int i = 0; i < 4; i++){
-                    for(int j = 0; j< 4; j++){
-                        if (i == 2) {
-                            if (j== 2 || j==1) {
-                                piece2[k][i][j].setColored(true);
+                } else if (k == 2) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 1) {
+                                if (j == 1 || j == 2|| j == 3) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 2) {
+                                if (j == 1) {
+                                    piece2[k][i][j].setColored(true);
+                                }
                             }
                         }
-                        else if (i == 3) {
-                            if (j== 0 || j ==3 ) {
-                                piece2[k][i][j].setColored(true);
+                    }
+                } else if (k == 3) {
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 0) {
+                                if (j == 1 ) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            } else if (i == 1) {
+                                if (j == 1) {
+                                    piece2[k][i][j].setColored(true);
+                                }
+                            }
+                            else if (i == 2){
+                                if (j == 1 || j == 2)
+                                    piece2[k][i][j].setColored(true);
                             }
                         }
                     }
