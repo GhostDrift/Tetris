@@ -7,7 +7,7 @@ public class Maps {
     private Square[][][] piece1;
     private Square[][][] piece2;
     private Square[][][] piece3;
-    private Square[][] piece4;
+    private Square[][][] piece4;
     private Square[][][] piece5;
     private Square[][][] piece6;
     private static int gameID;
@@ -220,21 +220,121 @@ public class Maps {
         return piece5;
     }
 
-    private Square[][] populatePiece4() {
-        Square[][] piece4 = new Square[4][4];
-
-        int x = 3;
-        int y = 0;
-        for(int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                piece4[i][j] = new Square(x, y);
+    private Square[][][] populatePiece4() {
+        Square[][][] piece4 = new Square[4][4][4];
+        if(gameID == 0) {
+            int x = 3;
+            int y = 0;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    piece4[0][i][j] = new Square(x, y);
 //                    System.out.println(x + " " + y);
-                y++;
+                    y++;
+                }
+                y = 0;
+                x++;
             }
-            y = 0;
-            x++;
+            piece4[0][1][0].setColored(true);
         }
-        piece4[1][0].setColored(true);
+        else{
+            for (int k = 0; k<4; k++) {
+                int x = 3;
+                int y = 0;
+                for(int i = 0; i < 4; i++){
+                    for(int j = 0; j< 4; j++){
+                        piece4[k][i][j] = new Square(x,y);
+//                    System.out.println(x + " " + y);
+                        y++;
+                    }
+                    y=0;
+                    x++;
+                }
+                if (k == 0) {
+                    for(int i = 0; i < 4; i++){
+                        for (int j = 0; j <4; j++) {
+                            if (i == 0) {
+                                if (j == 2) {
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if (i ==1){
+                                if(j == 1 || j == 2 || j == 3){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(k == 1) {
+                    for(int i = 0; i < 4; i++){
+                        for(int j = 0; j< 4; j++){
+                            if (i == 0) {
+                                if(j == 0){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 1){
+                                if(j == 1 || j == 3){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i==2){
+                                if (j == 2 ){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(k == 2) {
+                    for(int i = 0; i < 4; i++){
+                        for (int j = 0; j < 4; j++) {
+                            if (i == 0) {
+                                if (j == 3) {
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 1){
+                                if (j == 2){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 2){
+                                if(j == 1){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 3){
+                                if (j == 2){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(k == 3) {
+                    for(int i = 0; i < 4; i++){
+                        for(int j = 0; j< 4; j++){
+                            if (i == 1) {
+                                if(j == 1){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 2){
+                                if(j == 0|| j == 2){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if(i == 3){
+                                if (j == 3){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return piece4;
     }
 
@@ -544,7 +644,7 @@ public class Maps {
             return piece3[rotation];
         }
         else if(id == 4){
-            return piece4;
+            return piece4[rotation];
         }
         else if (id == 5){
             return piece5[rotation];
