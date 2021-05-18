@@ -10,8 +10,7 @@ public class Maps {
     private Square[][] piece4;
     private Square[][][] piece5;
     private Square[][][] piece6;
-    private int gameID;
-    private int color;
+    private static int gameID;
 
 //    private int incrementY;
 //    private int incrementX;
@@ -24,7 +23,6 @@ public class Maps {
         this.piece4 = populatePiece4();
         this.piece5 = populatePiece5();
         this.piece6 = populatePiece6();
-//        this.c = c;
     }
 //    private void setXAndY(){
 //        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -507,27 +505,28 @@ public class Maps {
     }
 
     private static Square[][] populatePiece0() {
-        Square[][] piece0 = new Square[4][4];
-        int x = 3;
-        int y = 0;
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j< 4; j++){
-                piece0[i][j] = new Square(x,y);
-                //System.out.println(x + " " + y);
-                y++;
+            Square[][] piece0 = new Square[4][4];
+            int x = 3;
+            int y = 0;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    piece0[i][j] = new Square(x, y);
+                    //System.out.println(x + " " + y);
+                    y++;
+                }
+                y = 0;
+                x++;
             }
-            y=0;
-            x++;
-        }
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j< 4; j++){
-                if (i == 1 || i ==2 ) {
-                    if (j== 0 || j ==1) {
-                        piece0[i][j].setColored(true);
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    if (i == 1 || i == 2) {
+                        if (j == 0 || j == 1) {
+                            piece0[i][j].setColored(true);
+                        }
                     }
                 }
             }
-        }
+
         return piece0;
     }
 
