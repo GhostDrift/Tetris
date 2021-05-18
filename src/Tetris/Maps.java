@@ -269,12 +269,12 @@ public class Maps {
                     for(int i = 0; i < 4; i++){
                         for(int j = 0; j< 4; j++){
                             if (i == 0) {
-                                if(j == 0){
+                                if(j == 2){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
                             else if(i == 1){
-                                if(j == 1 || j == 3){
+                                if(j == 1 || j == 2){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
