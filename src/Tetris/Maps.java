@@ -634,7 +634,12 @@ public class Maps {
             return piece3[rotation];
         }
         else if(id == 4){
-            return piece4[rotation];
+            if (gameID == 0) {
+                return piece4[0];
+            }
+            else{
+                return piece4[rotation];
+            }
         }
         else if (id == 5){
             return piece5[rotation];
