@@ -173,6 +173,7 @@ public class GameGUI extends JFrame {
     private static Piece getNextPiece(Square[][] nextPieceMap, Maps maps){
         Random rn = new Random();
         int n = rn.nextInt(7);
+//        System.out.println("n = " + n);
         Piece np = new Piece(n,maps,0);
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
