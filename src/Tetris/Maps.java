@@ -12,7 +12,7 @@ public class Maps {
     private Square[][][] piece6;
     private static int gameID;
 
-//    private int incrementY;
+    //    private int incrementY;
 //    private int incrementX;
     public Maps(int gameID){
         this.gameID = gameID;
@@ -24,7 +24,7 @@ public class Maps {
         this.piece5 = populatePiece5();
         this.piece6 = populatePiece6();
     }
-//    private void setXAndY(){
+    //    private void setXAndY(){
 //        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 //        int screenHeight = screenSize.height;
 //        int screenWidth = screeen
@@ -40,7 +40,7 @@ public class Maps {
                 for(int i = 0; i < 4; i++){
                     for(int j = 0; j< 4; j++){
                         piece6[k][i][j] = new Square(x,y);
-    //                    System.out.println(x + " " + y);
+                        //                    System.out.println(x + " " + y);
                         y++;
                     }
                     y=0;
@@ -826,27 +826,27 @@ public class Maps {
     }
 
     private static Square[][] populatePiece0() {
-            Square[][] piece0 = new Square[4][4];
-            int x = 3;
-            int y = 0;
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 4; j++) {
-                    piece0[i][j] = new Square(x, y);
-                    //System.out.println(x + " " + y);
-                    y++;
-                }
-                y = 0;
-                x++;
+        Square[][] piece0 = new Square[4][4];
+        int x = 3;
+        int y = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                piece0[i][j] = new Square(x, y);
+                //System.out.println(x + " " + y);
+                y++;
             }
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 4; j++) {
-                    if (i == 1 || i == 2) {
-                        if (j == 0 || j == 1) {
-                            piece0[i][j].setColored(true);
-                        }
+            y = 0;
+            x++;
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (i == 1 || i == 2) {
+                    if (j == 0 || j == 1) {
+                        piece0[i][j].setColored(true);
                     }
                 }
             }
+        }
 
         return piece0;
     }
