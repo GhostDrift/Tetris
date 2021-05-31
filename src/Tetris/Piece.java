@@ -345,7 +345,6 @@ public class Piece {
                     }
                 }
                 else if (r == 2){
-
                     for (int j = 1; j <3; j ++) {
                         for(int i = 1; i < 4; i++){
                             if ((j == 1) &&((i == 1)|| (i == 2))) {
@@ -367,6 +366,32 @@ public class Piece {
                                 else if(gameBoard[s.getX()][yValue].getColored()){
                                     return false;
                                 }
+                            }
+                        }
+                    }
+                }
+                else if ( r == 3){
+                    for(int i = 2; i <4; i ++){
+                        if (i == 2){
+                            int j = 2;
+                            s = this.map[i][j];
+                            int yValue = s.getY()+1;
+                            if(s.getY() == 29){
+                                return false;
+                            }
+                            else if(gameBoard[s.getX()][yValue].getColored()){
+                                return false;
+                            }
+                        }
+                        else {
+                            int j = 0;
+                            s = this.map[i][j];
+                            int yValue = s.getY()+1;
+                            if(s.getY() == 29){
+                                return false;
+                            }
+                            else if(gameBoard[s.getX()][yValue].getColored()){
+                                return false;
                             }
                         }
                     }
