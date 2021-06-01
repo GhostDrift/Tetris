@@ -433,20 +433,34 @@ public class Piece {
                 }
                 else if (r == 1){
                     for (int i = 1; i < 3; i ++){
-                        int j = 2;
-                        s = this.map[i][j];
-                        int yValue = s.getY()+1;
-                        if(s.getY() == 29){
-                            return false;
+                        if (i == 1){
+                            int j = 0;
+                            s = this.map[i][j];
+                            int yValue = s.getY()+1;
+                            if(s.getY() == 29){
+                                return false;
+                            }
+                            else if(gameBoard[s.getX()][yValue].getColored()){
+                                return false;
+                            }
                         }
-                        else if(gameBoard[s.getX()][yValue].getColored()){
-                            return false;
+                        else  {
+                            int j = 2;
+                            s = this.map[i][j];
+                            int yValue = s.getY()+1;
+                            if(s.getY() == 29){
+                                return false;
+                            }
+                            else if(gameBoard[s.getX()][yValue].getColored()){
+                                return false;
+                            }
                         }
+
                     }
                 }
                 else if (r == 2){
                     for (int i = 1; i <4; i++){
-                        if ((i == 1 ) || (i == 2)){
+                        if ((i == 3 ) || (i == 2)){
                             int j = 1;
                             s = this.map[i][j];
                             int yValue = s.getY()+1;
@@ -471,28 +485,15 @@ public class Piece {
                     }
                 }
                 else {
-                    for (int i = 2; i <4; i++){
-                        if(i == 2){
-                            int j = 2;
-                            s = this.map[i][j];
-                            int yValue = s.getY()+1;
-                            if(s.getY() == 29){
-                                return false;
-                            }
-                            else if(gameBoard[s.getX()][yValue].getColored()){
-                                return false;
-                            }
+                    for (int i = 1; i <3; i++){
+                        int j = 2;
+                        s = this.map[i][j];
+                        int yValue = s.getY()+1;
+                        if(s.getY() == 29){
+                            return false;
                         }
-                        else{
-                            int j = 0;
-                            s = this.map[i][j];
-                            int yValue = s.getY()+1;
-                            if(s.getY() == 29){
-                                return false;
-                            }
-                            else if(gameBoard[s.getX()][yValue].getColored()){
-                                return false;
-                            }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
+                            return false;
                         }
                     }
                 }
