@@ -780,12 +780,17 @@ public class Maps {
                 if (k == 0) {
                     for (int i = 0; i < 4; i++) {
                         for (int j = 0; j < 4; j++) {
-                            if (i == 0) {
+                            if (i == 1) {
+                                if (j == 0 || j == 1) {
+                                    piece1[k][i][j].setColored(true);
+                                }
+                            } else if (i == 2) {
                                 if (j == 1) {
                                     piece1[k][i][j].setColored(true);
                                 }
-                            } else if (i == 1) {
-                                if (j == 1 || j == 2 || j == 3) {
+                            }
+                            else if (i == 3){
+                                if (j == 1) {
                                     piece1[k][i][j].setColored(true);
                                 }
                             }

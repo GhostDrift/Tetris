@@ -49,7 +49,6 @@ public class Piece {
         this.rotation = r;
     }
     public void setColor(){
-        System.out.println("gameId = " + this.gameID);
         if (this.gameID == 0){
             this.color = 1;
         }
