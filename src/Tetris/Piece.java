@@ -49,11 +49,32 @@ public class Piece {
         this.rotation = r;
     }
     public void setColor(){
+        System.out.println("gameId = " + this.gameID);
         if (this.gameID == 0){
             this.color = 1;
         }
         else {
-            this.color = this.id +1;
+            if (id == 0){
+                this.color = 7;
+            }
+            else if (id == 1){
+                this.color = 2;
+            }
+            else if (id == 3){
+                this.color = 1;
+            }
+            else if (id == 4){
+                this.color = 5;
+            }
+            else if (id == 5){
+                this.color = 6;
+            }
+            else if (id == 6){
+                this.color = 4;
+            }
+            else if (id == 2){
+                this.color = 3;
+            }
         }
     }
 

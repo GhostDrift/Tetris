@@ -19,6 +19,7 @@ public class GameGUI extends JFrame {
 //    private final int HEIGHT = 550;
     private final int WIDTH = 293;
     private final int HEIGHT = 545;
+    private final static int gameId = 1;
 
     private Timer gameTimer = null;
     protected static int n;
@@ -43,7 +44,7 @@ public class GameGUI extends JFrame {
 //    private int colorIndex = 0;
 //    private final Color purple = new Color(100,0,150);
     // piece variable for game play
-    private final Maps maps = new Maps(0);
+    private final Maps maps = new Maps(gameId);
     private Piece np;
     private Piece p;
 
@@ -127,10 +128,10 @@ public class GameGUI extends JFrame {
         //    First parameter is the delay in mSec, second is the ActionListener
         //    that will handle the timer events
         final Random rn = new Random();
-        p = new Piece(rn.nextInt(7),maps,0);
-        np = new Piece(rn.nextInt(7),maps,0);
-//        p = new Piece(3,maps);
-//        np = new Piece(3,maps);
+//        p = new Piece(rn.nextInt(7),maps,gameId);
+//        np = new Piece(rn.nextInt(7),maps,gameId);
+        p = new Piece(3,maps,gameId);
+        np = new Piece(3,maps,gameId);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
@@ -174,7 +175,8 @@ public class GameGUI extends JFrame {
         Random rn = new Random();
         int n = rn.nextInt(7);
 //        System.out.println("n = " + n);
-        Piece np = new Piece(n,maps,0);
+        Piece np = new Piece(3,maps,gameId);
+//        Piece np = new Piece(n,maps,gameId);
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
             for(int j = 0; j< 4; j++){
