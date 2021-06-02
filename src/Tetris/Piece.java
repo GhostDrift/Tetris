@@ -591,6 +591,46 @@ public class Piece {
                     }
                 }
             }
+            else if (id == 5){
+                if (r == 0 || r == 2){
+                    for(int i = 1; i < 4; i++){
+                        int j;
+                        if(i == 1){
+                            j =0;
+                        }
+                        else {
+                            j = 1;
+                        }
+                        s = this.map[i][j];
+                        int yValue = s.getY()+1;
+                        if(s.getY() == 29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
+                            return false;
+                        }
+                    }
+                }
+                else if(r == 1 || r == 3){
+                    for(int i =1; i<3; i++){
+                        int j;
+                        if(i == 1){
+                            j =2;
+                        }
+                        else{
+                            j = 1;
+                        }
+                        s = this.map[i][j];
+                        int yValue = s.getY()+1;
+                        if(s.getY() == 29){
+                            return false;
+                        }
+                        else if(gameBoard[s.getX()][yValue].getColored()){
+                            return false;
+                        }
+                    }
+                }
+            }
         }
         return true;
 
