@@ -362,13 +362,18 @@ public class Maps {
                 if (k == 0) {
                     for(int i = 0; i < 4; i++){
                         for (int j = 0; j <4; j++) {
-                            if (i == 0) {
-                                if (j == 2) {
+                            if (i == 1) {
+                                if (j == 1) {
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
-                            else if (i ==1){
-                                if(j == 1 || j == 2 || j == 3){
+                            else if (i ==2){
+                                if(j == 1 || j == 0){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if (i == 3){
+                                if (j == 1){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
@@ -378,18 +383,13 @@ public class Maps {
                 else if(k == 1) {
                     for(int i = 0; i < 4; i++){
                         for(int j = 0; j< 4; j++){
-                            if (i == 0) {
-                                if(j == 2){
+                            if (i == 1) {
+                                if(j == 1){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
-                            else if(i == 1){
-                                if(j == 1 || j == 2){
-                                    piece4[k][i][j].setColored(true);
-                                }
-                            }
-                            else if(i==2){
-                                if (j == 2 ){
+                            else if(i == 2){
+                                if(j == 1 || j == 2 || j == 0){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
@@ -400,12 +400,17 @@ public class Maps {
                     for(int i = 0; i < 4; i++){
                         for (int j = 0; j < 4; j++) {
                             if (i == 1) {
-                                if (j == 1 || j == 2 || j == 3) {
+                                if (j == 1) {
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
                             else if(i == 2){
-                                if (j == 2){
+                                if (j == 1 || j == 2){
+                                    piece4[k][i][j].setColored(true);
+                                }
+                            }
+                            else if (i == 3){
+                                if(j == 1){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
@@ -415,18 +420,13 @@ public class Maps {
                 else if(k == 3) {
                     for(int i = 0; i < 4; i++){
                         for(int j = 0; j< 4; j++){
-                            if (i == 0) {
-                                if(j == 2){
+                            if (i == 2) {
+                                if(j == 2 || j == 0 || j == 1){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
-                            else if(i == 1){
-                                if(j == 2|| j == 3){
-                                    piece4[k][i][j].setColored(true);
-                                }
-                            }
-                            else if(i == 2){
-                                if (j == 2){
+                            else if(i == 3){
+                                if(j == 1){
                                     piece4[k][i][j].setColored(true);
                                 }
                             }
