@@ -2,24 +2,21 @@ package Tetris;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Comparator;
+
 
 public class SaveScore extends JFrame{
-    private ArrayList<Score> highScoresList;
-    private int newScore;
-    private ControlPanel controlPanel;
-    private File highScores = new File("HighScores.ser");
-    private final int WIDTH = 400;
-    private final int HEIGHT = 250;
+    private final ArrayList<Score> highScoresList;
+    private final int newScore;
+    private final File highScores = new File("HighScores.ser");
     private final Color purple = new Color(50,0,100);
     public SaveScore(int newScore){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        int WIDTH = 400;
+        int HEIGHT = 250;
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
         setTitle("Block Buster");
@@ -27,7 +24,7 @@ public class SaveScore extends JFrame{
 
         this.setLayout(new BorderLayout());
         this.newScore = newScore;
-        controlPanel = new ControlPanel();
+        ControlPanel controlPanel = new ControlPanel();
         this.add(controlPanel, BorderLayout.CENTER);
         setForeground(Color.BLACK);
         this.setVisible(true);
@@ -45,30 +42,27 @@ public class SaveScore extends JFrame{
         } catch (IOException i) {
             // -- in case the file cannot be opened
             System.out.println("can't open file");
-            return new ArrayList<Score>();
+            return new ArrayList<>();
         } catch (ClassNotFoundException c) {
             // -- in case the Rectangle.class file cannot be found after
             //    reading the file
             System.out.println("Score class not found");
         }
-        return new ArrayList<Score>();
+        return new ArrayList<>();
     }
     private void addScore(Score s){
 
     }
 
     private class ControlPanel extends JPanel{
-        private JButton save;
-        private JTextField nameInput;
-        private JTextField newScoreDisplay;
+        private final JButton save;
+        private final JTextField nameInput;
         private Score s;
-        private JLabel scoreLable;
-        private JLabel nameLable;
-        private JLabel gameOverLable;
+
         public ControlPanel(){
             this.setBackground(purple);
             this.setFocusable(true);
-            gameOverLable = new JLabel("GAME OVER");
+            JLabel gameOverLable = new JLabel("GAME OVER");
             gameOverLable.setForeground(Color.RED);
             gameOverLable.setBackground(Color.BLACK);
             gameOverLable.setFont(new Font("TimesRoman", Font.BOLD, 50));
@@ -78,16 +72,16 @@ public class SaveScore extends JFrame{
             nameInput.setBackground(Color.BLACK);
             nameInput.setForeground(Color.CYAN);
             nameInput.setHorizontalAlignment(JLabel.CENTER);
-            newScoreDisplay = new JTextField("" + newScore, 5);
+            JTextField newScoreDisplay = new JTextField("" + newScore, 5);
             newScoreDisplay.setEditable(false);
             newScoreDisplay.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             newScoreDisplay.setForeground(Color.CYAN);
             newScoreDisplay.setBackground(Color.BLACK);
             newScoreDisplay.setHorizontalAlignment(JTextField.CENTER);
-            scoreLable = new JLabel("Your Score");
+            JLabel scoreLable = new JLabel("Your Score");
             scoreLable.setForeground(Color.CYAN);
             scoreLable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
-            nameLable = new JLabel("Enter your initials");
+            JLabel nameLable = new JLabel("Enter your initials");
             nameLable.setForeground(Color.CYAN);
             nameLable.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             save = new JButton("Save");
@@ -97,20 +91,18 @@ public class SaveScore extends JFrame{
             save.setFont(new Font("TimesRoman", Font.PLAIN, 18));
             save.setDefaultCapable(true);
             save.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            System.out.println("Starting game");
-                            if(nameInput.getText().equals("Enter Initials here")){
-                                nameInput.setText("You must input your initials here");
-                            }
-                            else {
+                    arg0 -> {
+                        System.out.println("Starting game");
+                        if(nameInput.getText().equals("Enter Initials here")){
+                            nameInput.setText("You must input your initials here");
+                        }
+                        else {
 
-                                s = new Score(newScore, nameInput.getText());
-                                addScoreToList(s);
+                            s = new Score(newScore, nameInput.getText());
+                            addScoreToList(s);
 //                                System.out.println(highScoresList);
-                                new Menu();
-                                dispose();
-                            }
+                            new Menu();
+                            dispose();
                         }
                     }
             );
@@ -158,21 +150,7 @@ public class SaveScore extends JFrame{
     private void addScoreToList(Score s){
         this.highScoresList.add(s);
 //        System.out.println(highScoresList);
-        highScoresList.sort(new Comparator<Score>() {
-            @Override
-            public int compare(Score score, Score t1) {
-               if(score.getScore() > t1.getScore()){
-                   return -1;
-               }
-               else if(score.getScore() < t1.getScore()){
-                   return 1;
-               }
-               else{
-                 return 0;
-               }
-
-            }
-        });
+        highScoresList.sort((score, t1) -> Integer.compare(t1.getScore(), score.getScore()));
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(highScores));
             out.writeObject(this.highScoresList);
