@@ -15,12 +15,12 @@ import javax.swing.border.TitledBorder;
 
 public class GameGUI extends JFrame {
     // -- set the size of the JFrame. JPanels will adapt to this size
-    private final int WIDTH = 296;
-    private final int HEIGHT = 550;
-//    private final int WIDTH = 293;
-//    private final int HEIGHT = 545;
+//    private final int WIDTH = 296;
+//    private final int HEIGHT = 550;
+    private final int WIDTH = 293;
+    private final int HEIGHT = 545;
     private final static int gameId = 1;
-    private final static int test = 6;
+    private final static int test = 3;
 
     private Timer gameTimer = null;
     protected static int n;
