@@ -808,7 +808,7 @@ public class Maps {
                 } else if (k == 2) {
                     for (int i = 1; i < 4; i++) {
                         for (int j = 1; j < 3; j++) {
-                            if ((i == 1 && j == 1) || (i ==2 && j ==1)) {
+                            if ((i == 1 && j == 1) || (i ==2 && j ==1)|| (i == 3 && j == 1)) {
                                 piece1[k][i][j].setColored(true);
                             } else if (i == 3 && j == 2) {
                                 piece1[k][i][j].setColored(true);
