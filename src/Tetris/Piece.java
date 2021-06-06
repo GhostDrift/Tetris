@@ -1229,9 +1229,9 @@ public class Piece {
             for(int i = 0; i< 4; i++){
                 for(int j = 0; j<4; j++){
                     Square s = map[i][j];
-                    System.out.println("i: " + i + " j: " + j);
-                    System.out.println("nextMap: " + nextMap[i][j].getColored());
-                    System.out.println("s colored: " + s.getColored());
+//                    System.out.println("i: " + i + " j: " + j);
+//                    System.out.println("nextMap: " + nextMap[i][j].getColored());
+//                    System.out.println("s colored: " + s.getColored());
                     if(nextMap[i][j].getColored()){
                         if (!s.getColored()) {
                             if(gameBoard[s.getX()][s.getY()].getColored()){
