@@ -816,20 +816,13 @@ public class Maps {
                         }
                     }
                 } else if (k == 3) {
-                    for (int i = 0; i < 4; i++) {
-                        for (int j = 0; j < 4; j++) {
-                            if (i == 0) {
-                                if (j == 2 || j == 3) {
-                                    piece1[k][i][j].setColored(true);
-                                }
-                            } else if (i == 1) {
-                                if (j == 2) {
-                                    piece1[k][i][j].setColored(true);
-                                }
-                            } else if (i == 2) {
-                                if (j == 2) {
-                                    piece1[k][i][j].setColored(true);
-                                }
+                    for (int i = 2; i < 4; i++) {
+                        for (int j = 0; j < 3; j++) {
+                            if(i == 2){
+                                piece1[k][i][j].setColored(true);
+                            }
+                            if(i == 3 && j == 0){
+                                piece1[k][i][j].setColored(true);
                             }
                         }
                     }
