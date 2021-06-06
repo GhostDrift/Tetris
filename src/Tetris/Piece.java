@@ -956,6 +956,82 @@ public class Piece {
                     }
                 }
             }
+            else if(id == 2){
+                if(r ==0){
+                    for(int i = 1; i<4; i++){
+                        int j;
+                        if(i == 1){
+                            j = 1;
+                            s = this.map[i][j];
+                            int xValue = s.getX() - 1;
+                            if (s.getX() <= 0) {
+                                return false;
+                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                return false;
+                            }
+                        }
+                        else if(i == 3){
+                            j = 0;
+                            s = this.map[i][j];
+                            int xValue = s.getX() - 1;
+                            if (s.getX() <= 0) {
+                                return false;
+                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                else if( r == 1){
+                    for(int i = 1; i<3; i++){
+                        if( i == 1){
+                            int j = 0;
+                            s = this.map[i][j];
+                            int xValue = s.getX() - 1;
+                            if (s.getX() <= 0) {
+                                return false;
+                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                return false;
+                            }
+                        }
+                        else {
+                            for (int j = 1; j<3; j++){
+                                s = this.map[i][j];
+                                int xValue = s.getX() - 1;
+                                if (s.getX() <= 0) {
+                                    return false;
+                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if(r == 2){
+                    int i = 1;
+                    for(int j = 1; j <3; j++){
+                        s = this.map[i][j];
+                        int xValue = s.getX() - 1;
+                        if (s.getX() <= 0) {
+                            return false;
+                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+                            return false;
+                        }
+                    }
+                }
+                else{
+                    int i =1;
+                    for(int j =0; j<3; j++){
+                        s = this.map[i][j];
+                        int xValue = s.getX() - 1;
+                        if (s.getX() <= 0) {
+                            return false;
+                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+                            return false;
+                        }
+                    }
+                }
+            }
         }
         return true;
     }
@@ -1200,6 +1276,7 @@ public class Piece {
         }
     }
     //checks to see if the piece can be rotated
+    //works with both games
     public boolean canRotate(Square[][] gameBoard, Maps maps){
         int id = this.getId();
         int r = this.rotation;
