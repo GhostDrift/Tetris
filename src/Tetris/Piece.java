@@ -1033,10 +1033,10 @@ public class Piece {
                 }
             }
             else if (id == 6){
-                if (r == 0){
-                    for(int i = 1; i<3; i++){
+                if (r == 0 || r == 2){
+                    for(int i = 0; i<2; i++){
                         int j;
-                        if(i == 1 ){
+                        if(i == 0){
                             j = 1;
                             s = this.map[i][j];
                             int xValue = s.getX() - 1;
@@ -1058,29 +1058,27 @@ public class Piece {
                         }
                     }
                 }
-                else if (r == 1){
+                else if (r == 1 || r == 3){
                     for(int i = 1; i<3; i++){
                         if(i == 1){
-                            int j = 1;
+                            for (int j =0; j<2; j++) {
+                                s = this.map[i][j];
+                                int xValue = s.getX() - 1;
+                                if (s.getX() <= 0) {
+                                    return false;
+                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                    return false;
+                                }
+                            }
+                        }
+                        else {
+                            int j = 2;
                             s = this.map[i][j];
                             int xValue = s.getX() - 1;
                             if (s.getX() <= 0) {
                                 return false;
                             } else if (gameBoard[xValue][s.getY()].getColored()) {
                                 return false;
-                            }
-                        }
-                        else {
-                            for(int j = 0; j<3; j++){
-                                if(j == 0 || j == 2){
-                                    s = this.map[i][j];
-                                    int xValue = s.getX() - 1;
-                                    if (s.getX() <= 0) {
-                                        return false;
-                                    } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                        return false;
-                                    }
-                                }
                             }
                         }
                     }
