@@ -1433,8 +1433,15 @@ public class Piece {
             }
             Square[][] nextMap = maps.getMap(id,nextR);
             Square[][] map = this.getMap();
-            if(id == 0 || id == 4){
-                return true;
+            if (gameID == 0) {
+                if(id == 0 || id == 4){
+                    return true;
+                }
+            }
+            else{
+                if(id == 0){
+                    return true;
+                }
             }
 //            else if(id == 1){
 //                return false;
