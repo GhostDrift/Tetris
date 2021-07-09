@@ -1556,6 +1556,42 @@ public class Piece {
                     }
                 }
             }
+            else if(id == 2){
+                if(r == 0){
+                    int i =3;
+                    for(int j = 0; j <2; j++){
+                        s = this.map[i][j];
+                        if (s.getColored()) {
+                            int xValue = s.getX() + 1;
+                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                            if (s.getX() >= 9) {
+                                //System.out.println("The block is at the right edge of the board");
+                                return false;
+                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                //System.out.println("the block is on the left of another block");
+                                return false;
+                            }
+                        }
+                    }
+                }
+                else if(r == 1){
+                    int i = 2;
+                    for(int j = 0; j< 3; j++){
+                        s = this.map[i][j];
+                        if (s.getColored()) {
+                            int xValue = s.getX() + 1;
+                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                            if (s.getX() >= 9) {
+                                //System.out.println("The block is at the right edge of the board");
+                                return false;
+                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                //System.out.println("the block is on the left of another block");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
         }
         return true;
     }
