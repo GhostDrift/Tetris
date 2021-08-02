@@ -21,7 +21,7 @@ public class GameGUI extends JFrame {
     private final int WIDTH = 293;
     private final int HEIGHT = 545;
     private final static int gameId = 1;
-    private final static int test = 2;
+    private final static int test = 4;
 
     private Timer gameTimer = null;
     protected static int n;
