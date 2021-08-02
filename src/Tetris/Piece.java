@@ -1473,18 +1473,21 @@ public class Piece {
         if(this.id == 0){
             int i = 2;
             for(int j = 0; j<2; j++){
-                s = this.map[i][j];
-                if (s.getColored()) {
-                    int xValue = s.getX()+1;
-                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                    if(s.getX() >= 9){
-//                        System.out.println("The block is at the right edge of the board");
-                        return false;
-                    }
-                    else if(gameBoard[xValue][s.getY()].getColored()){
-//                        System.out.println("the block is on the left of another block");
-                        return false;
-                    }
+//                s = this.map[i][j];
+//                if (s.getColored()) {
+//                    int xValue = s.getX()+1;
+//                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                    if(s.getX() >= 9){
+////                        System.out.println("The block is at the right edge of the board");
+//                        return false;
+//                    }
+//                    else if(gameBoard[xValue][s.getY()].getColored()){
+////                        System.out.println("the block is on the left of another block");
+//                        return false;
+//                    }
+//                }
+                if(!occupiedNext(2,gameBoard, i, j)){
+                    return false;
                 }
             }
             return true;
@@ -1494,66 +1497,78 @@ public class Piece {
                 int i = 1;
 //            int j = 3;
                 for (int j = 0; j< 4; j++) {
-                    s = this.map[i][j];
-                    if (s.getColored()) {
-                        int xValue = s.getX()+1;
-                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                        if(s.getX() >= 9){
-                            //System.out.println("The block is at the right edge of the board");
-                            return false;
-                        }
-                        else if(gameBoard[xValue][s.getY()].getColored()){
-                            //System.out.println("the block is on the left of another block");
-                            return false;
-                        }
+//                    s = this.map[i][j];
+//                    if (s.getColored()) {
+//                        int xValue = s.getX()+1;
+//                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                        if(s.getX() >= 9){
+//                            //System.out.println("The block is at the right edge of the board");
+//                            return false;
+//                        }
+//                        else if(gameBoard[xValue][s.getY()].getColored()){
+//                            //System.out.println("the block is on the left of another block");
+//                            return false;
+//                        }
+//                    }
+                    if(!occupiedNext(2,gameBoard, i, j)){
+                        return false;
                     }
                 }
             }
             else if(this.getRotation() ==1){
                 int i = 3;
                 int j = 2;
-                s = this.map[i][j];
-                if (s.getColored()) {
-                    int xValue = s.getX()+1;
-                    if(s.getX() >= 9){
-                        return false;
-                    }
-                    else if(gameBoard[xValue][s.getY()].getColored()){
-                        return false;
-                    }
+//                s = this.map[i][j];
+//                if (s.getColored()) {
+//                    int xValue = s.getX()+1;
+//                    if(s.getX() >= 9){
+//                        return false;
+//                    }
+//                    else if(gameBoard[xValue][s.getY()].getColored()){
+//                        return false;
+//                    }
+//                }
+                if(!occupiedNext(2,gameBoard, i, j)){
+                    return false;
                 }
             }
             else if(this.getRotation() == 2){
                 int i = 2;
 //            int j = 3;
                 for (int j = 0; j< 4; j++) {
-                    s = this.map[i][j];
-                    if (s.getColored()) {
-                        int xValue = s.getX()+1;
-                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                        if(s.getX() >= 9){
-                            //System.out.println("The block is at the right edge of the board");
-                            return false;
-                        }
-                        else if(gameBoard[xValue][s.getY()].getColored()){
-                            //System.out.println("the block is on the left of another block");
-                            return false;
-                        }
+//                    s = this.map[i][j];
+//                    if (s.getColored()) {
+//                        int xValue = s.getX()+1;
+//                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                        if(s.getX() >= 9){
+//                            //System.out.println("The block is at the right edge of the board");
+//                            return false;
+//                        }
+//                        else if(gameBoard[xValue][s.getY()].getColored()){
+//                            //System.out.println("the block is on the left of another block");
+//                            return false;
+//                        }
+//                    }
+                    if(!occupiedNext(2,gameBoard, i, j)){
+                        return false;
                     }
                 }
             }
             else if(this.getRotation() == 3){
                 int i = 3;
                 int j = 1;
-                s = this.map[i][j];
-                if (s.getColored()) {
-                    int xValue = s.getX()+1;
-                    if(s.getX() >= 9){
-                        return false;
-                    }
-                    else if(gameBoard[xValue][s.getY()].getColored()){
-                        return false;
-                    }
+//                s = this.map[i][j];
+//                if (s.getColored()) {
+//                    int xValue = s.getX()+1;
+//                    if(s.getX() >= 9){
+//                        return false;
+//                    }
+//                    else if(gameBoard[xValue][s.getY()].getColored()){
+//                        return false;
+//                    }
+//                }
+                if(!occupiedNext(2,gameBoard, i, j)){
+                    return false;
                 }
             }
             return true;
@@ -1562,17 +1577,20 @@ public class Piece {
             if (this.id == 1 || this.id == 5) {
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 4; j++) {
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                     }
                 }
@@ -1581,50 +1599,59 @@ public class Piece {
                 if (r == 0) {
                     int j = 1;
                     for (int i = 2; i < 4; i++) {
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            if (s.getX() <= 0) {
-                                return false;
-                            } else if (xValue == 10) {
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            if (s.getX() <= 0) {
+//                                return false;
+//                            } else if (xValue == 10) {
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                         j--;
                     }
                 } else if (r == 1 || r == 3) {
                     for (int i = 0; i < 4; i++) {
                         for (int j = 0; j < 4; j++) {
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
                 } else if (r == 2) {
                     int j = 2;
                     for (int i = 2; i < 4; i++) {
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                         j++;
                     }
@@ -1633,11 +1660,14 @@ public class Piece {
             } else if (this.id == 4) {
                 int i = 1;
                 int j = 0;
-                s = this.map[i][j];
-                int xValue = s.getX() + 1;
-                if (s.getX() >= 9) {
-                    return false;
-                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                s = this.map[i][j];
+//                int xValue = s.getX() + 1;
+//                if (s.getX() >= 9) {
+//                    return false;
+//                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                    return false;
+//                }
+                if(!occupiedNext(2,gameBoard, i, j)){
                     return false;
                 }
                 return true;
@@ -1645,43 +1675,55 @@ public class Piece {
                 if (r == 0) {
                     int i = 1;
                     for (int j = 0; j < 2; j++) {
-                        s = this.map[i][j];
-                        int xValue = s.getX() + 1;
-                        if (s.getX() >= 9) {
-                            return false;
-                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                        s = this.map[i][j];
+//                        int xValue = s.getX() + 1;
+//                        if (s.getX() >= 9) {
+//                            return false;
+//                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                            return false;
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
                             return false;
                         }
                     }
                 } else if (r == 1) {
                     int i = 1;
                     int j = 1;
-                    s = this.map[i][j];
-                    int xValue = s.getX() + 1;
-                    if (s.getX() >= 9) {
-                        return false;
-                    } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                    s = this.map[i][j];
+//                    int xValue = s.getX() + 1;
+//                    if (s.getX() >= 9) {
+//                        return false;
+//                    } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                        return false;
+//                    }
+                    if(!occupiedNext(2,gameBoard, i, j)){
                         return false;
                     }
                 } else if (r == 2) {
                     int i = 1;
                     for (int j = 1; j < 3; j++) {
-                        s = this.map[i][j];
-                        int xValue = s.getX() + 1;
-                        if (s.getX() >= 9) {
-                            return false;
-                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                        s = this.map[i][j];
+//                        int xValue = s.getX() + 1;
+//                        if (s.getX() >= 9) {
+//                            return false;
+//                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                            return false;
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
                             return false;
                         }
                     }
                 } else if (r == 3) {
                     int i = 2;
                     int j = 1;
-                    s = this.map[i][j];
-                    int xValue = s.getX() + 1;
-                    if (s.getX() >= 9) {
-                        return false;
-                    } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                    s = this.map[i][j];
+//                    int xValue = s.getX() + 1;
+//                    if (s.getX() >= 9) {
+//                        return false;
+//                    } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                        return false;
+//                    }
+                    if(!occupiedNext(2,gameBoard, i, j)){
                         return false;
                     }
                 }
@@ -1694,32 +1736,38 @@ public class Piece {
                     for(int i = 1; i< 4; i++){
                         if(i == 0){
                             int j = 0;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                         if(i == 3){
                             int j = 1;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
@@ -1727,34 +1775,40 @@ public class Piece {
                 else if( r == 1){
                     int i = 2;
                     for (int j = 0; j<3; j++){
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                     }
                 }
                 else if(r == 2){
                     int i = 3;
                     for(int j = 1; j < 3; j++){
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                     }
                 }
@@ -1762,32 +1816,38 @@ public class Piece {
                     for(int i = 2; i < 4; i++){
                         if(i == 3){
                             int j = 0;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                         else{
                             for(int j = 1; j<3; j++){
-                                s = this.map[i][j];
-                                if (s.getColored()) {
-                                    int xValue = s.getX() + 1;
-                                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                    if (s.getX() >= 9) {
-                                        //System.out.println("The block is at the right edge of the board");
-                                        return false;
-                                    } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                        //System.out.println("the block is on the left of another block");
-                                        return false;
-                                    }
+//                                s = this.map[i][j];
+//                                if (s.getColored()) {
+//                                    int xValue = s.getX() + 1;
+//                                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                    if (s.getX() >= 9) {
+//                                        //System.out.println("The block is at the right edge of the board");
+//                                        return false;
+//                                    } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                        //System.out.println("the block is on the left of another block");
+//                                        return false;
+//                                    }
+//                                }
+                                if(!occupiedNext(2,gameBoard, i, j)){
+                                    return false;
                                 }
                             }
                         }
@@ -1798,34 +1858,40 @@ public class Piece {
                 if(r == 0){
                     int i =3;
                     for(int j = 0; j <2; j++){
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                     }
                 }
                 else if(r == 1){
                     int i = 2;
                     for(int j = 0; j< 3; j++){
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                     }
                 }
@@ -1833,32 +1899,38 @@ public class Piece {
                     for(int i = 1; i< 4; i++){
                         if(i == 1){
                             int j = 2;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                         else if(i == 3){
                             int j = 1;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
@@ -1867,33 +1939,39 @@ public class Piece {
                     for(int i = 1; i< 3; i++){
                         if(i == 1){
                             for(int j = 0; j < 2; j++){
-                                s = this.map[i][j];
-                                if (s.getColored()) {
-                                    int xValue = s.getX() + 1;
-                                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                    if (s.getX() >= 9) {
-                                        //System.out.println("The block is at the right edge of the board");
-                                        return false;
-                                    } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                        //System.out.println("the block is on the left of another block");
-                                        return false;
-                                    }
+//                                s = this.map[i][j];
+//                                if (s.getColored()) {
+//                                    int xValue = s.getX() + 1;
+//                                    //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                    if (s.getX() >= 9) {
+//                                        //System.out.println("The block is at the right edge of the board");
+//                                        return false;
+//                                    } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                        //System.out.println("the block is on the left of another block");
+//                                        return false;
+//                                    }
+//                                }
+                                if(!occupiedNext(2,gameBoard, i, j)){
+                                    return false;
                                 }
                             }
                         }
                         else{
                             int j = 2;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
@@ -1903,79 +1981,94 @@ public class Piece {
                     for(int i = 2; i< 4; i++){
                         if(i == 2) {
                             int j = 0;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         } else{
                             int j = 1;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
                 } else if (r == 1){
                     int i = 2;
                     for(int j = 0; j<3; j++){
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                     }
                 } else if (r == 2){
                     for(int i = 2; i< 4; i++){
                         if(i == 2){
                             int j = 2;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         } else {
                             int j = 1;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
@@ -1984,34 +2077,40 @@ public class Piece {
                         if (i == 2){
                             for(int j = 0; j< 3; j++){
                                 if (j == 0 || j == 2){
-                                    s = this.map[i][j];
-                                    if (s.getColored()) {
-                                        int xValue = s.getX() + 1;
-                                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                        if (s.getX() >= 9) {
-                                            //System.out.println("The block is at the right edge of the board");
-                                            return false;
-                                        } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                            //System.out.println("the block is on the left of another block");
-                                            return false;
-                                        }
+//                                    s = this.map[i][j];
+//                                    if (s.getColored()) {
+//                                        int xValue = s.getX() + 1;
+//                                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                        if (s.getX() >= 9) {
+//                                            //System.out.println("The block is at the right edge of the board");
+//                                            return false;
+//                                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                            //System.out.println("the block is on the left of another block");
+//                                            return false;
+//                                        }
+//                                    }
+                                    if(!occupiedNext(2,gameBoard, i, j)){
+                                        return false;
                                     }
                                 }
                             }
                         }
                         else {
                             int j = 1;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
@@ -2021,55 +2120,94 @@ public class Piece {
                     for(int i = 2; i<4; i++){
                         if ( i == 2){
                             int j = 0;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         } else {
                             int j = 1;
-                            s = this.map[i][j];
-                            if (s.getColored()) {
-                                int xValue = s.getX() + 1;
-                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                                if (s.getX() >= 9) {
-                                    //System.out.println("The block is at the right edge of the board");
-                                    return false;
-                                } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                    //System.out.println("the block is on the left of another block");
-                                    return false;
-                                }
+//                            s = this.map[i][j];
+//                            if (s.getColored()) {
+//                                int xValue = s.getX() + 1;
+//                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                                if (s.getX() >= 9) {
+//                                    //System.out.println("The block is at the right edge of the board");
+//                                    return false;
+//                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                    //System.out.println("the block is on the left of another block");
+//                                    return false;
+//                                }
+//                            }
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
                             }
                         }
                     }
                 } else if (r == 1 || r == 3){
                     int i =2;
                     for(int j = 0; j<2; j++){
-                        s = this.map[i][j];
-                        if (s.getColored()) {
-                            int xValue = s.getX() + 1;
-                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
-                            if (s.getX() >= 9) {
-                                //System.out.println("The block is at the right edge of the board");
-                                return false;
-                            } else if (gameBoard[xValue][s.getY()].getColored()) {
-                                //System.out.println("the block is on the left of another block");
-                                return false;
-                            }
+//                        s = this.map[i][j];
+//                        if (s.getColored()) {
+//                            int xValue = s.getX() + 1;
+//                            //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+//                            if (s.getX() >= 9) {
+//                                //System.out.println("The block is at the right edge of the board");
+//                                return false;
+//                            } else if (gameBoard[xValue][s.getY()].getColored()) {
+//                                //System.out.println("the block is on the left of another block");
+//                                return false;
+//                            }
+//                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
                         }
                     }
                 }
             }
             else {
-                if (r == 0){
+                if (r == 0 || r == 2){
+                    int j;
+                    for(int i =1; i< 3; i++){
+                        if(i == 2){
+                            j = 0;
+                        }
+                        else {
+                            j = 1;
+                        }
+                        if(!occupiedNext(2,gameBoard, i, j)){
+                            return false;
+                        }
+                    }
+                }
+                else {
+                    int j;
+                    for(int i = 1; i<3; i++){
+                        if(i == 1){
+                            j = 0;
+                            if(!occupiedNext(2,gameBoard, i, j)){
+                                return false;
+                            }
+                        }
+                        else {
+                            for(int y = 1; y<3; y++){
+                                if(!occupiedNext(2,gameBoard, i, y)){
+                                    return false;
+                                }
+                            }
+                        }
 
+                    }
                 }
             }
         }
