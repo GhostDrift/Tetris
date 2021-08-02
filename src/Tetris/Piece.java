@@ -1741,6 +1741,42 @@ public class Piece {
                             }
                         }
                     }
+                } else {
+                    for( int i = 2; i<4; i++){
+                        if (i == 2){
+                            for(int j = 0; j< 3; j++){
+                                if (j == 0 || j == 2){
+                                    s = this.map[i][j];
+                                    if (s.getColored()) {
+                                        int xValue = s.getX() + 1;
+                                        //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                                        if (s.getX() >= 9) {
+                                            //System.out.println("The block is at the right edge of the board");
+                                            return false;
+                                        } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                            //System.out.println("the block is on the left of another block");
+                                            return false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            int j = 1;
+                            s = this.map[i][j];
+                            if (s.getColored()) {
+                                int xValue = s.getX() + 1;
+                                //System.out.println("x chordiante: " + s.getX() + " y cordinate: " + s.getY());
+                                if (s.getX() >= 9) {
+                                    //System.out.println("The block is at the right edge of the board");
+                                    return false;
+                                } else if (gameBoard[xValue][s.getY()].getColored()) {
+                                    //System.out.println("the block is on the left of another block");
+                                    return false;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
