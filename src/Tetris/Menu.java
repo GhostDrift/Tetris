@@ -41,7 +41,7 @@ public class Menu extends JFrame {
                         String cmd = arg0.getActionCommand();
                         if(cmd.equals("open")){
                             dispose();
-                            mainGame = new GameGUI();
+                            mainGame = new GameGUI(0);
                         }
                     }
                 }

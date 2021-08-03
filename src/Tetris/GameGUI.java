@@ -17,13 +17,13 @@ import javax.swing.border.TitledBorder;
 
 
 
-public class GameGUI extends JFrame {
+public class GameGUI extends JFrame  {
     // -- set the size of the JFrame. JPanels will adapt to this size
 //    private final int WIDTH = 296;
 //    private final int HEIGHT = 550;
     private final int WIDTH = 293;
     private final int HEIGHT = 545;
-    private final static int gameId = 0;
+    private static int gameId;
 //    private final static int test = 5;
 
     private Timer gameTimer = null;
@@ -49,7 +49,8 @@ public class GameGUI extends JFrame {
     //    private int colorIndex = 0;
 //    private final Color purple = new Color(100,0,150);
     // piece variable for game play
-    private final Maps maps = new Maps(gameId);
+//    private final Maps maps = new Maps(gameId);
+    final Maps maps;
     private Piece np;
     private Piece p;
 
@@ -60,8 +61,11 @@ public class GameGUI extends JFrame {
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private int screenHeight = screenSize.height;
     private int screenWidth = screenSize.width;
-    public GameGUI()
+    public GameGUI(int mode)
     {
+         this.gameId = mode;
+          this.maps = new Maps(gameId);
+
         System.out.println("Screen height: " + screenHeight + "\nScreen width: " + screenWidth);
         //construct the bast jFrame first
         // this is implied super();
@@ -706,7 +710,7 @@ public class GameGUI extends JFrame {
         }
     }
 
-    public static void main (String[] args)
+    public static void main (int[] args)
     {
 
         // -- can run as an anonymous object since Swing
@@ -714,7 +718,7 @@ public class GameGUI extends JFrame {
         //    its thread while the Swing thread continues on)
         //-- the object we create is on stack but it has no stack refrence
         //  thus we call it "anonymous"
-        new GameGUI();
+        new GameGUI(args[0]);
         // this line of Code demonstrates the fact that the main function terminates and the main code still runs
         System.out.println("Main Thread Terminating");
     }
