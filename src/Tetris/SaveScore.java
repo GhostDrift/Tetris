@@ -11,10 +11,13 @@ import java.util.ArrayList;
 public class SaveScore extends JFrame{
     private final ArrayList<Score> highScoresList;
     private final int newScore;
-    private final File highScores = new File("HighScores.ser");
+    private int gameId;
+    private File highScores;
     private final Color purple = new Color(50,0,100);
-    public SaveScore(int newScore){
+    public SaveScore(int newScore, int gameId){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.gameId = gameId;
+        getHighScoreFile(gameId);
         int WIDTH = 400;
         int HEIGHT = 250;
         this.setSize(WIDTH, HEIGHT);
@@ -52,6 +55,14 @@ public class SaveScore extends JFrame{
     }
     private void addScore(Score s){
 
+    }
+    private void getHighScoreFile(int gameId){
+        if(gameId == 0){
+            this.highScores = new File("HighScores0.ser");
+        }
+        else {
+            this.highScores = new File("HighScores1.ser");
+        }
     }
 
     private class ControlPanel extends JPanel{
@@ -161,8 +172,8 @@ public class SaveScore extends JFrame{
     }
 
 
-    public static void main(String[] args) {
-        new SaveScore(0);
+    public static void main(int[] args) {
+        new SaveScore(0, args[0]);
     }
 }
 

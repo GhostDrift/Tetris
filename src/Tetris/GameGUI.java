@@ -226,7 +226,7 @@ public class GameGUI extends JFrame  {
         } catch (Exception e) {
             gameTimer.stop();
             dispose();
-            new SaveScore(score);
+            new SaveScore(score,gameId);
 //            gameOver(score);
         }
         return p;

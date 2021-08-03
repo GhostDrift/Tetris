@@ -20,7 +20,7 @@ public class Menu extends JFrame {
     private GameGUI mainGame;
     private JButton start;
     private ArrayList<Score> highScoresList;
-    private File highScores = new File("HighScores.ser");
+    private File highScores = new File("HighScores0.ser");
     public Menu(){
         setTitle("Block Buster");
         setSize(WIDTH,HEIGHT);
