@@ -533,6 +533,7 @@ public class GameGUI extends JFrame  {
 //        private JButton saveButton;
 //        private JButton loadButton;
         private JButton pausePlay;
+        private JButton quit;
 
         //Labels for control pannel
         private JLabel scoreLabel;
@@ -577,6 +578,7 @@ public class GameGUI extends JFrame  {
             // -- add items to the JPanel in order (FlowLayout)
 
             this.add(pausePlay);
+            this.add(quit);
             this.add(scoreLabel);
             this.add(score);
             this.add(nextPieceLabel);
@@ -617,6 +619,21 @@ public class GameGUI extends JFrame  {
                                 gameTimer.stop();
 
                             }
+                            //send focus back to the graphics panel
+
+                        }
+                    }
+            );
+            quit = new JButton("Quit");
+            quit.setPreferredSize(new Dimension(75,20));
+            quit.setBackground(colors[0]);
+            quit.setForeground(colors[1]);
+            quit.addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent arg0) {
+                            gameTimer.stop();
+                            dispose();
+                            new Menu();
                             //send focus back to the graphics panel
 
                         }
