@@ -389,11 +389,13 @@ public class GameGUI extends JFrame  {
 
                 @Override
                 public void keyTyped(KeyEvent event) {
-
+                    //Left blank because listener not needed
                 }
 
                 @Override
                 public void keyPressed(KeyEvent event) {
+                    //prints out the key code of the pressed key
+//                    System.out.println(event.getKeyCode());
                     if(event.getKeyCode()== 37){
                         //moves the piece left if it is not blocked
                         moveLeft(gameBoard, p);
@@ -414,6 +416,10 @@ public class GameGUI extends JFrame  {
                             moveDown(gameBoard,p);
                         }
                         playArea.repaint();
+                    }
+                    else if(event.getKeyCode() == 32){
+                        //toggles the pausePlay button when the space bar is pressed
+                        controlPanel.pausePlay.doClick();
                     }
                 }
 
@@ -503,7 +509,7 @@ public class GameGUI extends JFrame  {
     // -- Inner class for control panel
     public class ControlPanelInner extends JPanel {
         //buttons for control pannel
-        private JButton pausePlay;
+        protected JButton pausePlay;
         private JButton quit;
 
 
