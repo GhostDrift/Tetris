@@ -1,16 +1,15 @@
 package Tetris;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
+
 
 
 /* ******************Playable Mode*********************/
@@ -18,34 +17,24 @@ import javax.swing.border.TitledBorder;
 
 
 public class GameGUI extends JFrame  {
-    // -- set the size of the JFrame. JPanels will adapt to this size
-//    private final int WIDTH = 296;
-//    private final int HEIGHT = 550;
-    private final int WIDTH = 293;
-    private final int HEIGHT = 545;
     private static int gameId;
 //    private final static int test = 5;
 
     private Timer gameTimer = null;
-    protected static int n;
-    protected static int m;
-    protected static boolean playing = true;
 
     //graphics display areas
-    private PlayArea playArea;
+    private final PlayArea playArea;
     private NextPieceDisplay nextPieceDisplay;
 
     //control panel
-    private ControlPanelInner controlPanel;
+    private final ControlPanelInner controlPanel;
 
     //2D array for mapping game board
-    private Square[][] gameBoard = new Square[10][30];
-    private Square[][] nextPieceMap = new Square[4][4];
+    private final Square[][] gameBoard = new Square[10][30];
+    private final Square[][] nextPieceMap = new Square[4][4];
 
     //piece color variables
-    private Color backgroundColor = Color.black;
-    private Color nextColor = Color.CYAN;
-    private Color[] colors = new Color[8]; //and array to hold all of the colors for the squares on the board.
+    private final Color[] colors = new Color[8]; //and array to hold all of the colors for the squares on the board.
     //    private int colorIndex = 0;
 //    private final Color purple = new Color(100,0,150);
     // piece variable for game play
@@ -57,15 +46,15 @@ public class GameGUI extends JFrame  {
     //variable to hold the score
     private int score =0;
 
-    //variable to hold the size of the screen
-    private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private int screenHeight = screenSize.height;
-    private int screenWidth = screenSize.width;
     public GameGUI(int mode)
     {
-         this.gameId = mode;
+         gameId = mode;
           this.maps = new Maps(gameId);
 
+        //variable to hold the size of the screen
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenHeight = screenSize.height;
+        int screenWidth = screenSize.width;
         System.out.println("Screen height: " + screenHeight + "\nScreen width: " + screenWidth);
         //construct the bast jFrame first
         // this is implied super();
@@ -75,6 +64,9 @@ public class GameGUI extends JFrame  {
         setTitle("Block Buster");
 
         // -- size of the frame: width, height
+        // -- set the size of the JFrame. JPanels will adapt to this size
+        int WIDTH = 293;
+        int HEIGHT = 545;
         setSize(WIDTH, HEIGHT);
 
         // -- center the frame on the screen
@@ -101,8 +93,6 @@ public class GameGUI extends JFrame  {
         //populate the 2D array that will be used to map the game board
         int xValue = 1;
         int yValue = 0;
-//        int xIncrease = 18;
-//        int yIncrease = 17;
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 30; j++){
                 gameBoard[i][j] = new Square(xValue, yValue);
@@ -139,29 +129,25 @@ public class GameGUI extends JFrame  {
         final Random rn = new Random();
         p = new Piece(rn.nextInt(7),maps,gameId);
         np = new Piece(rn.nextInt(7),maps,gameId);
-//        p = new Piece(test,maps,gameId);
-//        np = new Piece(test,maps,gameId);
         gameTimer = new Timer(400,
                 // -- ActionListener for the timer event
                 // and example of real time programming
                 // events occur at arbitrary times
                 // and our program must be prepaired to deal with them
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent arg0) {
+                arg0 -> {
 //                        System.out.println(p.getActive());
-                        if(!p.getActive()){
-                            score +=checkLines(gameBoard);
-                            controlPanel.upDateScore(score);
-                            p = addPiece(gameBoard, np, gameTimer, score);
-                            p.setActive(true);
-                            np = getNextPiece(nextPieceMap, maps);
-                        }
-                        else {
-                            moveDown(gameBoard,p);
-                        }
-                        playArea.repaint();
-                        nextPieceDisplay.repaint();
+                    if(!p.getActive()){
+                        score +=checkLines(gameBoard);
+                        controlPanel.upDateScore(score);
+                        p = addPiece(gameBoard, np, gameTimer, score);
+                        p.setActive(true);
+                        np = getNextPiece(nextPieceMap, maps);
                     }
+                    else {
+                        moveDown(gameBoard,p);
+                    }
+                    playArea.repaint();
+                    nextPieceDisplay.repaint();
                 }
         );
 
@@ -183,8 +169,6 @@ public class GameGUI extends JFrame  {
     private static Piece getNextPiece(Square[][] nextPieceMap, Maps maps){
         Random rn = new Random();
         int n = rn.nextInt(7);
-//        System.out.println("n = " + n);
-//        Piece np = new Piece(test,maps,gameId);
         Piece np = new Piece(n,maps,gameId);
         //clear the next piece panel
         for(int i = 0; i< 4; i++){
@@ -380,9 +364,10 @@ public class GameGUI extends JFrame  {
 
     }
 
+
     // -- Inner class for the graphics panel
     public class PlayArea extends JPanel {
-        private Color color;
+        private final Color color;
         public PlayArea()
         {
             super();
@@ -499,19 +484,7 @@ public class GameGUI extends JFrame  {
 //
             graphicsContext.setColor(color);
             //test
-//            Square s;
-//            for(int i = 0; i < 8; i++){
-//                graphicsContext.setColor(colors[i]);
-//                for (int j = 0; j < 30; j++){
-//                        s = gameBoard[i][j];
-//                        graphicsContext.fillRect(s.getX(), s.getY(), 16, 16);
-//                    }
-//                }
 
-//            graphicsContext.fillRect(73,119,17,17);
-//            graphicsContext.fillRect(1, 34, 16, 16);
-//            graphicsContext.fillRect(1, 17, 16, 16);
-//            graphicsContext.fillRect(19, 0, 16, 16);
             Square s;
             for(int i = 0; i < 10; i++){
                 for (int j = 0; j < 30; j++){
@@ -530,17 +503,11 @@ public class GameGUI extends JFrame  {
     // -- Inner class for control panel
     public class ControlPanelInner extends JPanel {
         //buttons for control pannel
-//        private JButton saveButton;
-//        private JButton loadButton;
         private JButton pausePlay;
         private JButton quit;
 
-        //Labels for control pannel
-        private JLabel scoreLabel;
-        private JLabel nextPieceLabel;
 
-
-        private JTextField score;
+        private final JTextField score;
         private String currentScore = "0";
 
 
@@ -566,9 +533,10 @@ public class GameGUI extends JFrame  {
 
 
             //construct the labels for the control panel
-            scoreLabel = new JLabel("Score");
+            //Labels for control pannel
+            JLabel scoreLabel = new JLabel("Score");
             scoreLabel.setForeground(colors[5]);
-            nextPieceLabel = new JLabel("Next Piece");
+            JLabel nextPieceLabel = new JLabel("Next Piece");
             nextPieceLabel.setForeground(colors[5]);
 
             //constructs a graphics panel to display the next piece
@@ -583,8 +551,6 @@ public class GameGUI extends JFrame  {
             this.add(score);
             this.add(nextPieceLabel);
             this.add(nextPieceDisplay);
-//            this.add(loadButton);
-//            this.add(saveButton);
 
             setBorder( new EmptyBorder(0,20,0,5));
 
@@ -607,21 +573,19 @@ public class GameGUI extends JFrame  {
             pausePlay.setBackground(colors[0]);
             pausePlay.setForeground(colors[1]);
             pausePlay.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            if(pausePlay.getText().equals("GO")){
-                                pausePlay.setText("PAUSE");
-                                gameTimer.start();
-                                playArea.requestFocus();
-                            }
-                            else if(pausePlay.getText().equals("PAUSE")){
-                                pausePlay.setText("GO");
-                                gameTimer.stop();
-
-                            }
-                            //send focus back to the graphics panel
+                    arg0 -> {
+                        if(pausePlay.getText().equals("GO")){
+                            pausePlay.setText("PAUSE");
+                            gameTimer.start();
+                            playArea.requestFocus();
+                        }
+                        else if(pausePlay.getText().equals("PAUSE")){
+                            pausePlay.setText("GO");
+                            gameTimer.stop();
 
                         }
+                        //send focus back to the graphics panel
+
                     }
             );
             quit = new JButton("Quit");
@@ -629,47 +593,14 @@ public class GameGUI extends JFrame  {
             quit.setBackground(colors[0]);
             quit.setForeground(colors[1]);
             quit.addActionListener(
-                    new ActionListener() {
-                        public void actionPerformed(ActionEvent arg0) {
-                            gameTimer.stop();
-                            dispose();
-                            new Menu();
-                            //send focus back to the graphics panel
+                    arg0 -> {
+                        gameTimer.stop();
+                        dispose();
+                        new Menu();
+                        //send focus back to the graphics panel
 
-                        }
                     }
             );
-//            saveButton = new JButton("Save");
-//            saveButton.setBackground(Color.black);
-//            saveButton.setForeground(Color.CYAN);
-//            saveButton.addActionListener(
-//                    new ActionListener() {
-//                        public void actionPerformed(ActionEvent arg0) {
-//                            JFileChooser jfc = new JFileChooser();
-//                            if (jfc.showDialog(null, "Save") == JFileChooser.APPROVE_OPTION) {
-//                                System.out.println(jfc.getSelectedFile().getName());
-//                            }
-//                            // -- send focus back to the graphicsPanel
-//                            playArea.requestFocus();
-//                        }
-//                    }
-//            );
-//
-//            loadButton = new JButton("Load");
-//            loadButton.setBackground(Color.black);
-//            loadButton.setForeground(Color.CYAN);
-//            loadButton.addActionListener(
-//                    new ActionListener() {
-//                        public void actionPerformed(ActionEvent arg0) {
-//                            JFileChooser jfc = new JFileChooser();
-//                            if (jfc.showDialog(null, "Load") == JFileChooser.APPROVE_OPTION) {
-//                                System.out.println(jfc.getSelectedFile().getName());
-//                            }
-//                            // -- send focus back to the graphicsPanel
-//                            playArea.requestFocus();
-//                        }
-//                    }
-//            );
 
         }
 
@@ -705,8 +636,8 @@ public class GameGUI extends JFrame  {
             //    but it is really a Graphics2D object. Cast it up since the
             //    Graphics2D class is more capable
             Graphics2D graphicsContext = (Graphics2D) g;
-            int height = this.getHeight();
-            int width = this.getWidth();
+//            int height = this.getHeight();
+//            int width = this.getWidth();
 
 
             //creates a colored square in the middle of the screen
@@ -727,6 +658,8 @@ public class GameGUI extends JFrame  {
         }
     }
 
+    //Compiler throws warning that this is never used, Keeping it in for testing
+    //purposes
     public static void main (int[] args)
     {
 
